@@ -1,177 +1,262 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Quatrini Lab - Microbial Ecophysiology</title>
+		<title>Quattrini Lab | Microbial Ecophysiology</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- Same Google Fonts as sub-pages -->
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* ── Font overrides to match sub-pages ── */
+			body, input, select, textarea {
+				font-family: 'Jost', sans-serif;
+				font-weight: 300;
+				letter-spacing: 0.02em;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Cormorant Garamond', serif;
+				font-weight: 600;
+				letter-spacing: 0.04em;
+			}
+
+			nav ul li a {
+				font-family: 'Jost', sans-serif;
+				font-weight: 500;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				font-size: 0.75em;
+			}
+
+			/* Section subtitle / intro paragraph */
+			.main .content p {
+				font-family: 'Jost', sans-serif;
+				font-weight: 300;
+				line-height: 1.85;
+				font-size: 1.05em;
+			}
+
+			/* Button refinement */
+			.button.style2 {
+				font-family: 'Jost', sans-serif;
+				font-weight: 500;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				font-size: 0.78em;
+			}
+
+			/* Section explore buttons */
+			.section-btn {
+				display: inline-block;
+				margin-top: 1.8em;
+				padding: 0.75em 2.2em;
+				border: 1px solid rgba(255,255,255,0.55);
+				color: #fff;
+				font-family: 'Jost', sans-serif;
+				font-weight: 500;
+				font-size: 0.75em;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				text-decoration: none;
+				transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+				border-radius: 2px;
+			}
+			.section-btn:hover {
+				background: rgba(255,255,255,0.12);
+				border-color: #fff;
+				color: #fff;
+			}
+
+			/* Outreach section accent */
+			#outreach .box.style2 p {
+				font-family: 'Jost', sans-serif;
+				font-weight: 300;
+			}
+
+			/* Gallery title font */
+			.gallery article .image img {
+				transition: transform 0.4s ease;
+			}
+			.gallery article:hover .image img {
+				transform: scale(1.03);
+			}
+
+			/* Contact header refinement */
+			#contact header h2 {
+				font-size: 3em;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
 		<!-- Header -->
-		<header id="header">
-			<h1>Quatrini Lab</h1>
-			<nav>
-				<ul>
-					<li><a href="#intro">Home</a></li>
-					<li><a href="#one">Team</a></li>
-					<li><a href="#two">Research</a></li>
-					<li><a href="#work">Publications</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</nav>
-		</header>
+			<header id="header">
+				<h1 style="font-family:'Cormorant Garamond',serif; font-weight:300; letter-spacing:0.06em;">
+					Quattrini Lab
+				</h1>
+				<nav>
+					<ul>
+						<li><a href="#intro">Home</a></li>
+						<li><a href="#research">Research</a></li>
+						<li><a href="#team">Team</a></li>
+						<li><a href="#outreach">Outreach</a></li>
+						<li><a href="#work">Publications</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</nav>
+			</header>
 
 		<!-- Intro -->
-		<section id="intro" class="main style1 dark fullscreen">
-			<div class="content">
-				<header>
-					<h2>Quatrini Team</h2>
-				</header>
-				<p>Welcome to the <strong>Laboratory of Microbial Ecophysiology</strong>.<br />
-				Exploring the microbial life of extreme environments.</p>
-				<footer>
-					<!-- Original scroll-down button stays -->
-					<a href="#one" class="button style2 down">More</a>
-				</footer>
-			</div>
-		</section>
-
-		<!-- One: Team -->
-		<section id="one" class="main style2 right dark fullscreen">
-			<div class="content box style2">
-				<header>
-					<h2>Our Team</h2>
-				</header>
-				<p>Meet the researchers behind the Laboratory of Microbial Ecophysiology.
-				A multidisciplinary team dedicated to understanding life in extreme environments.</p>
-				<footer>
-					<!-- NEW BUTTON: links to team.html -->
-					<a href="team.html" class="button style2">Meet the Team</a>
-				</footer>
-			</div>
-			<a href="#two" class="button style2 down anchored">Next</a>
-		</section>
-
-		<!-- Two: Research -->
-		<section id="two" class="main style2 left dark fullscreen">
-			<div class="content box style2">
-				<header>
-					<h2>Our Research</h2>
-				</header>
-				<p>From acidophilic microorganisms to extreme environmental gradients —
-				discover how we study life at the limits of biology.</p>
-				<footer>
-					<!-- NEW BUTTON: links to research.html -->
-					<a href="research.html" class="button style2">Explore Research</a>
-				</footer>
-			</div>
-			<a href="#work" class="button style2 down anchored">Next</a>
-		</section>
-
-		<!-- Work: Publications -->
-		<section id="work" class="main style3 primary">
-			<div class="content">
-				<header>
-					<h2>Publications</h2>
-					<p>Our contributions to the scientific community — peer-reviewed
-					articles, book chapters, and conference proceedings.</p>
-				</header>
-
-				<!-- Gallery — keep your images here as preview/thumbnails -->
-				<div class="gallery">
-					<article class="from-left">
-						<a href="images/fulls/01.jpg" class="image fit">
-							<img src="images/thumbs/01.jpg" title="The Anonymous Red" alt="" />
-						</a>
-					</article>
-					<article class="from-right">
-						<a href="images/fulls/02.jpg" class="image fit">
-							<img src="images/thumbs/02.jpg" title="Airchitecture II" alt="" />
-						</a>
-					</article>
-					<article class="from-left">
-						<a href="images/fulls/03.jpg" class="image fit">
-							<img src="images/thumbs/03.jpg" title="Air Lounge" alt="" />
-						</a>
-					</article>
-					<article class="from-right">
-						<a href="images/fulls/04.jpg" class="image fit">
-							<img src="images/thumbs/04.jpg" title="Carry on" alt="" />
-						</a>
-					</article>
-					<article class="from-left">
-						<a href="images/fulls/05.jpg" class="image fit">
-							<img src="images/thumbs/05.jpg" title="The sparkling shell" alt="" />
-						</a>
-					</article>
-					<article class="from-right">
-						<a href="images/fulls/06.jpg" class="image fit">
-							<img src="images/thumbs/06.jpg" title="Bent IX" alt="" />
-						</a>
-					</article>
+			<section id="intro" class="main style1 dark fullscreen">
+				<div class="content">
+					<header>
+						<h2>Quattrini Lab</h2>
+					</header>
+					<p>Welcome to the <strong>Laboratory of Microbial Ecophysiology</strong>.<br />
+					We study the evolution and adaptation of acidophilic microorganisms<br />
+					across extreme environmental gradients.</p>
+					<footer>
+						<a href="#research" class="button style2 down">Discover</a>
+					</footer>
 				</div>
+			</section>
 
-				<!-- NEW BUTTON: links to publications.html -->
-				<div style="text-align:center; margin-top: 2em;">
-					<a href="publications.html" class="button style1">View All Publications</a>
+		<!-- Research (formerly #two, now comes FIRST) -->
+			<section id="research" class="main style2 left dark fullscreen">
+				<div class="content box style2">
+					<header>
+						<h2>Our Research</h2>
+					</header>
+					<p>We investigate microbial ecophysiology and evolution in extreme environments,
+					focusing on acidophilic communities, metabolic adaptation, and the
+					molecular mechanisms that allow life to thrive where few organisms can survive.</p>
+					<a href="research.html" class="section-btn">Explore Research</a>
 				</div>
+				<a href="#team" class="button style2 down anchored">Next</a>
+			</section>
 
-			</div>
-		</section>
+		<!-- Team (formerly #one, now comes SECOND) -->
+			<section id="team" class="main style2 right dark fullscreen">
+				<div class="content box style2">
+					<header>
+						<h2>Our Team</h2>
+					</header>
+					<p>We are a multidisciplinary group of scientists passionate about
+					microbiology, evolution, and extreme environments. Our team combines
+					molecular biology, bioinformatics, and field ecology to understand
+					the limits of life.</p>
+					<a href="team.html" class="section-btn">Meet the Team</a>
+				</div>
+				<a href="#outreach" class="button style2 down anchored">Next</a>
+			</section>
+
+		<!-- Outreach (NEW section) -->
+			<section id="outreach" class="main style2 left dark fullscreen">
+				<div class="content box style2">
+					<header>
+						<h2>Outreach</h2>
+					</header>
+					<p>Science belongs to everyone. We are committed to communicating our research
+					beyond the laboratory — through public talks, science writing, educational
+					workshops, and community engagement. Bridging the gap between cutting-edge
+					microbial science and society.</p>
+					<a href="outreach.html" class="section-btn">See Our Outreach</a>
+				</div>
+				<a href="#work" class="button style2 down anchored">Next</a>
+			</section>
+
+		<!-- Publications (formerly #work) -->
+			<section id="work" class="main style3 primary">
+				<div class="content">
+					<header>
+						<h2>Publications</h2>
+						<p>A selection of our scientific contributions — from field ecology
+						to molecular mechanisms of extremophile adaptation.</p>
+					</header>
+
+					<!-- Gallery -->
+						<div class="gallery">
+							<article class="from-left">
+								<a href="images/fulls/01.jpg" class="image fit"><img src="images/thumbs/01.jpg" title="The Anonymous Red" alt="" /></a>
+							</article>
+							<article class="from-right">
+								<a href="images/fulls/02.jpg" class="image fit"><img src="images/thumbs/02.jpg" title="Airchitecture II" alt="" /></a>
+							</article>
+							<article class="from-left">
+								<a href="images/fulls/03.jpg" class="image fit"><img src="images/thumbs/03.jpg" title="Air Lounge" alt="" /></a>
+							</article>
+							<article class="from-right">
+								<a href="images/fulls/04.jpg" class="image fit"><img src="images/thumbs/04.jpg" title="Carry on" alt="" /></a>
+							</article>
+							<article class="from-left">
+								<a href="images/fulls/05.jpg" class="image fit"><img src="images/thumbs/05.jpg" title="The sparkling shell" alt="" /></a>
+							</article>
+							<article class="from-right">
+								<a href="images/fulls/06.jpg" class="image fit"><img src="images/thumbs/06.jpg" title="Bent IX" alt="" /></a>
+							</article>
+						</div>
+
+					<div style="text-align:center; margin-top:3em;">
+						<a href="publications.html" class="section-btn" style="border-color:rgba(0,0,0,0.35); color:#333;">
+							View All Publications
+						</a>
+					</div>
+
+				</div>
+			</section>
 
 		<!-- Contact -->
-		<section id="contact" class="main style3 secondary">
-			<div class="content">
-				<header>
-					<h2>Say Hello.</h2>
-					<p>Have a question or collaboration in mind? Reach out to us.</p>
-				</header>
-				<div class="box">
-					<form method="post" action="#">
-						<div class="fields">
-							<div class="field half">
-								<input type="text" name="name" placeholder="Name" />
+			<section id="contact" class="main style3 secondary">
+				<div class="content">
+					<header>
+						<h2>Say Hello.</h2>
+						<p>Interested in collaboration, questions about our research,<br />
+						or just want to connect? We would love to hear from you.</p>
+					</header>
+					<div class="box">
+						<form method="post" action="#">
+							<div class="fields">
+								<div class="field half"><input type="text" name="name" placeholder="Name" /></div>
+								<div class="field half"><input type="email" name="email" placeholder="Email" /></div>
+								<div class="field"><textarea name="message" placeholder="Message" rows="6"></textarea></div>
 							</div>
-							<div class="field half">
-								<input type="email" name="email" placeholder="Email" />
-							</div>
-							<div class="field">
-								<textarea name="message" placeholder="Message" rows="6"></textarea>
-							</div>
-						</div>
-						<ul class="actions special">
-							<li><input type="submit" value="Send Message" /></li>
-						</ul>
-					</form>
+							<ul class="actions special">
+								<li><input type="submit" value="Send Message" /></li>
+							</ul>
+						</form>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
 		<!-- Footer -->
-		<footer id="footer">
-			<ul class="icons">
-				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-				<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-			</ul>
-			<ul class="menu">
-				<li>&copy; Quatrini Lab</li>
-				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</footer>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					<li><a href="#" class="icon brands fa-researchgate"><span class="label">ResearchGate</span></a></li>
+				</ul>
+				<ul class="menu">
+					<li style="font-family:'Jost',sans-serif; font-weight:300; letter-spacing:0.06em;">
+						&copy; Quattrini Lab
+					</li>
+					<li>
+						<a href="https://html5up.net" style="font-family:'Jost',sans-serif;">HTML5 UP</a>
+					</li>
+				</ul>
+			</footer>
 
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.poptrox.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
