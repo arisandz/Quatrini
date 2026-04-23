@@ -1,314 +1,440 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Research | Quatrini Lab</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research | Lab Name</title>
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-      * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f9f6f0;
+      --dark: #2a2d2e;
+      --mid: #5a6066;
+      --accent: #7a9e7e;
+      --accent-light: #a8c5aa;
+      --border: #ddd9d0;
+    }
 
-      body {
-        font-family: 'DM Sans', sans-serif;
-        background: #07100f;
-        color: #dde8e4;
-        min-height: 100vh;
-      }
+    html { scroll-behavior: smooth; }
 
-      .sub-nav {
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        z-index: 100;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.2rem 2.5rem;
-        background: rgba(7, 16, 15, 0.88);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-      }
+    body {
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--dark);
+      background: #ffffff;
+    }
 
-      .sub-nav .logo {
-        font-family: 'DM Serif Display', serif;
-        font-size: 1.1rem;
-        color: #6dbf9e;
-        text-decoration: none;
-      }
+    /* ---- HEADER ---- */
+    #header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3em;
+      line-height: 3em;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 0 0.15em rgba(0,0,0,0.08);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5em;
+    }
 
-      .sub-nav ul { list-style: none; display: flex; gap: 2rem; }
-      .sub-nav ul li a {
-        color: rgba(221, 232, 228, 0.55);
-        text-decoration: none;
-        font-size: 0.82rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        transition: color 0.2s;
-      }
-      .sub-nav ul li a:hover,
-      .sub-nav ul li a.active { color: #6dbf9e; }
+    #header h1 a {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 1.2em;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
 
-      .back-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 2rem 2.5rem 0;
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: rgba(109, 191, 158, 0.6);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .back-btn:hover { color: #6dbf9e; }
-      .back-btn svg { width: 14px; height: 14px; }
+    #header nav a {
+      font-family: "Jost", sans-serif;
+      font-weight: 400;
+      font-size: 0.85em;
+      color: var(--mid);
+      text-decoration: none;
+      margin-left: 1.4em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
 
-      .page-hero {
-        padding: 8rem 2.5rem 4rem;
-        max-width: 1100px;
-        margin: 0 auto;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-      }
+    #header nav a:hover { color: var(--accent); }
+    #header nav a.active { color: var(--accent); }
 
-      .page-hero .eyebrow {
-        font-size: 0.72rem;
-        font-weight: 500;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #6dbf9e;
-        margin-bottom: 1rem;
-      }
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      height: 70vh;
+      min-height: 420px;
+      background: url("images/research.jpg") center center / cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 4em;
+      margin-top: 3em;
+    }
 
-      .page-hero h1 {
-        font-family: 'DM Serif Display', serif;
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
-        line-height: 1.08;
-        color: #eef4f1;
-        margin-bottom: 1.5rem;
-      }
-      .page-hero h1 em { font-style: italic; color: #6dbf9e; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(30,33,35,0.2) 0%, rgba(30,33,35,0.65) 100%);
+    }
 
-      .page-hero p {
-        max-width: 560px;
-        font-size: 1rem;
-        line-height: 1.75;
-        color: rgba(221, 232, 228, 0.55);
-        font-weight: 300;
-      }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2em;
+      width: 100%;
+      color: #fff;
+    }
 
-      /* ---- RESEARCH LINES ---- */
-      .research-section {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 4rem 2.5rem 6rem;
-      }
+    .hero-content .label {
+      font-family: "Jost", sans-serif;
+      font-size: 0.75em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 0.6em;
+    }
 
-      .section-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: rgba(109, 191, 158, 0.5);
-        margin-bottom: 3rem;
-        padding-bottom: 0.8rem;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-      }
+    .hero-content h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 300;
+      font-size: clamp(2.8em, 6vw, 4.5em);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
 
-      .research-list { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.04); }
+    /* ---- MAIN CONTENT ---- */
+    .page-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5em 2em 6em;
+    }
 
-      .research-item {
-        background: #07100f;
-        display: grid;
-        grid-template-columns: 80px 1fr auto;
-        gap: 2rem;
-        align-items: start;
-        padding: 2.5rem 2rem;
-        transition: background 0.3s;
-        border-left: 3px solid transparent;
-        cursor: default;
-      }
+    .intro-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4em;
+      align-items: start;
+      margin-bottom: 5em;
+      padding-bottom: 5em;
+      border-bottom: 1px solid var(--border);
+    }
 
-      .research-item:hover {
-        background: #0d1a18;
-        border-left-color: #6dbf9e;
-      }
+    .intro-block .lead {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.5em;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--dark);
+    }
 
-      .item-number {
-        font-family: 'DM Serif Display', serif;
-        font-size: 2.8rem;
-        color: rgba(109, 191, 158, 0.18);
-        line-height: 1;
-        font-style: italic;
-      }
+    .intro-block .body-text {
+      font-size: 0.95em;
+      color: var(--mid);
+      line-height: 1.9;
+    }
 
-      .item-body {}
+    /* ---- RESEARCH LINES ---- */
+    .section-label {
+      font-family: "Jost", sans-serif;
+      font-size: 0.72em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2em;
+    }
 
-      .item-tag {
-        font-size: 0.65rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #6dbf9e;
-        margin-bottom: 0.6rem;
-      }
+    .research-lines {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5em;
+      margin-bottom: 5em;
+    }
 
-      .item-title {
-        font-family: 'DM Serif Display', serif;
-        font-size: 1.4rem;
-        color: #eef4f1;
-        margin-bottom: 0.8rem;
-        line-height: 1.25;
-      }
+    .research-card {
+      border-top: 2px solid var(--border);
+      padding-top: 1.5em;
+    }
 
-      .item-desc {
-        font-size: 0.88rem;
-        color: rgba(221, 232, 228, 0.5);
-        line-height: 1.75;
-        font-weight: 300;
-        max-width: 540px;
-      }
+    .research-card:hover {
+      border-top-color: var(--accent);
+    }
 
-      .item-keywords {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        padding-top: 1rem;
-      }
+    .research-card .number {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.5em;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 0.3em;
+    }
 
-      .kw {
-        font-size: 0.62rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 0.2rem 0.55rem;
-        border: 1px solid rgba(109, 191, 158, 0.2);
-        color: rgba(109, 191, 158, 0.6);
-        border-radius: 2px;
-      }
+    .research-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 1.25em;
+      color: var(--dark);
+      margin-bottom: 0.6em;
+      line-height: 1.2;
+    }
 
-      .item-status {
-        font-size: 0.65rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(109, 191, 158, 0.4);
-        white-space: nowrap;
-        padding-top: 0.3rem;
-      }
+    .research-card p {
+      font-size: 0.88em;
+      color: var(--mid);
+      line-height: 1.8;
+    }
 
-      .status-active { color: #6dbf9e; }
+    /* ---- METHODS STRIP ---- */
+    .methods-strip {
+      background: var(--cream);
+      padding: 3.5em 0;
+      margin: 0 -2em 5em;
+      padding-left: 2em;
+      padding-right: 2em;
+    }
 
-      @media (max-width: 680px) {
-        .research-item { grid-template-columns: 1fr; gap: 0.5rem; }
-        .item-number { font-size: 1.5rem; }
-        .sub-nav ul { display: none; }
-      }
-    </style>
-  </head>
-  <body class="is-preload">
+    .methods-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8em;
+      margin-top: 1.5em;
+    }
 
-    <nav class="sub-nav">
-      <a href="index.html" class="logo">Quatrini Lab</a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="research.html" class="active">Research</a></li>
-        <li><a href="publications.html">Publications</a></li>
-      </ul>
+    .method-tag {
+      font-family: "Jost", sans-serif;
+      font-size: 0.8em;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      border: 1px solid var(--border);
+      padding: 0.4em 1em;
+      border-radius: 2em;
+      background: #fff;
+    }
+
+    /* ---- COLLABORATIONS ---- */
+    .collab-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2em;
+      margin-top: 2em;
+    }
+
+    .collab-item {
+      padding: 1.5em;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .collab-item h4 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 1em;
+      margin-bottom: 0.3em;
+    }
+
+    .collab-item p {
+      font-size: 0.82em;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ---- CTA ---- */
+    .cta-block {
+      margin-top: 5em;
+      padding-top: 3em;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2em;
+      flex-wrap: wrap;
+    }
+
+    .cta-block p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.4em;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: "Jost", sans-serif;
+      font-size: 0.8em;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      text-decoration: none;
+      padding: 0.9em 2.2em;
+      border-radius: 3em;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { background: var(--accent-light); }
+
+    /* ---- FOOTER ---- */
+    #footer {
+      background: #2a2d2e;
+      color: rgba(185,186,187,0.55);
+      padding: 1.5em 2em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82em;
+      flex-wrap: wrap;
+      gap: 0.8em;
+    }
+
+    #footer a { color: inherit; text-decoration: none; }
+    #footer a:hover { color: #b9babb; }
+    #footer ul { list-style: none; display: flex; gap: 1.2em; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 700px) {
+      .intro-block { grid-template-columns: 1fr; gap: 2em; }
+      .research-lines { grid-template-columns: 1fr; }
+      .collab-row { grid-template-columns: 1fr; }
+      .cta-block { flex-direction: column; align-items: flex-start; }
+      #header nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <h1><a href="index.html">Lab Name</a></h1>
+    <nav>
+      <a href="index.html#research" class="active">Research</a>
+      <a href="index.html#team">Team</a>
+      <a href="index.html#outreach">Outreach</a>
+      <a href="publications.html">Publications</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
+  </header>
 
-    <a href="index.html" class="back-btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to Home
-    </a>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="label">Our Work</div>
+      <h1>Research</h1>
+    </div>
+  </section>
 
-    <div class="page-hero">
-      <p class="eyebrow">Research Lines</p>
-      <h1>Science at the<br/><em>Edge of Life</em></h1>
-      <p>We study microorganisms thriving in extreme acidic environments — uncovering their ecology, evolution, and biotechnological potential.</p>
+  <!-- Body -->
+  <main class="page-body">
+
+    <!-- Intro -->
+    <div class="intro-block">
+      <div class="lead">
+        We study the evolution and ecology of acidophilic microorganisms across extreme environmental gradients.
+      </div>
+      <div class="body-text">
+        Our research integrates molecular biology, bioinformatics, and field ecology to understand how microbial communities adapt to the most demanding conditions on Earth — from acid mine drainage to volcanic springs. We ask fundamental questions about evolutionary mechanisms, metabolic flexibility, and ecological resilience.
+      </div>
     </div>
 
-    <section class="research-section">
-      <p class="section-label">Active Research Lines</p>
+    <!-- Research Lines -->
+    <div class="section-label">Research Lines</div>
+    <div class="research-lines">
 
-      <div class="research-list">
-
-        <div class="research-item">
-          <div class="item-number">01</div>
-          <div class="item-body">
-            <p class="item-tag">Microbial Ecology</p>
-            <h2 class="item-title">Community Dynamics in Acid Mine Drainage</h2>
-            <p class="item-desc">
-              Characterizing microbial community structure and function along physicochemical gradients in AMD systems using amplicon sequencing and metagenomics. We aim to understand the ecological drivers of community assembly in these low-pH, metal-rich habitats.
-            </p>
-            <div class="item-keywords">
-              <span class="kw">16S rRNA</span>
-              <span class="kw">Metagenomics</span>
-              <span class="kw">AMD</span>
-              <span class="kw">Gradient Analysis</span>
-            </div>
-          </div>
-          <div class="item-status status-active">Active</div>
-        </div>
-
-        <div class="research-item">
-          <div class="item-number">02</div>
-          <div class="item-body">
-            <p class="item-tag">Microbial Evolution</p>
-            <h2 class="item-title">Adaptive Evolution of Acidophilic Microorganisms</h2>
-            <p class="item-desc">
-              Investigating the molecular mechanisms and evolutionary trajectories that allow microorganisms to thrive at extremely low pH. We use comparative genomics and experimental evolution approaches to identify key adaptive strategies.
-            </p>
-            <div class="item-keywords">
-              <span class="kw">Comparative Genomics</span>
-              <span class="kw">Acidophiles</span>
-              <span class="kw">Experimental Evolution</span>
-            </div>
-          </div>
-          <div class="item-status status-active">Active</div>
-        </div>
-
-        <div class="research-item">
-          <div class="item-number">03</div>
-          <div class="item-body">
-            <p class="item-tag">Biogeochemistry</p>
-            <h2 class="item-title">Microbially Driven Iron and Sulfur Cycling</h2>
-            <p class="item-desc">
-              Quantifying the contribution of acidophilic bacteria and archaea to iron oxidation and sulfur oxidation-reduction cycles in extreme environments. Linking metabolic potential from metagenomes to measured geochemical fluxes.
-            </p>
-            <div class="item-keywords">
-              <span class="kw">Iron Oxidation</span>
-              <span class="kw">Sulfur Cycling</span>
-              <span class="kw">MAGs</span>
-              <span class="kw">Geochemistry</span>
-            </div>
-          </div>
-          <div class="item-status">Ongoing</div>
-        </div>
-
-        <div class="research-item">
-          <div class="item-number">04</div>
-          <div class="item-body">
-            <p class="item-tag">Biotechnology</p>
-            <h2 class="item-title">Bioleaching and Biomining Applications</h2>
-            <p class="item-desc">
-              Translating fundamental knowledge of acidophile physiology into biotechnological applications, particularly for mineral bioleaching and sustainable metal recovery from low-grade ores.
-            </p>
-            <div class="item-keywords">
-              <span class="kw">Bioleaching</span>
-              <span class="kw">Biomining</span>
-              <span class="kw">Applied Microbiology</span>
-            </div>
-          </div>
-          <div class="item-status">Ongoing</div>
-        </div>
-
+      <div class="research-card">
+        <div class="number">01</div>
+        <h3>Microbial Evolution in Extreme Environments</h3>
+        <p>Understanding how selective pressure shapes genomic architecture and metabolic pathways in acidophilic organisms along environmental gradients.</p>
       </div>
-    </section>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+      <div class="research-card">
+        <div class="number">02</div>
+        <h3>Community Ecology of Acid Mine Drainage</h3>
+        <p>Characterizing microbial diversity and functional redundancy in AMD systems, and how community structure responds to geochemical variation.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="number">03</div>
+        <h3>Genomics and Comparative Genomics</h3>
+        <p>Using whole-genome sequencing and comparative approaches to identify genes and pathways under positive selection in extreme-adapted lineages.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="number">04</div>
+        <h3>Biogeochemical Cycling</h3>
+        <p>Exploring the role of extremophile communities in sulfur, iron, and carbon cycling, and their broader impact on ecosystem-level processes.</p>
+      </div>
+
+    </div>
+
+    <!-- Methods -->
+    <div class="methods-strip">
+      <div class="section-label">Methods and Approaches</div>
+      <div class="methods-grid">
+        <span class="method-tag">16S rRNA Amplicon Sequencing</span>
+        <span class="method-tag">Whole Genome Sequencing</span>
+        <span class="method-tag">Metagenomics</span>
+        <span class="method-tag">Phylogenomics</span>
+        <span class="method-tag">Geochemical Analysis</span>
+        <span class="method-tag">Flow Cytometry</span>
+        <span class="method-tag">Bioinformatics Pipelines</span>
+        <span class="method-tag">Field Sampling</span>
+        <span class="method-tag">Stable Isotope Probing</span>
+        <span class="method-tag">Culture-based Methods</span>
+        <span class="method-tag">Electron Microscopy</span>
+      </div>
+    </div>
+
+    <!-- Collaborations -->
+    <div class="section-label">Collaborations</div>
+    <div class="collab-row">
+      <div class="collab-item">
+        <h4>Institution Name</h4>
+        <p>Brief description of collaborative focus and shared research goals.</p>
+      </div>
+      <div class="collab-item">
+        <h4>Institution Name</h4>
+        <p>Brief description of collaborative focus and shared research goals.</p>
+      </div>
+      <div class="collab-item">
+        <h4>Institution Name</h4>
+        <p>Brief description of collaborative focus and shared research goals.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <p>Interested in our work or potential collaborations?</p>
+      <a href="index.html#contact" class="btn">Get in Touch</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <span>&copy; Lab Name. All rights reserved.</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+</body>
 </html>

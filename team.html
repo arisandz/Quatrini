@@ -1,349 +1,454 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Team | Quatrini Lab</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team | Lab Name</title>
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-      * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f9f6f0;
+      --dark: #2a2d2e;
+      --mid: #5a6066;
+      --accent: #7a9e7e;
+      --accent-light: #a8c5aa;
+      --border: #ddd9d0;
+    }
 
-      body {
-        font-family: 'DM Sans', sans-serif;
-        background: #0a0a0f;
-        color: #e8e4dc;
-        min-height: 100vh;
-      }
+    html { scroll-behavior: smooth; }
 
-      /* ---- NAV ---- */
-      .sub-nav {
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        z-index: 100;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.2rem 2.5rem;
-        background: rgba(10, 10, 15, 0.85);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-      }
+    body {
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--dark);
+      background: #ffffff;
+    }
 
-      .sub-nav .logo {
-        font-family: 'DM Serif Display', serif;
-        font-size: 1.1rem;
-        color: #c8b97a;
-        text-decoration: none;
-        letter-spacing: 0.04em;
-      }
+    /* ---- HEADER ---- */
+    #header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3em;
+      line-height: 3em;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 0 0.15em rgba(0,0,0,0.08);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5em;
+    }
 
-      .sub-nav ul {
-        list-style: none;
-        display: flex;
-        gap: 2rem;
-      }
+    #header h1 a {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 1.2em;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
 
-      .sub-nav ul li a {
-        color: rgba(232, 228, 220, 0.65);
-        text-decoration: none;
-        font-size: 0.82rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        transition: color 0.2s;
-      }
+    #header nav a {
+      font-family: "Jost", sans-serif;
+      font-weight: 400;
+      font-size: 0.85em;
+      color: var(--mid);
+      text-decoration: none;
+      margin-left: 1.4em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
 
-      .sub-nav ul li a:hover,
-      .sub-nav ul li a.active {
-        color: #c8b97a;
-      }
+    #header nav a:hover { color: var(--accent); }
+    #header nav a.active { color: var(--accent); }
 
-      /* ---- HERO ---- */
-      .page-hero {
-        padding: 8rem 2.5rem 4rem;
-        max-width: 1100px;
-        margin: 0 auto;
-        border-bottom: 1px solid rgba(255,255,255,0.07);
-      }
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      height: 70vh;
+      min-height: 420px;
+      background: url("images/team.jpg") center center / cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 4em;
+      margin-top: 3em;
+    }
 
-      .page-hero .eyebrow {
-        font-size: 0.72rem;
-        font-weight: 500;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #c8b97a;
-        margin-bottom: 1rem;
-      }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(30,33,35,0.2) 0%, rgba(30,33,35,0.65) 100%);
+    }
 
-      .page-hero h1 {
-        font-family: 'DM Serif Display', serif;
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
-        line-height: 1.08;
-        color: #f0ece3;
-        margin-bottom: 1.5rem;
-      }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2em;
+      width: 100%;
+      color: #fff;
+    }
 
-      .page-hero h1 em {
-        font-style: italic;
-        color: #c8b97a;
-      }
+    .hero-content .label {
+      font-family: "Jost", sans-serif;
+      font-size: 0.75em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 0.6em;
+    }
 
-      .page-hero p {
-        max-width: 560px;
-        font-size: 1rem;
-        line-height: 1.75;
-        color: rgba(232, 228, 220, 0.6);
-        font-weight: 300;
-      }
+    .hero-content h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 300;
+      font-size: clamp(2.8em, 6vw, 4.5em);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
 
-      /* ---- TEAM GRID ---- */
-      .team-section {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 4rem 2.5rem 6rem;
-      }
+    /* ---- MAIN CONTENT ---- */
+    .page-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5em 2em 6em;
+    }
 
-      .section-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: rgba(200, 185, 122, 0.6);
-        margin-bottom: 2.5rem;
-        padding-bottom: 0.8rem;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-      }
+    .section-label {
+      font-family: "Jost", sans-serif;
+      font-size: 0.72em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2em;
+    }
 
-      .team-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5px;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.05);
-      }
+    /* ---- PI BLOCK ---- */
+    .pi-block {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3.5em;
+      align-items: start;
+      margin-bottom: 5em;
+      padding-bottom: 5em;
+      border-bottom: 1px solid var(--border);
+    }
 
-      .team-card {
-        background: #0a0a0f;
-        padding: 2.5rem 2rem;
-        transition: background 0.3s;
-        position: relative;
-        overflow: hidden;
-      }
+    .pi-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: var(--cream);
+      display: block;
+    }
 
-      .team-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0;
-        width: 3px;
-        height: 0;
-        background: #c8b97a;
-        transition: height 0.4s ease;
-      }
+    .pi-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--border);
+      font-size: 0.8em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
 
-      .team-card:hover { background: #0f0f16; }
-      .team-card:hover::before { height: 100%; }
+    .pi-info .role {
+      font-family: "Jost", sans-serif;
+      font-size: 0.72em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5em;
+    }
 
-      .card-role {
-        font-size: 0.68rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #c8b97a;
-        margin-bottom: 0.8rem;
-        font-weight: 500;
-      }
+    .pi-info h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 2em;
+      line-height: 1.1;
+      margin-bottom: 0.3em;
+      color: var(--dark);
+    }
 
-      .card-name {
-        font-family: 'DM Serif Display', serif;
-        font-size: 1.5rem;
-        color: #f0ece3;
-        margin-bottom: 0.6rem;
-        line-height: 1.2;
-      }
+    .pi-info .affiliation {
+      font-size: 0.85em;
+      color: var(--mid);
+      margin-bottom: 1.5em;
+    }
 
-      .card-area {
-        font-size: 0.82rem;
-        color: rgba(232, 228, 220, 0.45);
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-        font-weight: 300;
-      }
+    .pi-info .bio {
+      font-size: 0.92em;
+      color: var(--mid);
+      line-height: 1.9;
+      margin-bottom: 1.5em;
+    }
 
-      .card-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-      }
+    .pi-links {
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+    }
 
-      .tag {
-        font-size: 0.65rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 0.25rem 0.6rem;
-        border: 1px solid rgba(200, 185, 122, 0.25);
-        color: rgba(200, 185, 122, 0.7);
-        border-radius: 2px;
-      }
+    .pi-links a {
+      font-family: "Jost", sans-serif;
+      font-size: 0.78em;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-light);
+      padding-bottom: 0.1em;
+      transition: color 0.2s;
+    }
 
-      /* ---- BACK BUTTON ---- */
-      .back-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 2rem 2.5rem 0;
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: rgba(200, 185, 122, 0.7);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
+    .pi-links a:hover { color: var(--dark); }
 
-      .back-btn:hover { color: #c8b97a; }
-      .back-btn svg { width: 14px; height: 14px; }
+    /* ---- TEAM GRID ---- */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5em;
+      margin-bottom: 5em;
+    }
 
-      /* ---- PI CARD (featured) ---- */
-      .pi-card {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 2rem;
-        padding: 3rem 2.5rem;
-        background: #0a0a0f;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-      }
+    .member-card {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5em;
+      transition: border-color 0.2s;
+    }
 
-      .pi-card .pi-meta { display: flex; flex-direction: column; justify-content: center; }
-      .pi-card .pi-role {
-        font-size: 0.68rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: #c8b97a;
-        margin-bottom: 1rem;
-      }
-      .pi-card .pi-name {
-        font-family: 'DM Serif Display', serif;
-        font-size: clamp(1.8rem, 3vw, 2.5rem);
-        color: #f0ece3;
-        line-height: 1.15;
-        margin-bottom: 1rem;
-      }
-      .pi-card .pi-bio {
-        font-size: 0.9rem;
-        color: rgba(232, 228, 220, 0.55);
-        line-height: 1.8;
-        font-weight: 300;
-      }
+    .member-card:hover { border-top-color: var(--accent); }
 
-      @media (max-width: 680px) {
-        .pi-card { grid-template-columns: 1fr; }
-        .sub-nav ul { display: none; }
-      }
-    </style>
-  </head>
-  <body class="is-preload">
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      background: var(--cream);
+      margin-bottom: 1em;
+      display: block;
+    }
 
-    <!-- Navigation -->
-    <nav class="sub-nav">
-      <a href="index.html" class="logo">Quatrini Lab</a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="team.html" class="active">Team</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="publications.html">Publications</a></li>
-      </ul>
+    .member-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--cream);
+      margin-bottom: 1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--border);
+      font-size: 0.75em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .member-card .role {
+      font-size: 0.7em;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3em;
+    }
+
+    .member-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 1.15em;
+      color: var(--dark);
+      margin-bottom: 0.4em;
+    }
+
+    .member-card p {
+      font-size: 0.83em;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    /* ---- JOIN BLOCK ---- */
+    .join-block {
+      background: var(--cream);
+      padding: 3em;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2em;
+    }
+
+    .join-block h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 300;
+      font-size: 1.6em;
+      line-height: 1.3;
+      color: var(--dark);
+      margin-bottom: 0.5em;
+    }
+
+    .join-block p {
+      font-size: 0.88em;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: "Jost", sans-serif;
+      font-size: 0.8em;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      text-decoration: none;
+      padding: 0.9em 2.2em;
+      border-radius: 3em;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { background: var(--accent-light); }
+
+    /* ---- FOOTER ---- */
+    #footer {
+      background: #2a2d2e;
+      color: rgba(185,186,187,0.55);
+      padding: 1.5em 2em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82em;
+      flex-wrap: wrap;
+      gap: 0.8em;
+    }
+
+    #footer a { color: inherit; text-decoration: none; }
+    #footer a:hover { color: #b9babb; }
+    #footer ul { list-style: none; display: flex; gap: 1.2em; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 700px) {
+      .pi-block { grid-template-columns: 1fr; }
+      .pi-block .pi-photo-placeholder { aspect-ratio: 1/1; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .join-block { grid-template-columns: 1fr; }
+      #header nav { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <h1><a href="index.html">Lab Name</a></h1>
+    <nav>
+      <a href="index.html#research">Research</a>
+      <a href="index.html#team" class="active">Team</a>
+      <a href="index.html#outreach">Outreach</a>
+      <a href="publications.html">Publications</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
+  </header>
 
-    <!-- Back link -->
-    <a href="index.html" class="back-btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to Home
-    </a>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="label">People</div>
+      <h1>The Team</h1>
+    </div>
+  </section>
 
-    <!-- Hero -->
-    <div class="page-hero">
-      <p class="eyebrow">Laboratory of Microbial Ecophysiology</p>
-      <h1>The People Behind<br/><em>the Science</em></h1>
-      <p>A multidisciplinary team united by curiosity about life at the extremes — from acidic rivers to mining environments.</p>
+  <!-- Body -->
+  <main class="page-body">
+
+    <!-- PI -->
+    <div class="section-label">Principal Investigator</div>
+    <div class="pi-block">
+      <div class="pi-photo-placeholder">Photo</div>
+      <div class="pi-info">
+        <div class="role">Principal Investigator</div>
+        <h2>Dr. Name Surname</h2>
+        <div class="affiliation">Institution Name — Department of Microbiology</div>
+        <p class="bio">
+          Short biography of the PI. Describe research focus, background, academic journey, and main scientific interests. This is a good place to communicate your personality and scientific vision in 3-4 sentences.
+        </p>
+        <p class="bio">
+          You can add a second paragraph here with more detail about your approach, your motivation, or ongoing projects.
+        </p>
+        <div class="pi-links">
+          <a href="#">Google Scholar</a>
+          <a href="#">ORCID</a>
+          <a href="#">ResearchGate</a>
+          <a href="#">Twitter / X</a>
+        </div>
+      </div>
     </div>
 
-    <!-- Team -->
-    <section class="team-section">
-      <p class="section-label">Our Team</p>
+    <!-- Current Members -->
+    <div class="section-label">Current Members</div>
+    <div class="team-grid">
 
-      <div class="team-grid">
-
-        <!-- PI Card -->
-        <div class="pi-card">
-          <div class="pi-meta">
-            <p class="pi-role">Principal Investigator</p>
-            <h2 class="pi-name">Dr. [PI Name]</h2>
-            <p class="pi-bio">
-              Leading research on the ecophysiology of acidophilic microorganisms across extreme environmental gradients. Passionate about understanding microbial adaptation, community structure, and the evolutionary forces shaping life in low-pH ecosystems.
-            </p>
-          </div>
-          <div class="card-tags" style="align-self:center;">
-            <span class="tag">Acidophiles</span>
-            <span class="tag">Ecophysiology</span>
-            <span class="tag">Metagenomics</span>
-            <span class="tag">Biogeochemistry</span>
-          </div>
-        </div>
-
-        <!-- Postdoc -->
-        <div class="team-card">
-          <p class="card-role">Postdoctoral Researcher</p>
-          <h3 class="card-name">[Your Name]</h3>
-          <p class="card-area">Microbial evolution along extreme environmental gradients. Scientific communication and outreach.</p>
-          <div class="card-tags">
-            <span class="tag">Evolution</span>
-            <span class="tag">Acidophiles</span>
-            <span class="tag">Sci-comm</span>
-          </div>
-        </div>
-
-        <!-- PhD Student 1 -->
-        <div class="team-card">
-          <p class="card-role">PhD Candidate</p>
-          <h3 class="card-name">[Student Name]</h3>
-          <p class="card-area">Metagenomic analysis of microbial communities in acid mine drainage systems.</p>
-          <div class="card-tags">
-            <span class="tag">Metagenomics</span>
-            <span class="tag">Bioinformatics</span>
-          </div>
-        </div>
-
-        <!-- PhD Student 2 -->
-        <div class="team-card">
-          <p class="card-role">PhD Candidate</p>
-          <h3 class="card-name">[Student Name]</h3>
-          <p class="card-area">Biogeochemical cycling of sulfur and iron in extreme low-pH environments.</p>
-          <div class="card-tags">
-            <span class="tag">Biogeochemistry</span>
-            <span class="tag">Geomicrobiology</span>
-          </div>
-        </div>
-
-        <!-- MSc Student -->
-        <div class="team-card">
-          <p class="card-role">MSc Student</p>
-          <h3 class="card-name">[Student Name]</h3>
-          <p class="card-area">Isolation and characterization of novel acidophilic bacteria from Atacama sites.</p>
-          <div class="card-tags">
-            <span class="tag">Microbiology</span>
-            <span class="tag">Isolation</span>
-          </div>
-        </div>
-
+      <div class="member-card">
+        <div class="member-photo-placeholder">Photo</div>
+        <div class="role">Postdoctoral Researcher</div>
+        <h3>Name Surname</h3>
+        <p>Brief research focus — one or two sentences describing their project or expertise.</p>
       </div>
-    </section>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+      <div class="member-card">
+        <div class="member-photo-placeholder">Photo</div>
+        <div class="role">PhD Student</div>
+        <h3>Name Surname</h3>
+        <p>Brief research focus — one or two sentences describing their project or expertise.</p>
+      </div>
 
-  </body>
+      <div class="member-card">
+        <div class="member-photo-placeholder">Photo</div>
+        <div class="role">Research Assistant</div>
+        <h3>Name Surname</h3>
+        <p>Brief research focus — one or two sentences describing their project or expertise.</p>
+      </div>
+
+    </div>
+
+    <!-- Join -->
+    <div class="join-block">
+      <div>
+        <h3>Join the Lab</h3>
+        <p>We are always open to motivated students and researchers interested in microbial ecology and extreme environments. Reach out with your CV and a short description of your interests.</p>
+      </div>
+      <a href="index.html#contact" class="btn">Get in Touch</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <span>&copy; Lab Name. All rights reserved.</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+</body>
 </html>
