@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Team | Quatrini Lab</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background: #0a0a0f;
+        color: #e8e4dc;
+        min-height: 100vh;
+      }
+
+      /* ---- NAV ---- */
+      .sub-nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 2.5rem;
+        background: rgba(10, 10, 15, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .sub-nav .logo {
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.1rem;
+        color: #c8b97a;
+        text-decoration: none;
+        letter-spacing: 0.04em;
+      }
+
+      .sub-nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+
+      .sub-nav ul li a {
+        color: rgba(232, 228, 220, 0.65);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+
+      .sub-nav ul li a:hover,
+      .sub-nav ul li a.active {
+        color: #c8b97a;
+      }
+
+      /* ---- HERO ---- */
+      .page-hero {
+        padding: 8rem 2.5rem 4rem;
+        max-width: 1100px;
+        margin: 0 auto;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+      }
+
+      .page-hero .eyebrow {
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #c8b97a;
+        margin-bottom: 1rem;
+      }
+
+      .page-hero h1 {
+        font-family: 'DM Serif Display', serif;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        line-height: 1.08;
+        color: #f0ece3;
+        margin-bottom: 1.5rem;
+      }
+
+      .page-hero h1 em {
+        font-style: italic;
+        color: #c8b97a;
+      }
+
+      .page-hero p {
+        max-width: 560px;
+        font-size: 1rem;
+        line-height: 1.75;
+        color: rgba(232, 228, 220, 0.6);
+        font-weight: 300;
+      }
+
+      /* ---- TEAM GRID ---- */
+      .team-section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 4rem 2.5rem 6rem;
+      }
+
+      .section-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(200, 185, 122, 0.6);
+        margin-bottom: 2.5rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .team-card {
+        background: #0a0a0f;
+        padding: 2.5rem 2rem;
+        transition: background 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .team-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 3px;
+        height: 0;
+        background: #c8b97a;
+        transition: height 0.4s ease;
+      }
+
+      .team-card:hover { background: #0f0f16; }
+      .team-card:hover::before { height: 100%; }
+
+      .card-role {
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #c8b97a;
+        margin-bottom: 0.8rem;
+        font-weight: 500;
+      }
+
+      .card-name {
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.5rem;
+        color: #f0ece3;
+        margin-bottom: 0.6rem;
+        line-height: 1.2;
+      }
+
+      .card-area {
+        font-size: 0.82rem;
+        color: rgba(232, 228, 220, 0.45);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+      }
+
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .tag {
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.6rem;
+        border: 1px solid rgba(200, 185, 122, 0.25);
+        color: rgba(200, 185, 122, 0.7);
+        border-radius: 2px;
+      }
+
+      /* ---- BACK BUTTON ---- */
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 2rem 2.5rem 0;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(200, 185, 122, 0.7);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .back-btn:hover { color: #c8b97a; }
+      .back-btn svg { width: 14px; height: 14px; }
+
+      /* ---- PI CARD (featured) ---- */
+      .pi-card {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 2rem;
+        padding: 3rem 2.5rem;
+        background: #0a0a0f;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .pi-card .pi-meta { display: flex; flex-direction: column; justify-content: center; }
+      .pi-card .pi-role {
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #c8b97a;
+        margin-bottom: 1rem;
+      }
+      .pi-card .pi-name {
+        font-family: 'DM Serif Display', serif;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        color: #f0ece3;
+        line-height: 1.15;
+        margin-bottom: 1rem;
+      }
+      .pi-card .pi-bio {
+        font-size: 0.9rem;
+        color: rgba(232, 228, 220, 0.55);
+        line-height: 1.8;
+        font-weight: 300;
+      }
+
+      @media (max-width: 680px) {
+        .pi-card { grid-template-columns: 1fr; }
+        .sub-nav ul { display: none; }
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+
+    <!-- Navigation -->
+    <nav class="sub-nav">
+      <a href="index.html" class="logo">Quatrini Lab</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="team.html" class="active">Team</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+      </ul>
+    </nav>
+
+    <!-- Back link -->
+    <a href="index.html" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Home
+    </a>
+
+    <!-- Hero -->
+    <div class="page-hero">
+      <p class="eyebrow">Laboratory of Microbial Ecophysiology</p>
+      <h1>The People Behind<br/><em>the Science</em></h1>
+      <p>A multidisciplinary team united by curiosity about life at the extremes — from acidic rivers to mining environments.</p>
+    </div>
+
+    <!-- Team -->
+    <section class="team-section">
+      <p class="section-label">Our Team</p>
+
+      <div class="team-grid">
+
+        <!-- PI Card -->
+        <div class="pi-card">
+          <div class="pi-meta">
+            <p class="pi-role">Principal Investigator</p>
+            <h2 class="pi-name">Dr. [PI Name]</h2>
+            <p class="pi-bio">
+              Leading research on the ecophysiology of acidophilic microorganisms across extreme environmental gradients. Passionate about understanding microbial adaptation, community structure, and the evolutionary forces shaping life in low-pH ecosystems.
+            </p>
+          </div>
+          <div class="card-tags" style="align-self:center;">
+            <span class="tag">Acidophiles</span>
+            <span class="tag">Ecophysiology</span>
+            <span class="tag">Metagenomics</span>
+            <span class="tag">Biogeochemistry</span>
+          </div>
+        </div>
+
+        <!-- Postdoc -->
+        <div class="team-card">
+          <p class="card-role">Postdoctoral Researcher</p>
+          <h3 class="card-name">[Your Name]</h3>
+          <p class="card-area">Microbial evolution along extreme environmental gradients. Scientific communication and outreach.</p>
+          <div class="card-tags">
+            <span class="tag">Evolution</span>
+            <span class="tag">Acidophiles</span>
+            <span class="tag">Sci-comm</span>
+          </div>
+        </div>
+
+        <!-- PhD Student 1 -->
+        <div class="team-card">
+          <p class="card-role">PhD Candidate</p>
+          <h3 class="card-name">[Student Name]</h3>
+          <p class="card-area">Metagenomic analysis of microbial communities in acid mine drainage systems.</p>
+          <div class="card-tags">
+            <span class="tag">Metagenomics</span>
+            <span class="tag">Bioinformatics</span>
+          </div>
+        </div>
+
+        <!-- PhD Student 2 -->
+        <div class="team-card">
+          <p class="card-role">PhD Candidate</p>
+          <h3 class="card-name">[Student Name]</h3>
+          <p class="card-area">Biogeochemical cycling of sulfur and iron in extreme low-pH environments.</p>
+          <div class="card-tags">
+            <span class="tag">Biogeochemistry</span>
+            <span class="tag">Geomicrobiology</span>
+          </div>
+        </div>
+
+        <!-- MSc Student -->
+        <div class="team-card">
+          <p class="card-role">MSc Student</p>
+          <h3 class="card-name">[Student Name]</h3>
+          <p class="card-area">Isolation and characterization of novel acidophilic bacteria from Atacama sites.</p>
+          <div class="card-tags">
+            <span class="tag">Microbiology</span>
+            <span class="tag">Isolation</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+  </body>
+</html>
