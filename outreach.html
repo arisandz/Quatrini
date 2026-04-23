@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outreach</title>
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --accent: #98c593;
+            --accent-dark: #6fa869;
+            --text: #39454b;
+            --light-bg: #f5f6f7;
+            --white: #ffffff;
+            --border: #e5e6e7;
+        }
+
+        body {
+            font-family: "Jost", sans-serif;
+            font-weight: 300;
+            font-size: 17pt;
+            line-height: 1.75em;
+            color: var(--text);
+            background: var(--white);
+        }
+
+        /* ── Header ── */
+        #header {
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.97);
+            height: 3em;
+            line-height: 3em;
+            box-shadow: 0 0 0.15em 0 rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5em;
+        }
+
+        #header h1 a {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.25em;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        #header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0.25em;
+        }
+
+        #header nav ul li a {
+            font-family: "Jost", sans-serif;
+            font-size: 0.85em;
+            font-weight: 400;
+            color: var(--text);
+            text-decoration: none;
+            padding: 0 0.6em;
+            height: 3em;
+            line-height: 3em;
+            display: block;
+            transition: color 0.2s;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        #header nav ul li a:hover { color: var(--accent); }
+        #header nav ul li a.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+        /* ── Hero Banner ── */
+        .page-hero {
+            margin-top: 3em;
+            width: 100%;
+            height: 38vh;
+            min-height: 260px;
+            background: url("images/outreach.jpg") center center / cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 45, 35, 0.52);
+        }
+
+        .page-hero-content {
+            position: relative;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-hero-content h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 3.5em;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1em;
+        }
+
+        .page-hero-content p {
+            font-family: "Jost", sans-serif;
+            font-weight: 300;
+            font-size: 0.75em;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 0.75em;
+            opacity: 0.85;
+        }
+
+        /* ── Main Content ── */
+        .page-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 4em 2em 5em;
+        }
+
+        /* ── Intro text ── */
+        .section-intro {
+            text-align: center;
+            margin-bottom: 3.5em;
+        }
+
+        .section-intro h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.9em;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5em;
+            letter-spacing: -0.02em;
+        }
+
+        .section-intro p {
+            font-size: 0.75em;
+            line-height: 1.9em;
+            color: #5a6a72;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            width: 3em;
+            height: 2px;
+            background: var(--accent);
+            margin: 1.5em auto 2em;
+        }
+
+        /* ── Outreach Cards ── */
+        .outreach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            margin-bottom: 3.5em;
+        }
+
+        .outreach-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            padding: 2em 1.75em;
+            transition: box-shadow 0.25s, transform 0.25s;
+        }
+
+        .outreach-card:hover {
+            box-shadow: 0 0.4em 1.5em rgba(0,0,0,0.08);
+            transform: translateY(-3px);
+        }
+
+        .outreach-card .card-icon {
+            width: 2.5em;
+            height: 2.5em;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1em;
+        }
+
+        .outreach-card .card-icon svg {
+            width: 1.1em;
+            height: 1.1em;
+            fill: var(--white);
+        }
+
+        .outreach-card h4 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.25em;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5em;
+            letter-spacing: -0.02em;
+        }
+
+        .outreach-card p {
+            font-size: 0.65em;
+            line-height: 1.85em;
+            color: #5a6a72;
+        }
+
+        /* ── Activities list ── */
+        .activities-section {
+            background: var(--light-bg);
+            padding: 2.5em;
+            margin-bottom: 3.5em;
+        }
+
+        .activities-section h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.6em;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1.25em;
+            letter-spacing: -0.02em;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1em;
+            padding: 1em 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .activity-item:last-child { border-bottom: none; }
+
+        .activity-year {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1em;
+            font-weight: 600;
+            color: var(--accent-dark);
+            min-width: 3.5em;
+            padding-top: 0.1em;
+        }
+
+        .activity-body h5 {
+            font-family: "Jost", sans-serif;
+            font-weight: 500;
+            font-size: 0.7em;
+            color: var(--text);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.2em;
+        }
+
+        .activity-body p {
+            font-size: 0.6em;
+            color: #6a7a82;
+            line-height: 1.7em;
+        }
+
+        /* ── Contact / CTA ── */
+        .cta-box {
+            text-align: center;
+            padding: 2.5em 2em;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 3em; height: 2px;
+            background: var(--accent);
+        }
+
+        .cta-box h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.6em;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5em;
+        }
+
+        .cta-box p {
+            font-size: 0.65em;
+            color: #5a6a72;
+            margin-bottom: 1.5em;
+            line-height: 1.85em;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0 2em;
+            height: 3em;
+            line-height: 3em;
+            border-radius: 3em;
+            font-family: "Jost", sans-serif;
+            font-size: 0.65em;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover { background: var(--accent-dark); }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--text);
+            text-decoration: none;
+            padding: 0 2em;
+            height: 3em;
+            line-height: calc(3em - 4px);
+            border-radius: 3em;
+            border: 2px solid var(--border);
+            font-family: "Jost", sans-serif;
+            font-size: 0.65em;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.2s;
+            margin-left: 0.75em;
+        }
+
+        .btn-secondary:hover { background: rgba(0,0,0,0.04); }
+
+        /* ── Footer ── */
+        #footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5em;
+            background: #39454b;
+            color: rgba(185,186,187,0.5);
+            font-size: 0.6em;
+        }
+
+        #footer a { color: inherit; text-decoration: none; }
+        #footer a:hover { color: rgba(185,186,187,0.9); }
+
+        #footer ul { list-style: none; display: flex; gap: 1em; }
+
+        /* ── Responsive ── */
+        @media screen and (max-width: 768px) {
+            body { font-size: 13pt; }
+            .page-hero-content h2 { font-size: 2.5em; }
+            .outreach-grid { grid-template-columns: 1fr; }
+            #footer { flex-direction: column; gap: 0.75em; text-align: center; }
+            .btn-secondary { margin-left: 0; margin-top: 0.75em; }
+        }
+
+        @media screen and (max-width: 480px) {
+            .page-content { padding: 2.5em 1.25em 3em; }
+            .activities-section { padding: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="index.html">Your Lab Name</a></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="index.html#work">Publications</a></li>
+                <li><a href="outreach.html" class="active">Outreach</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h2>Outreach</h2>
+            <p>Science beyond the lab walls</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+
+        <!-- Intro -->
+        <div class="section-intro">
+            <h3>Connecting Science with Society</h3>
+            <div class="divider"></div>
+            <p>
+                We believe science is most powerful when shared. Our outreach efforts
+                aim to bring microbiology, evolution, and extreme environments to broader
+                audiences — from classrooms to the general public.
+            </p>
+        </div>
+
+        <!-- Cards -->
+        <div class="outreach-grid">
+
+            <div class="outreach-card">
+                <div class="card-icon">
+                    <!-- School icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                    </svg>
+                </div>
+                <h4>Science Education</h4>
+                <p>
+                    We visit local schools and universities to give talks and hands-on
+                    workshops about extremophiles, microbial life, and the scientific method.
+                    Making cutting-edge research accessible to young curious minds.
+                </p>
+            </div>
+
+            <div class="outreach-card">
+                <div class="card-icon">
+                    <!-- Mic / talk icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1 1.93A7.002 7.002 0 0 1 5 9H3a9 9 0 0 0 8 8.94V20H8v2h8v-2h-3v-2.07A9 9 0 0 0 21 9h-2a7 7 0 0 1-6 6.93z"/>
+                    </svg>
+                </div>
+                <h4>Public Talks</h4>
+                <p>
+                    From science festivals to community events, we participate in public
+                    forums to discuss extreme environments, astrobiology, and the origin
+                    of life. Science should spark curiosity in everyone.
+                </p>
+            </div>
+
+            <div class="outreach-card">
+                <div class="card-icon">
+                    <!-- Media / play icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 8.5L8 15V9l4 2.5 4 2.5-4 0z"/>
+                    </svg>
+                </div>
+                <h4>Science Communication</h4>
+                <p>
+                    Through articles, social media, and multimedia content, we translate
+                    our research into accessible stories — making the invisible world of
+                    microorganisms visible and exciting.
+                </p>
+            </div>
+
+            <div class="outreach-card">
+                <div class="card-icon">
+                    <!-- Collaboration / people icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg>
+                </div>
+                <h4>Student Mentoring</h4>
+                <p>
+                    We actively mentor undergraduate and early-career researchers,
+                    offering guidance on lab techniques, scientific writing, and career
+                    paths in academia and beyond.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Activities Timeline -->
+        <div class="activities-section">
+            <h3>Recent Activities</h3>
+
+            <div class="activity-item">
+                <span class="activity-year">2025</span>
+                <div class="activity-body">
+                    <h5>Science Week — University Outreach Talk</h5>
+                    <p>Presented research on acidophilic microorganisms to undergraduate students. Discussed environmental gradients and microbial adaptation.</p>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <span class="activity-year">2024</span>
+                <div class="activity-body">
+                    <h5>National Science Festival</h5>
+                    <p>Interactive booth on extreme environments and the possibility of life on other planets. Reached over 300 visitors across two days.</p>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <span class="activity-year">2024</span>
+                <div class="activity-body">
+                    <h5>Workshop — Science Communication for Researchers</h5>
+                    <p>Co-organized a training workshop for PhD students on how to communicate science to non-specialist audiences effectively.</p>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <span class="activity-year">2023</span>
+                <div class="activity-body">
+                    <h5>High School Visit — Microbiology Day</h5>
+                    <p>Hands-on microscopy session introducing students to the diversity of microorganisms found in extreme habitats.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-box">
+            <h3>Want to Collaborate?</h3>
+            <p>
+                We are always open to new outreach opportunities — school visits, media
+                collaborations, public events, or mentoring programs. Get in touch!
+            </p>
+            <a href="index.html#contact" class="btn-primary">Contact Us</a>
+            <a href="index.html" class="btn-secondary">Back to Home</a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <p>&copy; Your Lab Name. All rights reserved.</p>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="publications.html">Publications</a></li>
+        </ul>
+    </footer>
+
+</body>
+</html>
