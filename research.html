@@ -1,816 +1,882 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Research — Quatrini Lab</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --black:      #0a0c0a;
-  --deep:       #0f120f;
-  --surface:    #141814;
-  --sage:       #7aac6e;
-  --amber:      #c9a055;
-  --rust:       #b05535;
-  --border:     rgba(122,172,110,0.18);
-  --border-mid: rgba(201,160,85,0.18);
-  --text-main:  #dedad2;
-  --text-muted: #8a8f82;
-  --text-soft:  #b0b5a8;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--black);
-  color: var(--text-main);
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-
-/* ── NAV ── */
-.site-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(6,9,6,0.88);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(122,172,110,0.12);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 5vw;
-  height: 56px;
-}
-
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
-  color: var(--text-main);
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--sage);
-}
-
-/* ── SHARED LAYOUT ── */
-.page-section {
-  padding: 6rem 6vw;
-  border-top: 1px solid var(--border);
-  position: relative;
-}
-
-.section-tag {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  line-height: 1.15;
-  margin-bottom: 1.2rem;
-  color: var(--text-main);
-}
-
-.section-title em {
-  font-style: italic;
-  color: var(--amber);
-}
-
-.section-body {
-  font-size: 0.95rem;
-  line-height: 1.9;
-  color: var(--text-soft);
-  max-width: 600px;
-}
-
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  padding-top: 56px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 8vh;
-  padding-left: 6vw;
-  padding-right: 6vw;
-  position: relative;
-  overflow: hidden;
-  border-top: none;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 55% 45% at 75% 25%, rgba(176,85,53,0.14) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 55% at 20% 70%, rgba(122,172,110,0.06) 0%, transparent 55%),
-    var(--black);
-  z-index: 0;
-}
-
-.hero-label {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.28em;
-  color: var(--sage);
-  text-transform: uppercase;
-  margin-bottom: 1.8rem;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 300;
-  line-height: 0.95;
-  letter-spacing: -0.01em;
-  position: relative;
-  z-index: 2;
-  color: var(--text-main);
-}
-
-.hero-title em {
-  font-style: italic;
-  color: var(--amber);
-}
-
-.hero-title .outline {
-  -webkit-text-stroke: 1px rgba(122,172,110,0.4);
-  color: transparent;
-  display: block;
-}
-
-.hero-sub {
-  margin-top: 2rem;
-  max-width: 500px;
-  font-size: 0.95rem;
-  line-height: 1.9;
-  color: var(--text-soft);
-  position: relative;
-  z-index: 2;
-  border-left: 2px solid var(--border);
-  padding-left: 1.25rem;
-}
-
-.hero-coords {
-  position: absolute;
-  top: 80px;
-  right: 6vw;
-  font-family: 'Jost', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  text-align: right;
-  z-index: 2;
-  line-height: 2;
-}
-
-.hero-coords .hi { color: var(--sage); }
-
-/* ── GRADIENT BAR ── */
-.gradient-bar-track {
-  height: 5px;
-  width: 100%;
-  border-radius: 3px;
-  background: linear-gradient(
-    to right,
-    #a03030 0%,
-    #b05535 20%,
-    #c9a055 40%,
-    #a8b840 60%,
-    #7aac6e 80%,
-    #4a9ea8 100%
-  );
-  margin-bottom: 0.6rem;
-}
-
-.gradient-labels {
-  display: flex;
-  justify-content: space-between;
-  font-family: 'Jost', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-.gradient-markers {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.8rem;
-}
-
-.marker { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
-
-.marker-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-}
-
-.marker-name {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-}
-
-.marker-ph {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 500;
-  color: var(--amber);
-}
-
-/* ── PARAM GRID ── */
-.param-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  margin-top: 3rem;
-  border: 1px solid var(--border);
-}
-
-.param-cell {
-  background: var(--surface);
-  padding: 1.4rem 1.2rem;
-  border-right: 1px solid var(--border);
-  transition: background 0.25s;
-  position: relative;
-}
-
-.param-cell:last-child { border-right: none; }
-
-.param-cell::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--cell-accent, var(--sage));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.param-cell:hover { background: rgba(255,255,255,0.04); }
-.param-cell:hover::after { transform: scaleX(1); }
-
-.param-label {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-.param-value {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.9rem;
-  font-weight: 300;
-  line-height: 1;
-  color: var(--text-main);
-}
-
-.param-unit {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-left: 0.25rem;
-}
-
-/* ── RESEARCH QUESTIONS GRID ── */
-.questions-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  margin-top: 2.5rem;
-}
-
-@media (max-width: 700px) {
-  .questions-grid { grid-template-columns: 1fr; }
-}
-
-.q-box {
-  background: var(--surface);
-  padding: 2rem 1.8rem;
-  transition: background 0.25s;
-  position: relative;
-  border-left: 3px solid var(--q-color, var(--sage));
-}
-
-.q-box:hover { background: rgba(255,255,255,0.04); }
-
-.q-num {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-}
-
-.q-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
-  color: var(--text-main);
-}
-
-.q-title em {
-  font-style: italic;
-  color: var(--amber);
-}
-
-.q-body {
-  font-size: 0.88rem;
-  line-height: 1.8;
-  color: var(--text-soft);
-}
-
-.q-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 1rem;
-}
-
-.tag {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  padding: 0.2rem 0.55rem;
-  border: 1px solid rgba(122,172,110,0.2);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.q-box:hover .tag {
-  border-color: rgba(122,172,110,0.4);
-  color: var(--sage);
-}
-
-/* ── METHODS PIPELINE ── */
-.pipeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  margin-top: 2.5rem;
-}
-
-.pipeline-step {
-  background: var(--surface);
-  padding: 1.8rem 1.5rem;
-  transition: background 0.25s;
-}
-
-.pipeline-step:hover { background: rgba(255,255,255,0.04); }
-
-.step-num-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px; height: 28px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  font-family: 'Jost', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 500;
-  color: var(--sage);
-  margin-bottom: 1rem;
-}
-
-.step-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-  color: var(--text-main);
-}
-
-.step-desc {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--text-soft);
-}
-
-/* ── MEET ACIDITHIOBACILLIA ── */
-.aciditho-section {
-  padding: 5rem 6vw;
-  border-top: 1px solid var(--border);
-  background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(122,172,110,0.05) 0%, transparent 70%);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.aciditho-bg-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(4rem, 12vw, 10rem);
-  font-weight: 300;
-  font-style: italic;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(122,172,110,0.07);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  letter-spacing: -0.02em;
-}
-
-.aciditho-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.aciditho-label {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 1.5rem;
-}
-
-.aciditho-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 1.4rem;
-}
-
-.aciditho-title em {
-  font-style: italic;
-  color: var(--amber);
-}
-
-.aciditho-body {
-  font-size: 0.95rem;
-  line-height: 1.9;
-  color: var(--text-soft);
-  margin-bottom: 2rem;
-}
-
-.aciditho-badges {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 2rem;
-}
-
-.aciditho-badge {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 0.35rem 0.9rem;
-  border: 1px solid rgba(122,172,110,0.25);
-  color: var(--text-muted);
-}
-
-.aciditho-status {
-  display: inline-block;
-  font-family: 'Jost', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 0.5rem 1.2rem;
-  border: 1px solid rgba(122,172,110,0.3);
-  color: var(--sage);
-  animation: pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
-}
-
-/* ── FOOTER ── */
-.page-footer {
-  padding: 1.8rem 6vw;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-text {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.footer-text span { color: var(--sage); }
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research | Quatrini Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-image:    url("images/volcano.jpg");
+      --sage:        #7aac6e;
+      --amber:       #c9a055;
+      --rust:        #a84e2a;
+      --teal:        #4a9a8a;
+      --text-main:   #ddd8cc;
+      --text-muted:  #8a8d82;
+      --box-bg:      rgba(8, 12, 8, 0.80);
+      --box-border:  rgba(122, 172, 110, 0.22);
+      --box-border-hover: rgba(122, 172, 110, 0.50);
+      --sage-dim:    rgba(122,172,110,0.12);
+      --sage-mid:    rgba(122,172,110,0.35);
+      --amber-dim:   rgba(201,160,85,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+      line-height: 1.8;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: var(--bg-image) center center / cover no-repeat;
+      filter: blur(2px) brightness(0.8) saturate(0.75);
+      transform: scale(1.04);
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(6, 10, 6, 0.55);
+    }
+
+    *, body, input, select, textarea, button, p, li, span, div {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── HEADER ── */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2em;
+      height: 3.5em;
+      background: rgba(6, 9, 6, 0.88) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--box-border);
+      z-index: 1000;
+    }
+
+    #header h1 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.08em;
+      color: var(--text-main) !important;
+      font-size: 1.15em;
+    }
+
+    #header h1 a { color: inherit; text-decoration: none; }
+
+    #header nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    #header nav ul li a {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.7em;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      padding: 0 0.6em;
+    }
+
+    #header nav ul li a:hover,
+    #header nav ul li a.active { color: var(--sage) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 3.5em;
+      position: relative;
+      height: 44vh;
+      min-height: 280px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 3.5em;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(6,10,6,0.0) 0%, rgba(6,10,6,0.65) 100%);
+      pointer-events: none;
+    }
+
+    .hero-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #8b4513 0%, #c9a055 28%, #7aac6e 60%, #4a9a8a 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5em;
+      width: 100%;
+    }
+
+    .hero-content .label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.6em;
+      opacity: 0.85;
+    }
+
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: clamp(2.8rem, 6vw, 5rem) !important;
+      letter-spacing: 0.06em;
+      color: #ffffff !important;
+      line-height: 1.0;
+    }
+
+    /* ── PAGE BODY ── */
+    .page-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5em 2.5em 7em;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 2em;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      opacity: 0.85;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--box-border);
+    }
+
+    .section-gap { margin-top: 4.5em; }
+
+    /* ── INTRO BLOCK ── */
+    .intro-block {
+      background: var(--box-bg) !important;
+      border: 1px solid var(--box-border) !important;
+      border-left: 3px solid var(--amber) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2.8em 3em !important;
+      margin-bottom: 4em;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .intro-block:hover {
+      border-color: var(--box-border-hover) !important;
+      border-left-color: var(--sage) !important;
+      background: rgba(8,12,8,0.88) !important;
+    }
+
+    .intro-block p {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 1.05em !important;
+      line-height: 1.9 !important;
+      color: var(--text-muted) !important;
+      max-width: 820px;
+    }
+
+    .intro-block p + p { margin-top: 1em; }
+
+    /* ── RESEARCH GRID ── */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4em;
+      margin-bottom: 1em;
+    }
+
+    /* ── RESEARCH CARD ── */
+    .research-card {
+      background: var(--box-bg) !important;
+      border: 1px solid var(--box-border) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2.2em 2em 2em;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      transition: border-color 0.35s ease, transform 0.35s ease,
+                  box-shadow 0.35s ease, background 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      opacity: 0.45;
+      transition: opacity 0.35s ease;
+    }
+
+    .research-card.accent-sage::before {
+      background: linear-gradient(90deg, var(--sage) 0%, var(--teal) 100%);
+    }
+
+    .research-card.accent-amber::before {
+      background: linear-gradient(90deg, var(--amber) 0%, var(--rust) 100%);
+    }
+
+    .research-card.accent-teal::before {
+      background: linear-gradient(90deg, var(--teal) 0%, var(--sage) 100%);
+    }
+
+    .research-card.accent-rust::before {
+      background: linear-gradient(90deg, var(--rust) 0%, var(--amber) 100%);
+    }
+
+    .research-card:hover {
+      border-color: var(--box-border-hover) !important;
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+      background: rgba(10,16,10,0.92) !important;
+    }
+
+    .research-card:hover::before { opacity: 1; }
+
+    .card-tag {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em;
+      font-weight: 500 !important;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 0.2em;
+    }
+
+    .tag-sage  { color: var(--sage);  }
+    .tag-amber { color: var(--amber); }
+    .tag-teal  { color: var(--teal);  }
+    .tag-rust  { color: var(--rust);  }
+
+    .research-card h3 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      font-size: clamp(1.1rem, 2vw, 1.45rem) !important;
+      color: var(--text-main) !important;
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+    }
+
+    .research-card p {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.84em !important;
+      line-height: 1.85 !important;
+      color: var(--text-muted) !important;
+      flex: 1;
+    }
+
+    .card-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em;
+      margin-top: 0.4em;
+    }
+
+    .chip {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em;
+      font-weight: 500 !important;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 0.25em 0.65em;
+      border-radius: 2em;
+    }
+
+    .chip-sage  { background: var(--sage-dim);  color: var(--sage);  border: 1px solid rgba(122,172,110,0.25); }
+    .chip-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(201,160,85,0.25);  }
+    .chip-teal  { background: rgba(74,154,138,0.12); color: var(--teal); border: 1px solid rgba(74,154,138,0.25); }
+    .chip-rust  { background: rgba(168,78,42,0.12);  color: #d4825a;     border: 1px solid rgba(168,78,42,0.25);  }
+
+    /* ── APPROACH BLOCK — 2-col highlight ── */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4em;
+    }
+
+    .approach-card {
+      background: var(--box-bg) !important;
+      border: 1px solid var(--box-border) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2em 2.2em;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .approach-card:hover {
+      border-color: var(--box-border-hover) !important;
+      background: rgba(10,16,10,0.92) !important;
+    }
+
+    .approach-card h4 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      font-size: 1.2em !important;
+      color: var(--text-main) !important;
+      margin-bottom: 0.6em;
+      letter-spacing: 0.04em;
+    }
+
+    .approach-card p {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.84em !important;
+      line-height: 1.85 !important;
+      color: var(--text-muted) !important;
+    }
+
+    .approach-number {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: 3.5em !important;
+      color: rgba(122,172,110,0.08);
+      line-height: 1;
+      margin-bottom: 0.15em;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── ACIDITHIOBACILLIA SPOTLIGHT BLOCK ── */
+    .spotlight-block {
+      background: var(--box-bg) !important;
+      border: 1px solid var(--box-border) !important;
+      border-left: 3px solid var(--teal) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2.8em 3em !important;
+      margin-top: 1.4em;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3em;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .spotlight-block::after {
+      content: 'Acidithiobacillia';
+      position: absolute;
+      right: -0.5em;
+      bottom: -0.5em;
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: 5.5em !important;
+      color: rgba(74,154,138,0.04);
+      letter-spacing: -0.02em;
+      pointer-events: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .spotlight-block:hover {
+      border-color: var(--box-border-hover) !important;
+      border-left-color: var(--teal) !important;
+      background: rgba(8,12,8,0.92) !important;
+    }
+
+    .spotlight-inner .spotlight-tag {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.7em;
+      opacity: 0.9;
+    }
+
+    .spotlight-inner h3 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem) !important;
+      color: var(--text-main) !important;
+      margin-bottom: 0.6em;
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+    }
+
+    .spotlight-inner p {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.88em !important;
+      line-height: 1.9 !important;
+      color: var(--text-muted) !important;
+      max-width: 620px;
+    }
+
+    .spotlight-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45em;
+      margin-top: 1.2em;
+    }
+
+    /* section-btn — exact copy from index */
+    .section-btn {
+      display: inline-block;
+      padding: 0.65em 2em;
+      border: 1px solid var(--box-border-hover) !important;
+      color: var(--teal) !important;
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.7em !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-btn:hover {
+      background: rgba(74,154,138,0.10) !important;
+      border-color: var(--teal) !important;
+      color: #fff !important;
+    }
+
+    /* ── JOIN BLOCK ── */
+    .join-block {
+      background: var(--box-bg) !important;
+      border: 1px solid var(--box-border) !important;
+      border-left: 3px solid var(--sage) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2.8em 3em !important;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2.5em;
+      margin-top: 4em;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .join-block:hover {
+      border-color: var(--box-border-hover) !important;
+      background: rgba(8,12,8,0.88) !important;
+    }
+
+    .join-block h3 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
+      color: var(--text-main) !important;
+      margin-bottom: 0.6em;
+      letter-spacing: 0.04em;
+    }
+
+    .join-block p {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.91em !important;
+      line-height: 1.85 !important;
+      color: var(--text-muted) !important;
+    }
+
+    .section-btn-sage {
+      display: inline-block;
+      padding: 0.65em 2em;
+      border: 1px solid var(--box-border-hover) !important;
+      color: var(--sage) !important;
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.7em !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .section-btn-sage:hover {
+      background: rgba(122,172,110,0.10) !important;
+      border-color: var(--sage) !important;
+      color: #fff !important;
+    }
+
+    /* ── FOOTER ── */
+    #footer {
+      background: rgba(4, 6, 4, 0.92) !important;
+      border-top: 1px solid var(--box-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.5em 2.5em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8em;
+    }
+
+    #footer ul.icons { list-style: none; display: flex; gap: 0; }
+
+    #footer ul.icons li a {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 400 !important;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+      font-size: 0.85em;
+      padding: 0 0.5em;
+      transition: color 0.25s ease;
+    }
+
+    #footer ul.icons li a:hover { color: var(--sage) !important; }
+
+    #footer ul.menu { list-style: none; display: flex; gap: 0; }
+
+    #footer ul.menu li,
+    #footer ul.menu li a {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.78em !important;
+      letter-spacing: 0.08em;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+    }
+
+    #footer ul.menu li + li::before {
+      content: '|';
+      padding: 0 0.75em;
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    #footer ul.menu li a:hover { color: var(--sage) !important; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 980px) {
+      .research-grid { grid-template-columns: repeat(2, 1fr); }
+      .approach-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .research-grid { grid-template-columns: 1fr; }
+      .spotlight-block { grid-template-columns: 1fr; }
+      .join-block { grid-template-columns: 1fr; }
+      #header nav { display: none; }
+      .spotlight-block::after { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .page-body { padding: 3em 1.4em 5em; }
+      .hero-content { padding: 0 1.4em; }
+      .intro-block, .spotlight-block, .join-block { padding: 2em 1.6em !important; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="site-nav">
-  <a href="index.html" class="nav-logo">Quatrini Lab</a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="research.html" class="active">Research</a></li>
-    <li><a href="team.html">Team</a></li>
-    <li><a href="outreach.html">Outreach</a></li>
-    <li><a href="publications.html">Publications</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <!-- ── HEADER ── -->
+  <header id="header">
+    <h1><a href="index.html">Quatrini Lab</a></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html" class="active">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="outreach.html">Outreach</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-
-  <div class="hero-coords">
-    <div>37 deg 45 min S</div>
-    <div>71 deg 10 min W</div>
-    <div class="hi">2,415 m.a.s.l.</div>
-    <div style="margin-top:0.4rem;">Copahue – Caviahue – Chancoco</div>
-    <div>Neuquen, Argentina</div>
-  </div>
-
-  <div class="hero-label">Research Program / Extreme Microbiology</div>
-
-  <h1 class="hero-title">
-    <span>Life at the</span>
-    <em>edge</em>
-    <span class="outline">of pH</span>
-  </h1>
-
-  <p class="hero-sub">
-    Along the geothermal gradient of the Copahue–Caviahue–Chancoco system,
-    we decode how extreme physicochemical conditions shape microbial
-    communities — from species distribution to evolutionary adaptation,
-    one acid pool at a time.
-  </p>
-</section>
-
-<!-- GRADIENT SECTION -->
-<section class="page-section">
-  <div class="section-tag">// model system</div>
-  <h2 class="section-title">The Copahue<br><em>Geothermal Gradient</em></h2>
-  <p class="section-body">
-    A natural laboratory spanning kilometers: from highly acidic, metal-rich
-    hot springs near the volcanic crater to progressively milder environments
-    downstream. Each sampling point is a data point in the story of microbial
-    adaptation.
-  </p>
-
-  <div style="margin-top:2.5rem;">
-    <div class="gradient-labels">
-      <span>Crater / Source</span>
-      <span>Downstream</span>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="label">// science</div>
+      <h1>Research</h1>
     </div>
-    <div class="gradient-bar-track"></div>
-    <div class="gradient-markers">
-      <div class="marker">
-        <div class="marker-dot" style="background:#a03030;"></div>
-        <span class="marker-name">Copahue</span>
-        <span class="marker-ph">pH &lt;1</span>
+    <div class="hero-bar"></div>
+  </section>
+
+  <!-- ── PAGE BODY ── -->
+  <main class="page-body">
+
+    <!-- INTRO -->
+    <div class="section-label">Overview</div>
+    <div class="intro-block">
+      <p>
+        The Quatrini Lab investigates the biology, ecology, and evolution of microorganisms
+        that thrive in extreme acidic environments — principally the acid mine drainage (AMD)
+        systems of the Atacama and Andean regions of Chile. We combine comparative genomics,
+        metagenomics, experimental evolution, and molecular microbiology to understand how
+        life adapts to chemical extremes.
+      </p>
+      <p>
+        Our work sits at the interface of basic microbial science and applied biotechnology,
+        with implications for bioleaching, bioremediation, and our broader understanding
+        of the limits of life on Earth — and potentially beyond.
+      </p>
+    </div>
+
+    <!-- RESEARCH THEMES -->
+    <div class="section-label">Research Themes</div>
+    <div class="research-grid">
+
+      <div class="research-card accent-sage">
+        <div>
+          <div class="card-tag tag-sage">// Genomics</div>
+          <h3>Comparative &amp; Functional Genomics</h3>
+        </div>
+        <p>
+          We decode the genomic architecture of acidophilic bacteria to understand gene
+          function, regulatory networks, and the molecular underpinnings of acid tolerance,
+          metal resistance, and energy conservation in low-pH environments.
+        </p>
+        <div class="card-chips">
+          <span class="chip chip-sage">Pangenomics</span>
+          <span class="chip chip-sage">Gene Regulation</span>
+          <span class="chip chip-amber">Acidithiobacillia</span>
+        </div>
       </div>
-      <div class="marker">
-        <div class="marker-dot" style="background:#c9a055;"></div>
-        <span class="marker-name">Chancoco</span>
-        <span class="marker-ph">pH 2–3</span>
+
+      <div class="research-card accent-amber">
+        <div>
+          <div class="card-tag tag-amber">// Ecology</div>
+          <h3>Microbial Community Ecology in AMD</h3>
+        </div>
+        <p>
+          Acid mine drainage systems host simplified, tractable microbial communities.
+          We reconstruct community composition, metabolic interactions, and ecological
+          networks using metagenome-assembled genomes (MAGs) and multi-omics approaches.
+        </p>
+        <div class="card-chips">
+          <span class="chip chip-sage">Metagenomics</span>
+          <span class="chip chip-sage">MAGs</span>
+          <span class="chip chip-amber">Network Analysis</span>
+        </div>
       </div>
-      <div class="marker">
-        <div class="marker-dot" style="background:#7aac6e;"></div>
-        <span class="marker-name">Caviahue</span>
-        <span class="marker-ph">pH 3–4</span>
+
+      <div class="research-card accent-teal">
+        <div>
+          <div class="card-tag tag-teal">// Evolution</div>
+          <h3>Experimental Evolution Under Extreme Stress</h3>
+        </div>
+        <p>
+          Laboratory evolution experiments expose acidophilic strains to escalating
+          chemical stressors — chloride, metal ions, pH gradients — allowing us to
+          directly observe adaptive trajectories, mutation spectra, and the
+          repeatability of evolution.
+        </p>
+        <div class="card-chips">
+          <span class="chip chip-teal">Exp. Evolution</span>
+          <span class="chip chip-sage">Selection Pressure</span>
+          <span class="chip chip-amber">Adaptation</span>
+        </div>
       </div>
-      <div class="marker">
-        <div class="marker-dot" style="background:#4a9ea8;"></div>
-        <span class="marker-name">Outflow</span>
-        <span class="marker-ph">pH 4+</span>
+
+      <div class="research-card accent-rust">
+        <div>
+          <div class="card-tag tag-rust">// Virology</div>
+          <h3>Viral Ecology &amp; Phage-Host Interactions</h3>
+        </div>
+        <p>
+          Bacteriophages shape the population structure and gene flow of acidophilic
+          communities. We study phage diversity, lysogeny, and phage-host coevolution
+          through metagenome-resolved viromics and experimental infection assays.
+        </p>
+        <div class="card-chips">
+          <span class="chip chip-rust">Viromics</span>
+          <span class="chip chip-sage">Phage Biology</span>
+          <span class="chip chip-amber">Coevolution</span>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="param-grid">
-    <div class="param-cell" style="--cell-accent:#a03030;">
-      <div class="param-label">pH range</div>
-      <div class="param-value">&lt;1<span class="param-unit">— 4.5</span></div>
-    </div>
-    <div class="param-cell" style="--cell-accent:#c9a055;">
-      <div class="param-label">Temperature</div>
-      <div class="param-value">20<span class="param-unit">— 85 C</span></div>
-    </div>
-    <div class="param-cell" style="--cell-accent:#b09030;">
-      <div class="param-label">Chloride</div>
-      <div class="param-value" style="font-size:1.4rem;">High<span class="param-unit"> gradient</span></div>
-    </div>
-    <div class="param-cell" style="--cell-accent:#7aac6e;">
-      <div class="param-label">Metals</div>
-      <div class="param-value" style="font-size:1.4rem;">Fe, Cu<span class="param-unit">, Al, Mn</span></div>
-    </div>
-    <div class="param-cell" style="--cell-accent:#4a9ea8;">
-      <div class="param-label">Dominant class</div>
-      <div class="param-value" style="font-size:1rem;line-height:1.3;font-style:italic;padding-top:0.3rem;">Acidithio-<br>bacillia</div>
-    </div>
-  </div>
-</section>
-
-<!-- RESEARCH QUESTIONS -->
-<section class="page-section">
-  <div class="section-tag">// research questions</div>
-  <h2 class="section-title">What We <em>Ask</em></h2>
-
-  <div class="questions-grid">
-
-    <div class="q-box" style="--q-color:#a03030;">
-      <div class="q-num">01</div>
-      <div class="q-title">Community Assembly<br><em>Along the Gradient</em></div>
-      <p class="q-body">How do pH, temperature, metal concentration, and chloride levels shape microbial species distributions and abundance patterns across the geothermal system?</p>
-      <div class="q-tags">
-        <span class="tag">Metagenomics</span>
-        <span class="tag">Amplicon Sequencing</span>
-        <span class="tag">Biogeography</span>
+      <div class="research-card accent-sage">
+        <div>
+          <div class="card-tag tag-sage">// Metabolism</div>
+          <h3>Nitrogen &amp; Sulfur Cycling Pathways</h3>
+        </div>
+        <p>
+          Biogeochemical cycling in AMD is dominated by sulfur and nitrogen transformations
+          driven by acidophilic chemolithotrophs. We dissect the enzymes, operons, and
+          regulatory circuits that govern these cycles at the molecular level.
+        </p>
+        <div class="card-chips">
+          <span class="chip chip-sage">N Metabolism</span>
+          <span class="chip chip-sage">S Cycling</span>
+          <span class="chip chip-amber">Chemolithotrophy</span>
+        </div>
       </div>
-    </div>
 
-    <div class="q-box" style="--q-color:#c9a055;">
-      <div class="q-num">02</div>
-      <div class="q-title">Microdiversity &amp;<br><em>Adaptive Evolution</em></div>
-      <p class="q-body">Within-species variation and population genomics of <em>Acidithiobacillia</em>: how do microevolutionary processes — selection, drift, gene flow — operate across physicochemical barriers?</p>
-      <div class="q-tags">
-        <span class="tag">Population Genomics</span>
-        <span class="tag">Microdiversity</span>
-        <span class="tag">Pan-genome</span>
+      <div class="research-card accent-teal">
+        <div>
+          <div class="card-tag tag-teal">// Defense</div>
+          <h3>Genome Defense &amp; Mobile Genetic Elements</h3>
+        </div>
+        <p>
+          Restriction-modification systems, CRISPR arrays, and mobile genetic elements
+          are key drivers of genome plasticity in acidophiles. We catalogue, characterize,
+          and functionally dissect these systems to understand genome integrity and
+          horizontal gene transfer.
+        </p>
+        <div class="card-chips">
+          <span class="chip chip-teal">RM Systems</span>
+          <span class="chip chip-teal">CRISPR</span>
+          <span class="chip chip-sage">HGT</span>
+        </div>
       </div>
+
     </div>
 
-    <div class="q-box" style="--q-color:#7aac6e;">
-      <div class="q-num">03</div>
-      <div class="q-title">Taxonomy &amp;<br><em>Phenotypic Characterization</em></div>
-      <p class="q-body">Isolation, cultivation, and polyphasic characterization of novel <em>Acidithiobacillia</em> strains — linking genomic diversity to phenotypic traits, growth kinetics, and metal tolerance.</p>
-      <div class="q-tags">
-        <span class="tag">Isolation</span>
-        <span class="tag">Polyphasic Taxonomy</span>
-        <span class="tag">Comparative Genomics</span>
+    <!-- APPROACHES -->
+    <div class="section-label section-gap">Our Approaches</div>
+    <div class="approach-grid">
+
+      <div class="approach-card">
+        <div class="approach-number">01</div>
+        <h4>Multi-Omics Integration</h4>
+        <p>
+          We combine genomics, transcriptomics, proteomics, and metabolomics data
+          into unified models of cellular and community function — connecting
+          genotype to phenotype across environmental gradients.
+        </p>
       </div>
-    </div>
 
-    <div class="q-box" style="--q-color:#4a9ea8;">
-      <div class="q-num">04</div>
-      <div class="q-title">Global Distribution &amp;<br><em>AMD Contexts</em></div>
-      <p class="q-body">How do local <em>Acidithiobacillia</em> populations compare to global AMD communities? Cross-referencing field data with public databases to understand biogeographic patterns.</p>
-      <div class="q-tags">
-        <span class="tag">AMD</span>
-        <span class="tag">Comparative Metagenomics</span>
-        <span class="tag">Global Databases</span>
+      <div class="approach-card">
+        <div class="approach-number">02</div>
+        <h4>Field Sampling &amp; Environmental Gradients</h4>
+        <p>
+          AMD sites in Chile's Atacama region provide natural experiments across
+          pH, temperature, metal concentration, and salinity. We sample across
+          these gradients to capture the full spectrum of microbial diversity.
+        </p>
       </div>
+
+      <div class="approach-card">
+        <div class="approach-number">03</div>
+        <h4>Molecular Microbiology</h4>
+        <p>
+          Complementing computational work, we perform genetic manipulation,
+          reporter assays, protein characterization, and growth experiments
+          in tractable acidophilic model organisms to validate in silico predictions.
+        </p>
+      </div>
+
+      <div class="approach-card">
+        <div class="approach-number">04</div>
+        <h4>Computational Biology &amp; AI-Assisted Analysis</h4>
+        <p>
+          Bioinformatic pipelines for MAG reconstruction, pangenome analysis,
+          phylogenetics, and increasingly AI-assisted annotation and network
+          inference are central to scaling our research questions.
+        </p>
+      </div>
+
     </div>
 
-  </div>
-</section>
-
-<!-- METHODS -->
-<section class="page-section">
-  <div class="section-tag">// methodology</div>
-  <h2 class="section-title">From Field <em>to Genome</em></h2>
-  <p class="section-body">
-    Our pipeline integrates classic microbiology with multi-omics approaches —
-    from collecting water samples in volcanic craters to resolving
-    population-level genomic variation.
-  </p>
-
-  <div class="pipeline-grid">
-
-    <div class="pipeline-step">
-      <div class="step-num-badge">1</div>
-      <div class="step-title">Field Sampling</div>
-      <p class="step-desc">In-situ measurements, water and sediment collection across the full geothermal gradient. Physicochemical characterization on-site.</p>
+    <!-- ACIDITHIOBACILLIA SPOTLIGHT — new box -->
+    <div class="section-label section-gap">Model Organisms</div>
+    <div class="spotlight-block">
+      <div class="spotlight-inner">
+        <div class="spotlight-tag">// taxonomic spotlight</div>
+        <h3>Meet the Acidithiobacillia</h3>
+        <p>
+          The class <em>Acidithiobacillia</em> sits at the very heart of our research.
+          These sulfur- and iron-oxidizing chemolithotrophs are the dominant architects
+          of acid mine drainage ecosystems worldwide — and one of the most
+          phylogenetically distinctive lineages of Bacteria. Explore the members
+          of this remarkable class, their diversity, ecophysiology, and what makes
+          them extraordinary.
+        </p>
+        <div class="spotlight-chips">
+          <span class="chip chip-teal">Acidithiobacillus</span>
+          <span class="chip chip-teal">Sulfurihydrogenibium</span>
+          <span class="chip chip-sage">Iron Oxidation</span>
+          <span class="chip chip-sage">Sulfur Oxidation</span>
+          <span class="chip chip-amber">AMD</span>
+          <span class="chip chip-amber">Chemolithotrophy</span>
+        </div>
+      </div>
+      <a href="acidithiobacillia.html" class="section-btn">Explore the Class</a>
     </div>
 
-    <div class="pipeline-step">
-      <div class="step-num-badge">2</div>
-      <div class="step-title">Isolation &amp; Culture</div>
-      <p class="step-desc">Selective media, enrichment cultures, and strain isolation under acidic conditions. Growth characterization and preservation.</p>
+    <!-- JOIN -->
+    <div class="join-block">
+      <div>
+        <h3>Interested in Collaborating?</h3>
+        <p>
+          We welcome collaborations with researchers working in microbial ecology,
+          geochemistry, bioinformatics, and biotechnology. We are also actively
+          recruiting motivated PhD students and postdoctoral fellows.
+        </p>
+      </div>
+      <a href="index.html#contact" class="section-btn-sage">Get in Touch</a>
     </div>
 
-    <div class="pipeline-step">
-      <div class="step-num-badge">3</div>
-      <div class="step-title">Metagenomics</div>
-      <p class="step-desc">Shotgun sequencing of community DNA. Assembly, binning, and MAG recovery to resolve community-level functional potential.</p>
-    </div>
+  </main>
 
-    <div class="pipeline-step">
-      <div class="step-num-badge">4</div>
-      <div class="step-title">Genomics &amp; Evolution</div>
-      <p class="step-desc">Whole-genome sequencing, pan-genome analysis, population genomics, phylogenomics. Detecting selection signatures and adaptive genes.</p>
-    </div>
-
-    <div class="pipeline-step">
-      <div class="step-num-badge">5</div>
-      <div class="step-title">Global Databases</div>
-      <p class="step-desc">Cross-referencing with NCBI, JGI/IMG, SILVA, and public AMD metagenomes to contextualize local findings at global scale.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- MEET ACIDITHIOBACILLIA -->
-<section class="aciditho-section">
-  <div class="aciditho-bg-text">Acidithiobacillia</div>
-  <div class="aciditho-inner">
-    <div class="aciditho-label">// coming section</div>
-    <h2 class="aciditho-title">Meet the<br><em>Acidithiobacillia</em></h2>
-    <p class="aciditho-body">
-      The class that defines life at the acid frontier. Sulfur-oxidizing,
-      iron-cycling, metal-tolerant — these organisms are the architects of
-      extreme geochemistry and the central focus of our research program.
-      A dedicated section exploring their taxonomy, ecology, and evolution
-      is currently in preparation.
-    </p>
-    <div class="aciditho-badges">
-      <span class="aciditho-badge">Acidithiobacillales</span>
-      <span class="aciditho-badge">Sulfur oxidation</span>
-      <span class="aciditho-badge">Iron cycling</span>
-      <span class="aciditho-badge">Chemolithotrophy</span>
-      <span class="aciditho-badge">Extreme acidophiles</span>
-    </div>
-    <div class="aciditho-status">In preparation</div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="page-footer">
-  <div class="footer-text">
-    Copahue – Caviahue – Chancoco Geothermal System
-    <span> / </span> Quatrini Lab
-  </div>
-  <div class="footer-text">
-    <span>Acidithiobacillia</span> Research Program
-  </div>
-</footer>
+  <!-- ── FOOTER ── -->
+  <footer id="footer">
+    <ul class="icons">
+      <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+      <li><a href="#" class="icon brands fa-researchgate"><span class="label">ResearchGate</span></a></li>
+    </ul>
+    <ul class="menu">
+      <li>&copy; Quatrini Lab</li>
+      <li><a href="https://html5up.net">HTML5 UP</a></li>
+    </ul>
+  </footer>
 
 </body>
 </html>

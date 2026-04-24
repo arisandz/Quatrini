@@ -1,0 +1,932 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Quatrini Lab | The Team</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+  <style>
+
+    /* ─────────────────────────────────────────────
+       DESIGN TOKEN MIRROR — identical to index.html
+    ───────────────────────────────────────────── */
+    :root {
+      --sage:             #7aac6e;
+      --amber:            #c9a055;
+      --rust:             #a84e2a;
+      --text-main:        #ddd8cc;
+      --text-muted:       #8a8d82;
+      --box-bg:           rgba(8, 12, 8, 0.82);
+      --box-border:       rgba(122, 172, 110, 0.22);
+      --box-border-hover: rgba(122, 172, 110, 0.50);
+      --amber-border:     rgba(201, 160, 85, 0.28);
+      --amber-border-h:   rgba(201, 160, 85, 0.60);
+      --page-bg:          #070b07;
+    }
+
+    /* ─────────────────────────────────────────────
+       GLOBAL TYPOGRAPHY — mirror of index
+    ───────────────────────────────────────────── */
+    *, body, input, select, textarea, button, p, li, span, div {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─────────────────────────────────────────────
+       HEADER / NAV — exact copy of index
+    ───────────────────────────────────────────── */
+    #header {
+      background: rgba(6, 9, 6, 0.88) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--box-border);
+    }
+
+    #header h1 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.08em;
+      color: var(--text-main) !important;
+      font-size: 1.15em;
+    }
+
+    #header nav ul li a {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.7em;
+      color: var(--text-muted) !important;
+      transition: color 0.25s ease;
+      padding: 0 0.6em;
+    }
+
+    #header nav ul li a:hover,
+    #header nav ul li a.active {
+      color: var(--amber) !important;
+    }
+
+    /* ─────────────────────────────────────────────
+       PAGE BODY
+    ───────────────────────────────────────────── */
+    body {
+      background-color: var(--page-bg) !important;
+    }
+
+    /* ─────────────────────────────────────────────
+       PAGE HERO — matches index section tone
+    ───────────────────────────────────────────── */
+    .team-hero {
+      min-height: 38vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 6vw 4em;
+      border-bottom: 1px solid var(--amber-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201, 160, 85, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(122, 172, 110, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Subtle ruled lines — lab notebook feeling */
+    .team-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--amber-border) 30%,
+        var(--amber-border) 70%,
+        transparent 100%);
+    }
+
+    .hero-label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.62em;
+      font-weight: 400 !important;
+      letter-spacing: 0.30em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 0.9em;
+      opacity: 0.85;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: clamp(3rem, 7vw, 6.5rem) !important;
+      font-weight: 300 !important;
+      color: var(--text-main) !important;
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      margin: 0 0 0.5em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .hero-sub {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.88em !important;
+      color: var(--text-muted) !important;
+      letter-spacing: 0.05em;
+      line-height: 1.8;
+      max-width: 44em;
+    }
+
+    .hero-count {
+      position: absolute;
+      right: 6vw;
+      bottom: 4em;
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: clamp(4rem, 10vw, 9rem) !important;
+      font-weight: 300 !important;
+      color: rgba(201, 160, 85, 0.07);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ─────────────────────────────────────────────
+       MAIN CONTENT WRAPPER
+    ───────────────────────────────────────────── */
+    .team-body {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 6vw 8em;
+    }
+
+    /* ─────────────────────────────────────────────
+       SECTION DIVIDERS
+    ───────────────────────────────────────────── */
+    .team-section-label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.60em;
+      font-weight: 400 !important;
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0.80;
+      padding: 4em 0 1.4em;
+      display: flex;
+      align-items: center;
+      gap: 1.2em;
+    }
+
+    .team-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--amber-border);
+    }
+
+    /* ─────────────────────────────────────────────
+       PI — FEATURED LAYOUT
+       Full-width asymmetric, image left, text right
+    ───────────────────────────────────────────── */
+    .pi-block {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 0;
+      border: 1px solid var(--amber-border);
+      border-left: 3px solid var(--amber);
+      background: var(--box-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: border-color 0.35s ease, background 0.35s ease;
+      margin-bottom: 0.5em;
+    }
+
+    .pi-block:hover {
+      border-color: var(--amber-border-h);
+      border-left-color: var(--amber);
+      background: rgba(8, 12, 8, 0.92);
+    }
+
+    .pi-image-wrap {
+      position: relative;
+      overflow: hidden;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .pi-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.82) saturate(0.75) sepia(0.15);
+      transition: filter 0.45s ease, transform 0.45s ease;
+      display: block;
+      min-height: 320px;
+    }
+
+    .pi-block:hover .pi-image-wrap img {
+      filter: brightness(0.90) saturate(0.90) sepia(0.08);
+      transform: scale(1.03);
+    }
+
+    /* Photo placeholder (for when no real photo is available) */
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      background: rgba(201, 160, 85, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.6em;
+    }
+
+    .photo-placeholder .ph-initials {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 3rem;
+      font-weight: 300 !important;
+      color: rgba(201, 160, 85, 0.35);
+      letter-spacing: 0.1em;
+    }
+
+    .photo-placeholder .ph-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(201, 160, 85, 0.25);
+    }
+
+    /* Small card placeholder */
+    .photo-placeholder-sm {
+      width: 100%;
+      aspect-ratio: 1 / 1.1;
+      background: rgba(122, 172, 110, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.4em;
+    }
+
+    .photo-placeholder-sm .ph-initials {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1.8rem;
+      font-weight: 300 !important;
+      color: rgba(122, 172, 110, 0.30);
+      letter-spacing: 0.08em;
+    }
+
+    .pi-text {
+      padding: 2.8em 3em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .member-role-tag {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em;
+      font-weight: 500 !important;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.7em;
+      opacity: 0.85;
+    }
+
+    .pi-text .member-role-tag {
+      color: var(--amber);
+    }
+
+    .member-name {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: clamp(2rem, 3.5vw, 3rem) !important;
+      font-weight: 300 !important;
+      color: var(--text-main) !important;
+      line-height: 1.05;
+      margin: 0 0 0.1em;
+    }
+
+    .member-name-sm {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: clamp(1.3rem, 2vw, 1.7rem) !important;
+      font-weight: 300 !important;
+      color: var(--text-main) !important;
+      line-height: 1.1;
+      margin: 0 0 0.1em;
+    }
+
+    .member-focus {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1em !important;
+      font-style: italic;
+      color: rgba(201, 160, 85, 0.60) !important;
+      margin-bottom: 1.2em;
+      font-weight: 300 !important;
+    }
+
+    .member-bio {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.88em !important;
+      line-height: 1.85 !important;
+      color: var(--text-muted) !important;
+      margin: 0.5em 0 1.4em;
+      max-width: 52em;
+    }
+
+    .member-links {
+      display: flex;
+      gap: 0.8em;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .member-link {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.62em !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.5em 1.3em;
+      border: 1px solid var(--amber-border);
+      color: var(--amber) !important;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+    }
+
+    .member-link:hover {
+      background: rgba(201, 160, 85, 0.08);
+      border-color: var(--amber);
+      color: #fff !important;
+    }
+
+    .member-link.sage {
+      border-color: var(--box-border-hover);
+      color: var(--sage) !important;
+    }
+
+    .member-link.sage:hover {
+      background: rgba(122, 172, 110, 0.08);
+      border-color: var(--sage);
+      color: #fff !important;
+    }
+
+    /* ─────────────────────────────────────────────
+       TEAM GRID — postdocs, students
+       Asymmetric: cards of varying widths
+    ───────────────────────────────────────────── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1px;
+      background: var(--amber-border);
+      border: 1px solid var(--amber-border);
+    }
+
+    /* Sage-border variant for PhD students */
+    .team-grid.sage-grid {
+      background: var(--box-border);
+      border-color: var(--box-border);
+    }
+
+    .member-card {
+      background: var(--box-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2em 2em 2em;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s ease;
+      position: relative;
+    }
+
+    .member-card:hover {
+      background: rgba(8, 12, 8, 0.96);
+    }
+
+    /* Accent line on hover */
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+
+    .team-grid.sage-grid .member-card::before {
+      background: var(--sage);
+    }
+
+    .member-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* Image inside card */
+    .card-image-wrap {
+      overflow: hidden;
+      margin-bottom: 1.4em;
+    }
+
+    .card-image-wrap img {
+      width: 100%;
+      aspect-ratio: 1 / 1.1;
+      object-fit: cover;
+      filter: brightness(0.80) saturate(0.70) sepia(0.12);
+      display: block;
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+
+    .member-card:hover .card-image-wrap img {
+      filter: brightness(0.90) saturate(0.90) sepia(0.06);
+      transform: scale(1.04);
+    }
+
+    /* Column spans */
+    .col-4  { grid-column: span 4; }
+    .col-3  { grid-column: span 3; }
+    .col-6  { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+
+    .member-card .member-bio {
+      font-size: 0.82em !important;
+    }
+
+    /* ─────────────────────────────────────────────
+       ALUMNI ROW — minimal list
+    ───────────────────────────────────────────── */
+    .alumni-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0;
+      border: 1px solid var(--box-border);
+    }
+
+    .alumni-entry {
+      padding: 1.4em 1.8em;
+      border-bottom: 1px solid var(--box-border);
+      border-right: 1px solid var(--box-border);
+      transition: background 0.25s;
+    }
+
+    .alumni-entry:hover {
+      background: rgba(122, 172, 110, 0.04);
+    }
+
+    .alumni-name {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1.05em !important;
+      font-weight: 400 !important;
+      color: var(--text-main) !important;
+      margin: 0 0 0.2em;
+    }
+
+    .alumni-detail {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.72em !important;
+      font-weight: 300 !important;
+      color: var(--text-muted) !important;
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+    }
+
+    .alumni-year {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.62em !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.14em;
+      color: rgba(122, 172, 110, 0.50) !important;
+      margin-top: 0.4em;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────────
+       JOIN CTA
+    ───────────────────────────────────────────── */
+    .join-block {
+      margin-top: 5em;
+      padding: 3.5em 4em;
+      border: 1px solid var(--box-border);
+      border-left: 3px solid var(--sage);
+      background: var(--box-bg);
+      backdrop-filter: blur(8px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3em;
+    }
+
+    .join-block h3 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: clamp(1.6rem, 3vw, 2.4rem) !important;
+      font-weight: 300 !important;
+      color: var(--text-main) !important;
+      margin: 0 0 0.5em;
+    }
+
+    .join-block p {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.88em !important;
+      line-height: 1.8 !important;
+      color: var(--text-muted) !important;
+      margin: 0;
+    }
+
+    .section-btn {
+      display: inline-block;
+      padding: 0.65em 2em;
+      border: 1px solid var(--box-border-hover) !important;
+      color: var(--sage) !important;
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.7em !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 0;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    .section-btn:hover {
+      background: rgba(122, 172, 110, 0.10) !important;
+      border-color: var(--sage) !important;
+      color: #fff !important;
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER — exact copy of index
+    ───────────────────────────────────────────── */
+    #footer {
+      background: #060906 !important;
+      border-top: 1px solid var(--box-border);
+    }
+
+    #footer ul.icons li a {
+      font-family: 'Jost', sans-serif !important;
+      color: var(--text-muted) !important;
+      transition: color 0.25s ease;
+    }
+
+    #footer ul.icons li a:hover { color: var(--sage) !important; }
+
+    #footer ul.menu li,
+    #footer ul.menu li a {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.78em !important;
+      letter-spacing: 0.08em;
+      color: var(--text-muted) !important;
+    }
+
+    #footer ul.menu li a:hover { color: var(--sage) !important; }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .pi-block { grid-template-columns: 1fr; }
+      .pi-image-wrap img { min-height: 240px; }
+      .photo-placeholder { min-height: 240px; }
+      .col-4 { grid-column: span 6; }
+      .col-3 { grid-column: span 6; }
+      .col-6 { grid-column: span 12; }
+      .join-block { grid-template-columns: 1fr; gap: 1.5em; }
+      .team-hero { padding: 5em 6vw 3em; align-items: flex-start; flex-direction: column; }
+      .hero-count { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .col-4, .col-3, .col-6 { grid-column: span 12; }
+      .team-body { padding: 0 5vw 5em; }
+    }
+
+    /* ─────────────────────────────────────────────
+       FADE-IN ANIMATION
+    ───────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .team-hero .hero-inner { animation: fadeUp 0.9s ease both; }
+    .pi-block              { animation: fadeUp 0.9s ease 0.15s both; }
+
+  </style>
+</head>
+
+<body class="is-preload">
+
+  <!-- ─── HEADER — identical to index ─────────── -->
+  <header id="header">
+    <h1>Quatrini Lab</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="team.html" class="active">Team</a></li>
+        <li><a href="outreach.html">Outreach</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ─── PAGE HERO ────────────────────────────── -->
+  <section class="team-hero">
+    <div class="hero-inner">
+      <p class="hero-label">// people</p>
+      <h1 class="hero-title">The <em>People</em><br>Behind the Science</h1>
+      <p class="hero-sub">
+        A multidisciplinary group united by curiosity about life at its chemical limits —<br>
+        microbiologists, bioinformaticians, and field scientists working at the edges of habitability.
+      </p>
+    </div>
+    <div class="hero-count">09</div>
+  </section>
+
+  <!-- ─── MAIN BODY ─────────────────────────────── -->
+  <div class="team-body">
+
+    <!-- PI ───────────────────────────────────────── -->
+    <p class="team-section-label">Principal Investigator</p>
+
+    <div class="pi-block">
+      <div class="pi-image-wrap">
+        <!-- Replace src with actual photo: <img src="images/team/quatrini.jpg" alt="Raquel Quatrini" /> -->
+        <div class="photo-placeholder">
+          <span class="ph-initials">RQ</span>
+          <div class="ph-line"></div>
+        </div>
+      </div>
+      <div class="pi-text">
+        <p class="member-role-tag">Principal Investigator &nbsp;&bull;&nbsp; Full Professor</p>
+        <h2 class="member-name">Raquel Quatrini</h2>
+        <p class="member-focus">Microbial ecophysiology, acidophile genomics &amp; evolution</p>
+        <p class="member-bio">
+          Raquel leads the Laboratory of Microbial Ecophysiology at the Fundacion Ciencia &amp; Vida.
+          Her research focuses on understanding how acidophilic microorganisms adapt to extreme
+          geochemical gradients — from the molecular mechanisms of metal resistance to the
+          evolutionary ecology of chemolithotrophic communities. Her group integrates
+          comparative genomics, transcriptomics, and field-based ecology to build a
+          systems-level understanding of life in acid environments.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link">Google Scholar</a>
+          <a href="#" class="member-link">ORCID</a>
+          <a href="#" class="member-link">ResearchGate</a>
+          <a href="index.html#contact" class="member-link sage">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- POSTDOCS ──────────────────────────────────── -->
+    <p class="team-section-label">Postdoctoral Researchers</p>
+
+    <div class="team-grid">
+
+      <div class="member-card col-6">
+        <div class="card-image-wrap">
+          <!-- <img src="images/team/postdoc1.jpg" alt="Name" /> -->
+          <div class="photo-placeholder-sm">
+            <span class="ph-initials" style="color:rgba(201,160,85,0.30);">DN</span>
+          </div>
+        </div>
+        <p class="member-role-tag">Postdoctoral Researcher</p>
+        <h3 class="member-name-sm">Dilanaz Name</h3>
+        <p class="member-focus">Microbial evolution &amp; science communication</p>
+        <p class="member-bio">
+          Studies the evolutionary ecology of acidophilic communities along extreme
+          environmental gradients. Also leads the lab's scientific communication
+          and outreach program, bridging research and public engagement.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link">Scholar</a>
+          <a href="#" class="member-link">ORCID</a>
+        </div>
+      </div>
+
+      <div class="member-card col-6">
+        <div class="card-image-wrap">
+          <div class="photo-placeholder-sm">
+            <span class="ph-initials" style="color:rgba(201,160,85,0.30);">MS</span>
+          </div>
+        </div>
+        <p class="member-role-tag">Postdoctoral Researcher</p>
+        <h3 class="member-name-sm">Member Surname</h3>
+        <p class="member-focus">Chemolithotrophy &amp; metabolic modelling</p>
+        <p class="member-bio">
+          Investigates the metabolic networks that sustain chemolithotrophic growth
+          under fluctuating acidic conditions. Combines metabolic flux analysis
+          with environmental metagenomics.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link">Scholar</a>
+          <a href="#" class="member-link">ORCID</a>
+        </div>
+      </div>
+
+    </div><!-- /team-grid postdocs -->
+
+    <!-- PhD STUDENTS ──────────────────────────────── -->
+    <p class="team-section-label">PhD Students</p>
+
+    <div class="team-grid sage-grid">
+
+      <div class="member-card col-4">
+        <div class="card-image-wrap">
+          <div class="photo-placeholder-sm">
+            <span class="ph-initials">AB</span>
+          </div>
+        </div>
+        <p class="member-role-tag" style="color:var(--sage)">PhD Candidate</p>
+        <h3 class="member-name-sm">Student A</h3>
+        <p class="member-focus">Iron oxidation pathways</p>
+        <p class="member-bio">
+          Characterizing the molecular mechanisms of iron oxidation in novel
+          acidophilic isolates from Atacama sulfur springs.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link sage">Scholar</a>
+        </div>
+      </div>
+
+      <div class="member-card col-4">
+        <div class="card-image-wrap">
+          <div class="photo-placeholder-sm">
+            <span class="ph-initials">BC</span>
+          </div>
+        </div>
+        <p class="member-role-tag" style="color:var(--sage)">PhD Candidate</p>
+        <h3 class="member-name-sm">Student B</h3>
+        <p class="member-focus">Acidophile community structure</p>
+        <p class="member-bio">
+          Using amplicon sequencing and network analysis to map microbial
+          community transitions along pH and temperature gradients.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link sage">Scholar</a>
+        </div>
+      </div>
+
+      <div class="member-card col-4">
+        <div class="card-image-wrap">
+          <div class="photo-placeholder-sm">
+            <span class="ph-initials">CD</span>
+          </div>
+        </div>
+        <p class="member-role-tag" style="color:var(--sage)">PhD Candidate</p>
+        <h3 class="member-name-sm">Student C</h3>
+        <p class="member-focus">Horizontal gene transfer in extremophiles</p>
+        <p class="member-bio">
+          Investigating the role of mobile genetic elements in driving
+          rapid adaptation to extreme geochemical environments.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link sage">Scholar</a>
+        </div>
+      </div>
+
+      <div class="member-card col-4">
+        <div class="card-image-wrap">
+          <div class="photo-placeholder-sm">
+            <span class="ph-initials">DE</span>
+          </div>
+        </div>
+        <p class="member-role-tag" style="color:var(--sage)">PhD Candidate</p>
+        <h3 class="member-name-sm">Student D</h3>
+        <p class="member-focus">Archaea in hyperacid systems</p>
+        <p class="member-bio">
+          Exploring archaeal diversity and ecophysiology in hyperacidic
+          volcanic lake systems using metagenome-assembled genomes.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link sage">Scholar</a>
+        </div>
+      </div>
+
+      <div class="member-card col-4">
+        <div class="card-image-wrap">
+          <div class="photo-placeholder-sm">
+            <span class="ph-initials">EF</span>
+          </div>
+        </div>
+        <p class="member-role-tag" style="color:var(--sage)">Master's Student</p>
+        <h3 class="member-name-sm">Student E</h3>
+        <p class="member-focus">Sulfur cycling bioinformatics</p>
+        <p class="member-bio">
+          Developing bioinformatic pipelines to track sulfur metabolism
+          gene distribution across acidophile genomes and metagenomes.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link sage">Scholar</a>
+        </div>
+      </div>
+
+      <div class="member-card col-4">
+        <div class="card-image-wrap">
+          <div class="photo-placeholder-sm">
+            <span class="ph-initials">FG</span>
+          </div>
+        </div>
+        <p class="member-role-tag" style="color:var(--sage)">Research Assistant</p>
+        <h3 class="member-name-sm">Member F</h3>
+        <p class="member-focus">Field &amp; laboratory operations</p>
+        <p class="member-bio">
+          Supports field sampling campaigns and maintains strain collections
+          from high-altitude acidic environments across the Andes.
+        </p>
+        <div class="member-links">
+          <a href="#" class="member-link sage">Scholar</a>
+        </div>
+      </div>
+
+    </div><!-- /team-grid students -->
+
+    <!-- ALUMNI ────────────────────────────────────── -->
+    <p class="team-section-label">Alumni</p>
+
+    <div class="alumni-list">
+      <div class="alumni-entry">
+        <p class="alumni-name">Former Member One</p>
+        <p class="alumni-detail">PhD &mdash; Acidophile genomics</p>
+        <span class="alumni-year">2018 &mdash; 2022 &nbsp;&bull;&nbsp; Now at Univ. of ???</span>
+      </div>
+      <div class="alumni-entry">
+        <p class="alumni-name">Former Member Two</p>
+        <p class="alumni-detail">Postdoc &mdash; Metagenomics</p>
+        <span class="alumni-year">2019 &mdash; 2022 &nbsp;&bull;&nbsp; Industry, Biotech sector</span>
+      </div>
+      <div class="alumni-entry">
+        <p class="alumni-name">Former Member Three</p>
+        <p class="alumni-detail">Master's &mdash; Microbial ecology</p>
+        <span class="alumni-year">2020 &mdash; 2022 &nbsp;&bull;&nbsp; PhD program abroad</span>
+      </div>
+      <div class="alumni-entry">
+        <p class="alumni-name">Former Member Four</p>
+        <p class="alumni-detail">PhD &mdash; Chemolithotrophy</p>
+        <span class="alumni-year">2017 &mdash; 2021 &nbsp;&bull;&nbsp; Independent researcher</span>
+      </div>
+    </div>
+
+    <!-- JOIN CTA ──────────────────────────────────── -->
+    <div class="join-block">
+      <div>
+        <h3>Interested in Joining?</h3>
+        <p>
+          We welcome motivated students and researchers passionate about microbiology,
+          evolution, and extreme environments. Open positions are announced irregularly —
+          reach out directly if you share our curiosity about life at chemical limits.
+        </p>
+      </div>
+      <a href="index.html#contact" class="section-btn">Get in Touch</a>
+    </div>
+
+  </div><!-- /team-body -->
+
+  <!-- ─── FOOTER — identical to index ─────────── -->
+  <footer id="footer">
+    <ul class="icons">
+      <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+      <li><a href="#" class="icon brands fa-researchgate"><span class="label">ResearchGate</span></a></li>
+    </ul>
+    <ul class="menu">
+      <li>&copy; Quatrini Lab</li>
+      <li><a href="https://html5up.net">HTML5 UP</a></li>
+    </ul>
+  </footer>
+
+  <!-- Scripts — same as index -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
