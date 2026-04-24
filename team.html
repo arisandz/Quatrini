@@ -3,140 +3,191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Team | Lab Name</title>
+  <title>Team | Quatrini Lab</title>
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #f9f6f0;
-      --dark: #2a2d2e;
-      --mid: #5a6066;
-      --accent: #7a9e7e;
-      --accent-light: #a8c5aa;
-      --border: #ddd9d0;
+      --bg:         #0a0c0a;
+      --surface:    #111410;
+      --surface2:   #161a14;
+      --sage:       #7aac6e;
+      --sage-dim:   rgba(122,172,110,0.18);
+      --sage-line:  rgba(122,172,110,0.35);
+      --amber:      #c9a055;
+      --amber-dim:  rgba(201,160,85,0.15);
+      --rust:       #a05c3b;
+      --text:       #d4d8cc;
+      --text-dim:   #8a9080;
+      --text-faint: #4a5244;
+      --border:     rgba(122,172,110,0.14);
+      --border-hover: rgba(122,172,110,0.45);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Jost", sans-serif;
+      font-family: 'Jost', sans-serif;
       font-weight: 300;
       font-size: 16px;
       line-height: 1.8;
-      color: var(--dark);
-      background: #ffffff;
+      color: var(--text);
+      background: var(--bg);
     }
 
-    /* ---- HEADER ---- */
+    /* ── HEADER ── */
     #header {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      height: 3em;
-      line-height: 3em;
-      background: rgba(255,255,255,0.96);
-      box-shadow: 0 0 0.15em rgba(0,0,0,0.08);
+      height: 3.2em;
+      background: rgba(10,12,10,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 1.5em;
+      padding: 0 2em;
     }
 
-    #header h1 a {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 600;
-      font-size: 1.2em;
-      color: var(--dark);
+    #header .logo {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.95em;
+      color: var(--text);
       text-decoration: none;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    #header .logo span {
+      color: var(--sage);
+      font-weight: 500;
     }
 
     #header nav a {
-      font-family: "Jost", sans-serif;
+      font-family: 'Jost', sans-serif;
       font-weight: 400;
-      font-size: 0.85em;
-      color: var(--mid);
+      font-size: 0.72em;
+      color: var(--text-dim);
       text-decoration: none;
-      margin-left: 1.4em;
-      letter-spacing: 0.06em;
+      margin-left: 1.8em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
 
-    #header nav a:hover { color: var(--accent); }
-    #header nav a.active { color: var(--accent); }
+    #header nav a:hover { color: var(--sage); }
+    #header nav a.active { color: var(--sage); }
 
-    /* ---- HERO ---- */
+    /* ── HERO ── */
     .hero {
       position: relative;
-      height: 70vh;
-      min-height: 420px;
-      background: url("images/team.jpg") center center / cover no-repeat;
+      height: 52vh;
+      min-height: 360px;
+      background: url("images/team.jpg") center 40% / cover no-repeat;
       display: flex;
       align-items: flex-end;
-      padding-bottom: 4em;
-      margin-top: 3em;
+      padding-bottom: 3.5em;
+      margin-top: 3.2em;
+      overflow: hidden;
     }
 
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(30,33,35,0.2) 0%, rgba(30,33,35,0.65) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(10,12,10,0.3) 0%,
+        rgba(10,12,10,0.85) 100%
+      );
+    }
+
+    /* gradient bar matching research page */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(
+        to right,
+        var(--rust),
+        var(--amber),
+        var(--sage),
+        #4a9e9a,
+        #3d7a8a
+      );
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 860px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 0 2em;
+      padding: 0 2.5em;
       width: 100%;
-      color: #fff;
     }
 
-    .hero-content .label {
-      font-family: "Jost", sans-serif;
-      font-size: 0.75em;
+    .hero-tag {
+      font-size: 0.7em;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      opacity: 0.75;
+      color: var(--sage);
       margin-bottom: 0.6em;
+      opacity: 0.85;
     }
 
     .hero-content h1 {
-      font-family: "Cormorant Garamond", serif;
+      font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: clamp(2.8em, 6vw, 4.5em);
+      font-size: clamp(2.4em, 5.5vw, 4em);
       line-height: 1.05;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.04em;
+      color: #e8ede4;
     }
 
-    /* ---- MAIN CONTENT ---- */
+    .hero-content h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--sage);
+    }
+
+    /* ── PAGE BODY ── */
     .page-body {
-      max-width: 860px;
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 5em 2em 6em;
+      padding: 5em 2.5em 6em;
     }
 
     .section-label {
-      font-family: "Jost", sans-serif;
-      font-size: 0.72em;
+      font-size: 0.68em;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2em;
+      color: var(--sage);
+      margin-bottom: 2.2em;
+      padding-bottom: 0.6em;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1em;
     }
 
-    /* ---- PI BLOCK ---- */
+    .section-label::before {
+      content: '//';
+      color: var(--text-faint);
+      font-weight: 400;
+    }
+
+    /* ── PI BLOCK ── */
     .pi-block {
       display: grid;
-      grid-template-columns: 220px 1fr;
+      grid-template-columns: 200px 1fr;
       gap: 3.5em;
       align-items: start;
       margin-bottom: 5em;
@@ -144,213 +195,386 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .pi-photo {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      background: var(--cream);
-      display: block;
+    .pi-photo-wrap {
+      position: relative;
     }
 
     .pi-photo-placeholder {
       width: 100%;
       aspect-ratio: 3/4;
-      background: var(--cream);
+      background: var(--surface2);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--border);
-      font-size: 0.8em;
-      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      font-size: 0.72em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    .pi-info .role {
-      font-family: "Jost", sans-serif;
-      font-size: 0.72em;
+    .pi-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border);
+    }
+
+    .pi-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; right: -6px;
+      width: 100%; height: 100%;
+      border: 1px solid var(--sage-line);
+      pointer-events: none;
+    }
+
+    .pi-info .pi-role {
+      font-size: 0.68em;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--sage);
       margin-bottom: 0.5em;
     }
 
     .pi-info h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 600;
-      font-size: 2em;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 1.9em;
       line-height: 1.1;
-      margin-bottom: 0.3em;
-      color: var(--dark);
+      margin-bottom: 0.25em;
+      color: #e8ede4;
+      letter-spacing: 0.02em;
     }
 
     .pi-info .affiliation {
-      font-size: 0.85em;
-      color: var(--mid);
-      margin-bottom: 1.5em;
+      font-size: 0.82em;
+      color: var(--text-dim);
+      margin-bottom: 1.8em;
+      letter-spacing: 0.04em;
     }
 
     .pi-info .bio {
-      font-size: 0.92em;
-      color: var(--mid);
-      line-height: 1.9;
-      margin-bottom: 1.5em;
+      font-size: 0.9em;
+      color: var(--text-dim);
+      line-height: 1.95;
+      margin-bottom: 1.2em;
     }
 
     .pi-links {
       display: flex;
-      gap: 1em;
+      gap: 1.2em;
       flex-wrap: wrap;
+      margin-top: 1.6em;
     }
 
     .pi-links a {
-      font-family: "Jost", sans-serif;
-      font-size: 0.78em;
+      font-size: 0.72em;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--amber);
       text-decoration: none;
-      border-bottom: 1px solid var(--accent-light);
+      border-bottom: 1px solid rgba(201,160,85,0.3);
       padding-bottom: 0.1em;
-      transition: color 0.2s;
+      transition: color 0.2s, border-color 0.2s;
     }
 
-    .pi-links a:hover { color: var(--dark); }
+    .pi-links a:hover {
+      color: #e8ede4;
+      border-color: rgba(232,237,228,0.3);
+    }
 
-    /* ---- TEAM GRID ---- */
-    .team-grid {
+    /* ── SPECIMEN CARD GRID ── */
+    .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2.5em;
-      margin-bottom: 5em;
+      gap: 1.6em;
+      margin-bottom: 4em;
     }
 
-    .member-card {
-      border-top: 1px solid var(--border);
-      padding-top: 1.5em;
-      transition: border-color 0.2s;
+    /* the card itself */
+    .spec-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.35s ease, transform 0.35s ease;
+      cursor: default;
     }
 
-    .member-card:hover { border-top-color: var(--accent); }
+    .spec-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px) rotate(0.4deg);
+    }
 
-    .member-photo {
+    /* photo area */
+    .spec-photo {
       width: 100%;
       aspect-ratio: 1/1;
       object-fit: cover;
-      background: var(--cream);
-      margin-bottom: 1em;
       display: block;
+      filter: grayscale(30%);
+      transition: filter 0.4s ease;
     }
 
-    .member-photo-placeholder {
+    .spec-photo-placeholder {
       width: 100%;
       aspect-ratio: 1/1;
-      background: var(--cream);
-      margin-bottom: 1em;
+      background: var(--surface2);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--border);
-      font-size: 0.75em;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .member-card .role {
+      color: var(--text-faint);
       font-size: 0.7em;
-      font-weight: 500;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.3em;
+      position: relative;
     }
 
-    .member-card h3 {
-      font-family: "Cormorant Garamond", serif;
+    /* specimen ID watermark */
+    .spec-photo-placeholder::before {
+      content: attr(data-initials);
+      position: absolute;
+      font-size: 3em;
       font-weight: 600;
-      font-size: 1.15em;
-      color: var(--dark);
-      margin-bottom: 0.4em;
+      color: var(--surface);
+      letter-spacing: -0.02em;
     }
 
-    .member-card p {
-      font-size: 0.83em;
-      color: var(--mid);
-      line-height: 1.7;
+    .spec-card:hover .spec-photo { filter: grayscale(0%); }
+
+    /* DATA OVERLAY — slides up on hover */
+    .spec-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10,12,10,0.97) 0%,
+        rgba(10,12,10,0.92) 70%,
+        rgba(10,12,10,0) 100%
+      );
+      padding: 2em 1.4em 1.4em;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* ---- JOIN BLOCK ---- */
+    .spec-card:hover .spec-overlay {
+      transform: translateY(0);
+    }
+
+    /* specimen tag top-left corner */
+    .spec-tag {
+      position: absolute;
+      top: 0.7em; left: 0.7em;
+      font-size: 0.6em;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      background: rgba(10,12,10,0.8);
+      padding: 0.25em 0.6em;
+      border-left: 2px solid var(--sage);
+    }
+
+    .spec-focus-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em;
+      margin-bottom: 0.9em;
+    }
+
+    .chip {
+      font-size: 0.62em;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25em 0.7em;
+      border-radius: 2px;
+      background: var(--sage-dim);
+      color: var(--sage);
+      border: 1px solid var(--sage-line);
+    }
+
+    .chip.amber {
+      background: var(--amber-dim);
+      color: var(--amber);
+      border-color: rgba(201,160,85,0.3);
+    }
+
+    .spec-overlay-name {
+      font-size: 0.92em;
+      font-weight: 500;
+      color: #e8ede4;
+      margin-bottom: 0.15em;
+      letter-spacing: 0.02em;
+    }
+
+    .spec-overlay-role {
+      font-size: 0.65em;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* static bottom info */
+    .spec-static {
+      padding: 1.1em 1.2em 1.3em;
+      border-top: 1px solid var(--border);
+    }
+
+    .spec-name {
+      font-size: 0.88em;
+      font-weight: 500;
+      color: #d4d8cc;
+      margin-bottom: 0.2em;
+      line-height: 1.3;
+    }
+
+    .spec-role {
+      font-size: 0.63em;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* ── SUPPORT STAFF — compact list ── */
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 5em;
+    }
+
+    .support-item {
+      background: var(--surface);
+      padding: 1.3em 1.5em;
+      display: flex;
+      align-items: center;
+      gap: 1.2em;
+      transition: background 0.25s;
+    }
+
+    .support-item:hover { background: var(--surface2); }
+
+    .support-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .support-name {
+      font-size: 0.88em;
+      font-weight: 500;
+      color: #d4d8cc;
+      line-height: 1.3;
+    }
+
+    .support-role {
+      font-size: 0.68em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-top: 0.1em;
+    }
+
+    .support-focus {
+      font-size: 0.78em;
+      color: var(--text-dim);
+      margin-top: 0.2em;
+    }
+
+    /* ── JOIN BLOCK ── */
     .join-block {
-      background: var(--cream);
-      padding: 3em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--sage);
+      padding: 2.8em 3em;
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
-      gap: 2em;
+      gap: 2.5em;
     }
 
     .join-block h3 {
-      font-family: "Cormorant Garamond", serif;
+      font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: 1.6em;
+      font-size: 1.5em;
       line-height: 1.3;
-      color: var(--dark);
+      color: #e8ede4;
       margin-bottom: 0.5em;
+      letter-spacing: 0.02em;
     }
 
     .join-block p {
-      font-size: 0.88em;
-      color: var(--mid);
-      line-height: 1.8;
+      font-size: 0.86em;
+      color: var(--text-dim);
+      line-height: 1.9;
     }
 
-    .btn {
+    .section-btn {
       display: inline-block;
-      font-family: "Jost", sans-serif;
-      font-size: 0.8em;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.74em;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #fff;
-      background: var(--accent);
+      color: #e8ede4;
+      background: transparent;
       text-decoration: none;
-      padding: 0.9em 2.2em;
-      border-radius: 3em;
-      transition: background 0.2s;
+      padding: 0.85em 2.2em;
+      border: 1px solid rgba(232,237,228,0.3);
+      border-radius: 2px;
+      transition: background 0.25s, border-color 0.25s;
       white-space: nowrap;
     }
 
-    .btn:hover { background: var(--accent-light); }
+    .section-btn:hover {
+      background: rgba(232,237,228,0.07);
+      border-color: rgba(232,237,228,0.6);
+    }
 
-    /* ---- FOOTER ---- */
+    /* ── FOOTER ── */
     #footer {
-      background: #2a2d2e;
-      color: rgba(185,186,187,0.55);
-      padding: 1.5em 2em;
+      background: #060806;
+      border-top: 1px solid var(--border);
+      color: var(--text-faint);
+      padding: 1.5em 2.5em;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.82em;
+      font-size: 0.78em;
       flex-wrap: wrap;
       gap: 0.8em;
+      letter-spacing: 0.06em;
     }
 
-    #footer a { color: inherit; text-decoration: none; }
-    #footer a:hover { color: #b9babb; }
-    #footer ul { list-style: none; display: flex; gap: 1.2em; }
+    #footer a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    #footer a:hover { color: var(--sage); }
+    #footer ul { list-style: none; display: flex; gap: 1.5em; }
 
-    /* ---- RESPONSIVE ---- */
-    @media (max-width: 700px) {
+    /* section spacing */
+    .group-block { margin-bottom: 4.5em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
       .pi-block { grid-template-columns: 1fr; }
-      .pi-block .pi-photo-placeholder { aspect-ratio: 1/1; }
-      .team-grid { grid-template-columns: 1fr 1fr; }
+      .pi-photo-wrap::after { display: none; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .join-block { grid-template-columns: 1fr; }
       #header nav { display: none; }
     }
 
-    @media (max-width: 480px) {
-      .team-grid { grid-template-columns: 1fr; }
+    @media (max-width: 520px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .support-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -358,7 +582,7 @@
 
   <!-- Header -->
   <header id="header">
-    <h1><a href="index.html">Lab Name</a></h1>
+    <a href="index.html" class="logo">Quatrini <span>Lab</span></a>
     <nav>
       <a href="index.html#research">Research</a>
       <a href="index.html#team" class="active">Team</a>
@@ -371,7 +595,7 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <div class="label">People</div>
+      <div class="hero-tag">// People</div>
       <h1>The Team</h1>
     </div>
   </section>
@@ -382,69 +606,340 @@
     <!-- PI -->
     <div class="section-label">Principal Investigator</div>
     <div class="pi-block">
-      <div class="pi-photo-placeholder">Photo</div>
+      <div class="pi-photo-wrap">
+        <div class="pi-photo-placeholder">Photo</div>
+      </div>
       <div class="pi-info">
-        <div class="role">Principal Investigator</div>
-        <h2>Dr. Name Surname</h2>
-        <div class="affiliation">Institution Name — Department of Microbiology</div>
+        <div class="pi-role">Principal Investigator</div>
+        <h2>Dr. Raquel Quatrini</h2>
+        <div class="affiliation">
+          Fundacion Ciencia &amp; Vida — Laboratory of Microbial Ecophysiology
+        </div>
         <p class="bio">
-          Short biography of the PI. Describe research focus, background, academic journey, and main scientific interests. This is a good place to communicate your personality and scientific vision in 3-4 sentences.
+          Dr. Quatrini leads the Laboratory of Microbial Ecophysiology, focusing on the ecology,
+          evolution, and molecular physiology of acidophilic microorganisms. Her work integrates
+          genomics, transcriptomics, and field ecology to understand how microbial communities
+          adapt and thrive in extreme environmental conditions.
         </p>
         <p class="bio">
-          You can add a second paragraph here with more detail about your approach, your motivation, or ongoing projects.
+          The lab's current research centers on <em>Acidithiobacillia</em> — bacteria that inhabit
+          highly acidic, metal-rich environments such as volcanic fields and acid mine drainages.
+          Through combining experimental approaches with computational tools, the group aims to
+          decipher the rules governing microbial adaptation at the molecular and community level.
         </p>
         <div class="pi-links">
           <a href="#">Google Scholar</a>
           <a href="#">ORCID</a>
           <a href="#">ResearchGate</a>
-          <a href="#">Twitter / X</a>
         </div>
       </div>
     </div>
 
-    <!-- Current Members -->
-    <div class="section-label">Current Members</div>
-    <div class="team-grid">
+    <!-- Postdoctoral Fellows -->
+    <div class="group-block">
+      <div class="section-label">Postdoctoral Fellows</div>
+      <div class="cards-grid">
 
-      <div class="member-card">
-        <div class="member-photo-placeholder">Photo</div>
-        <div class="role">Postdoctoral Researcher</div>
-        <h3>Name Surname</h3>
-        <p>Brief research focus — one or two sentences describing their project or expertise.</p>
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="FI">
+          </div>
+          <div class="spec-tag">Postdoc</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Metagenomics</span>
+              <span class="chip">Community Assembly</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Francisco Issotta Contardo, PhD</div>
+            <div class="spec-overlay-role">Community structure &amp; microbial ecology</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Francisco Issotta Contardo</div>
+            <div class="spec-role">Postdoctoral Fellow</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="PS">
+          </div>
+          <div class="spec-tag">Postdoc</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Pangenomics</span>
+              <span class="chip">Comparative Genomics</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Pedro Sepulveda-Rebolledo, PhD</div>
+            <div class="spec-overlay-role">Pangenome evolution &amp; genomic diversity</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Pedro Sepulveda-Rebolledo</div>
+            <div class="spec-role">Postdoctoral Fellow</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="DA">
+          </div>
+          <div class="spec-tag">Postdoc</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Evolution</span>
+              <span class="chip">Experimental Evolution</span>
+              <span class="chip amber">Selection Pressure</span>
+            </div>
+            <div class="spec-overlay-name">Dilanaz Arisan, PhD</div>
+            <div class="spec-overlay-role">Adaptive evolution under extreme conditions</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Dilanaz Arisan</div>
+            <div class="spec-role">Postdoctoral Fellow</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="CR">
+          </div>
+          <div class="spec-tag">Postdoc</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">MAGs</span>
+              <span class="chip">AI / Networks</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Camila Rojas Villalobos, PhD</div>
+            <div class="spec-overlay-role">Genome-resolved metagenomics &amp; network ecology</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Camila Rojas Villalobos</div>
+            <div class="spec-role">Postdoctoral Fellow</div>
+          </div>
+        </div>
+
       </div>
+    </div>
 
-      <div class="member-card">
-        <div class="member-photo-placeholder">Photo</div>
-        <div class="role">PhD Student</div>
-        <h3>Name Surname</h3>
-        <p>Brief research focus — one or two sentences describing their project or expertise.</p>
+    <!-- PhD Students -->
+    <div class="group-block">
+      <div class="section-label">PhD Students</div>
+      <div class="cards-grid">
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="SR">
+          </div>
+          <div class="spec-tag">PhD</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Nitrogen Metabolism</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Sofia Reyes Impellizzeri</div>
+            <div class="spec-overlay-role">Nitrogen cycling in acidic environments</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Sofia Reyes Impellizzeri</div>
+            <div class="spec-role">PhD Student</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="AZ">
+          </div>
+          <div class="spec-tag">PhD</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Metagenomics</span>
+              <span class="chip">Viruses</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Abraham Zapata Araya</div>
+            <div class="spec-overlay-role">Viral ecology in extreme environments</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Abraham Zapata Araya</div>
+            <div class="spec-role">PhD Student</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="AP">
+          </div>
+          <div class="spec-tag">PhD — PhageLab</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Metagenomics</span>
+              <span class="chip">Phages</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Alejandro N. Pinilla Ojeda</div>
+            <div class="spec-overlay-role">Bacteriophage diversity &amp; phage-host dynamics</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Alejandro N. Pinilla Ojeda</div>
+            <div class="spec-role">PhD Student — PhageLab</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="CL">
+          </div>
+          <div class="spec-tag">PhD</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Metal Resistance</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Celia Larrea Duharte</div>
+            <div class="spec-overlay-role">Molecular mechanisms of heavy metal tolerance</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Celia Larrea Duharte</div>
+            <div class="spec-role">PhD Student</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="GC">
+          </div>
+          <div class="spec-tag">PhD</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Restriction-Modification</span>
+              <span class="chip">Defense Systems</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Gustavo Castro Toro</div>
+            <div class="spec-overlay-role">R-M systems &amp; genomic defense mechanisms</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Gustavo Castro Toro</div>
+            <div class="spec-role">PhD Student</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="ET">
+          </div>
+          <div class="spec-tag">PhD</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Chloride Tolerance</span>
+              <span class="chip">Stress Response</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Estefania Tisalema Guanopatín</div>
+            <div class="spec-overlay-role">Ion stress adaptation in extreme environments</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Estefania Tisalema Guanopatín</div>
+            <div class="spec-role">PhD Student</div>
+          </div>
+        </div>
+
       </div>
+    </div>
 
-      <div class="member-card">
-        <div class="member-photo-placeholder">Photo</div>
-        <div class="role">Research Assistant</div>
-        <h3>Name Surname</h3>
-        <p>Brief research focus — one or two sentences describing their project or expertise.</p>
+    <!-- Master / Undergrad -->
+    <div class="group-block">
+      <div class="section-label">Master &amp; Undergraduate Students</div>
+      <div class="cards-grid">
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="CL">
+          </div>
+          <div class="spec-tag">MSc</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Protein Biology</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Catalina Lopez Kleim</div>
+            <div class="spec-overlay-role">Protein structure &amp; function in acidophiles</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Catalina Lopez Kleim</div>
+            <div class="spec-role">Master Student</div>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-photo-placeholder" data-initials="CM">
+          </div>
+          <div class="spec-tag">Undergrad</div>
+          <div class="spec-overlay">
+            <div class="spec-focus-chips">
+              <span class="chip">Nitrogen</span>
+              <span class="chip">PCR</span>
+              <span class="chip amber">Acidithiobacillia</span>
+            </div>
+            <div class="spec-overlay-name">Catalina Munoz Sarmiento</div>
+            <div class="spec-overlay-role">Nitrogen metabolism &amp; molecular techniques</div>
+          </div>
+          <div class="spec-static">
+            <div class="spec-name">Catalina Munoz Sarmiento</div>
+            <div class="spec-role">Undergraduate Student</div>
+          </div>
+        </div>
+
       </div>
+    </div>
 
+    <!-- Support Staff -->
+    <div class="group-block">
+      <div class="section-label">Lab Manager &amp; Research Assistants</div>
+      <div class="support-grid">
+
+        <div class="support-item">
+          <div class="support-dot"></div>
+          <div>
+            <div class="support-name">Hector Carrasco Gallardo</div>
+            <div class="support-role">Lab Manager</div>
+            <div class="support-focus">DNA isolation &amp; lab operations</div>
+          </div>
+        </div>
+
+        <div class="support-item">
+          <div class="support-dot"></div>
+          <div>
+            <div class="support-name">Gabriel Vergara</div>
+            <div class="support-role">Research Assistant</div>
+            <div class="support-focus">Molecular experiments &amp; bacterial transformation</div>
+          </div>
+        </div>
+
+        <div class="support-item">
+          <div class="support-dot"></div>
+          <div>
+            <div class="support-name">Priscilla Bucarey</div>
+            <div class="support-role">Research Assistant</div>
+            <div class="support-focus">Strain collection curator — hundreds of isolates</div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- Join -->
     <div class="join-block">
       <div>
-        <h3>Join the Lab</h3>
-        <p>We are always open to motivated students and researchers interested in microbial ecology and extreme environments. Reach out with your CV and a short description of your interests.</p>
+        <h3>Interested in joining the lab?</h3>
+        <p>
+          We are always open to motivated students and researchers passionate about microbial
+          ecology, evolution, and extreme environments. Reach out with your CV and a short
+          description of your interests and we will get back to you.
+        </p>
       </div>
-      <a href="index.html#contact" class="btn">Get in Touch</a>
+      <a href="index.html#contact" class="section-btn">Get in Touch</a>
     </div>
 
   </main>
 
   <!-- Footer -->
   <footer id="footer">
-    <span>&copy; Lab Name. All rights reserved.</span>
+    <span>&copy; Quatrini Lab. All rights reserved.</span>
     <ul>
       <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
       <li><a href="publications.html">Publications</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
