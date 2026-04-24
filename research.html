@@ -3,24 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Research — Extreme Microbiology Lab</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<title>Research — Quatrini Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-
-/* ─── RESET & VARIABLES ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --black:      #080a08;
-  --deep:       #0d110d;
-  --acid-green: #9dff4f;
-  --sulfur:     #e8c44a;
-  --rust:       #c45c2a;
-  --glass:      rgba(255,255,255,0.04);
-  --border:     rgba(157,255,79,0.15);
-  --text-main:  #e8e4d8;
-  --text-muted: #9a9e90;
-  --section-pad: 5rem 6vw;
+  --black:      #0a0c0a;
+  --deep:       #0f120f;
+  --surface:    #141814;
+  --sage:       #7aac6e;
+  --amber:      #c9a055;
+  --rust:       #b05535;
+  --border:     rgba(122,172,110,0.18);
+  --border-mid: rgba(201,160,85,0.18);
+  --text-main:  #dedad2;
+  --text-muted: #8a8f82;
+  --text-soft:  #b0b5a8;
 }
 
 html { scroll-behavior: smooth; }
@@ -30,65 +29,34 @@ body {
   color: var(--text-main);
   font-family: 'Jost', sans-serif;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* ─── SHARED UTILITIES ──────────────────────────────────────────────── */
-.section-tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  color: var(--acid-green);
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 300;
-  line-height: 1.15;
-  margin-bottom: 1.2rem;
-}
-
-.section-title em { color: var(--sulfur); font-style: italic; }
-
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
-
-/* ─── NAVIGATION ─────────────────────────────────────────────────────── */
+/* ── NAV ── */
 .site-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(8,10,8,0.92);
-  backdrop-filter: blur(12px);
+  background: rgba(10,12,10,0.92);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  height: 56px;
   display: flex;
   align-items: center;
-  padding: 0 6vw;
-  gap: 2rem;
+  justify-content: space-between;
+  padding: 0 5vw;
+  height: 56px;
 }
 
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
   font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
   color: var(--text-main);
   text-decoration: none;
-  letter-spacing: 0.02em;
-  margin-right: auto;
-  white-space: nowrap;
 }
-
-.nav-logo span { color: var(--acid-green); }
 
 .nav-links {
   display: flex;
@@ -97,9 +65,10 @@ body {
 }
 
 .nav-links a {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
   text-decoration: none;
@@ -107,159 +76,207 @@ body {
 }
 
 .nav-links a:hover,
-.nav-links a.active { color: var(--acid-green); }
+.nav-links a.active {
+  color: var(--sage);
+}
 
-/* ─── HERO ───────────────────────────────────────────────────────────── */
+/* ── SHARED LAYOUT ── */
+.page-section {
+  padding: 6rem 6vw;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+.section-tag {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+  color: var(--text-main);
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.section-body {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--text-soft);
+  max-width: 600px;
+}
+
+/* ── HERO ── */
 .hero {
   min-height: 100vh;
-  padding: 0 6vw 7vh;
   padding-top: 56px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  padding-bottom: 8vh;
+  padding-left: 6vw;
+  padding-right: 6vw;
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse 55% 50% at 80% 25%, rgba(196,92,42,0.14) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 55% at 15% 75%, rgba(139,26,26,0.16) 0%, transparent 60%),
-    var(--black);
+  border-top: none;
 }
 
-.hero-coords {
+.hero-bg {
   position: absolute;
-  top: calc(56px + 2rem);
-  right: 6vw;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.62rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  text-align: right;
-  line-height: 2;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 75% 25%, rgba(176,85,53,0.14) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 55% at 20% 70%, rgba(122,172,110,0.06) 0%, transparent 55%),
+    var(--black);
+  z-index: 0;
 }
 
-.hero-coords .hi { color: var(--acid-green); }
-
-.hero-eyebrow {
-  font-family: 'Space Mono', monospace;
+.hero-label {
+  font-family: 'Jost', sans-serif;
   font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  color: var(--acid-green);
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  color: var(--sage);
   text-transform: uppercase;
   margin-bottom: 1.8rem;
-  animation: fadeUp 0.7s 0.2s both;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.8rem, 10vw, 8.5rem);
+  font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 300;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  animation: fadeUp 0.8s 0.4s both;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 2;
+  color: var(--text-main);
 }
 
-.hero-title em { color: var(--sulfur); font-style: italic; }
+.hero-title em {
+  font-style: italic;
+  color: var(--amber);
+}
 
 .hero-title .outline {
-  -webkit-text-stroke: 1px var(--acid-green);
+  -webkit-text-stroke: 1px rgba(122,172,110,0.4);
   color: transparent;
   display: block;
 }
 
 .hero-sub {
-  margin-top: 2.2rem;
+  margin-top: 2rem;
   max-width: 500px;
-  font-size: 1rem;
-  line-height: 1.85;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--text-soft);
+  position: relative;
+  z-index: 2;
   border-left: 2px solid var(--border);
-  padding-left: 1.4rem;
-  animation: fadeUp 0.8s 0.6s both;
+  padding-left: 1.25rem;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ─── GRADIENT SECTION ───────────────────────────────────────────────── */
-.gradient-section {
-  padding: var(--section-pad);
-}
-
-.gradient-intro {
-  max-width: 600px;
-  font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.85;
-  margin-bottom: 3rem;
-}
-
-/* Color bar */
-.env-bar-wrap { margin-bottom: 2.5rem; }
-
-.bar-labels {
-  display: flex;
-  justify-content: space-between;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
+.hero-coords {
+  position: absolute;
+  top: 80px;
+  right: 6vw;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
   color: var(--text-muted);
   letter-spacing: 0.1em;
+  text-align: right;
+  z-index: 2;
+  line-height: 2;
+}
+
+.hero-coords .hi { color: var(--sage); }
+
+/* ── GRADIENT BAR ── */
+.gradient-bar-track {
+  height: 5px;
+  width: 100%;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    #a03030 0%,
+    #b05535 20%,
+    #c9a055 40%,
+    #a8b840 60%,
+    #7aac6e 80%,
+    #4a9ea8 100%
+  );
+  margin-bottom: 0.6rem;
+}
+
+.gradient-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
 
-.bar-track {
-  height: 7px;
-  border-radius: 4px;
-  background: linear-gradient(
-    to right,
-    #c42a2a 0%, #c45c2a 15%, #e8a030 30%,
-    #c8b820 50%, #9dff4f 70%, #4fff9d 85%, #2ab8c4 100%
-  );
-}
-
-.bar-markers {
+.gradient-markers {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.7rem;
+  margin-top: 0.8rem;
 }
 
-.marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-}
+.marker { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
 
 .marker-dot {
-  width: 8px; height: 8px;
+  width: 7px; height: 7px;
   border-radius: 50%;
 }
 
 .marker-name {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.52rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 400;
   color: var(--text-muted);
-  white-space: nowrap;
+  letter-spacing: 0.06em;
 }
 
 .marker-ph {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Jost', sans-serif;
   font-size: 0.65rem;
-  color: var(--sulfur);
-  font-weight: 700;
+  font-weight: 500;
+  color: var(--amber);
 }
 
-/* Param grid */
+/* ── PARAM GRID ── */
 .param-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  margin-top: 3rem;
   border: 1px solid var(--border);
 }
 
 .param-cell {
-  padding: 1.6rem 1.4rem;
+  background: var(--surface);
+  padding: 1.4rem 1.2rem;
   border-right: 1px solid var(--border);
+  transition: background 0.25s;
   position: relative;
 }
 
@@ -270,273 +287,267 @@ body {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 2px;
-  background: var(--ac, var(--acid-green));
+  background: var(--cell-accent, var(--sage));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.35s ease;
+  transition: transform 0.3s ease;
 }
 
+.param-cell:hover { background: rgba(255,255,255,0.04); }
 .param-cell:hover::after { transform: scaleX(1); }
 
 .param-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.58rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
   letter-spacing: 0.18em;
   color: var(--text-muted);
   text-transform: uppercase;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .param-value {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 300;
   line-height: 1;
+  color: var(--text-main);
 }
 
 .param-unit {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
+  margin-left: 0.25rem;
 }
 
-/* ─── RESEARCH QUESTIONS ─────────────────────────────────────────────── */
-.themes-section {
-  padding: var(--section-pad);
-  border-top: 1px solid var(--border);
-}
-
-.themes-header {
-  margin-bottom: 2.8rem;
-}
-
-/* 2x2 box grid */
-.themes-grid {
+/* ── RESEARCH QUESTIONS GRID ── */
+.questions-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 2.5rem;
 }
 
 @media (max-width: 700px) {
-  .themes-grid { grid-template-columns: 1fr; }
+  .questions-grid { grid-template-columns: 1fr; }
 }
 
-.theme-box {
-  background: var(--deep);
-  padding: 2.2rem 2rem;
-  position: relative;
+.q-box {
+  background: var(--surface);
+  padding: 2rem 1.8rem;
   transition: background 0.25s;
+  position: relative;
+  border-left: 3px solid var(--q-color, var(--sage));
 }
 
-.theme-box:hover { background: rgba(255,255,255,0.05); }
+.q-box:hover { background: rgba(255,255,255,0.04); }
 
-.theme-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--bc, var(--acid-green));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s ease;
-}
-
-.theme-box:hover::before { transform: scaleX(1); }
-
-.theme-box-num {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.58rem;
+.q-num {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   color: var(--text-muted);
-  letter-spacing: 0.15em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
-.theme-box h3 {
+.q-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.2;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
 }
 
-.theme-box h3 em { color: var(--sulfur); font-style: italic; }
+.q-title em {
+  font-style: italic;
+  color: var(--amber);
+}
 
-.theme-box p {
-  font-size: 0.92rem;
+.q-body {
+  font-size: 0.88rem;
   line-height: 1.8;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 
-.theme-tags {
+.q-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 1.2rem;
+  gap: 0.35rem;
+  margin-top: 1rem;
 }
 
 .tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.52rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 400;
   letter-spacing: 0.1em;
-  padding: 0.22rem 0.65rem;
-  border: 1px solid var(--border);
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(122,172,110,0.2);
   color: var(--text-muted);
   text-transform: uppercase;
-  transition: color 0.2s, border-color 0.2s;
+  transition: border-color 0.2s, color 0.2s;
 }
 
-.theme-box:hover .tag {
-  color: var(--acid-green);
-  border-color: rgba(157,255,79,0.3);
+.q-box:hover .tag {
+  border-color: rgba(122,172,110,0.4);
+  color: var(--sage);
 }
 
-/* ─── METHODS SECTION ────────────────────────────────────────────────── */
-.methods-section {
-  padding: var(--section-pad);
-  border-top: 1px solid var(--border);
-}
-
-.methods-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 3rem;
-  align-items: start;
-}
-
-@media (max-width: 700px) {
-  .methods-header { grid-template-columns: 1fr; gap: 1.5rem; }
-}
-
-.methods-header p {
-  font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.85;
-  padding-top: 0.5rem;
-}
-
-.pipeline {
+/* ── METHODS PIPELINE ── */
+.pipeline-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1px;
   background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 2.5rem;
 }
 
-.step {
-  background: var(--deep);
+.pipeline-step {
+  background: var(--surface);
   padding: 1.8rem 1.5rem;
   transition: background 0.25s;
 }
 
-.step:hover { background: rgba(255,255,255,0.05); }
+.pipeline-step:hover { background: rgba(255,255,255,0.04); }
 
-.step-badge {
-  width: 32px; height: 32px;
+.step-num-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
   border: 1px solid var(--border);
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
-  color: var(--acid-green);
-  margin-bottom: 1.1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--sage);
+  margin-bottom: 1rem;
 }
 
 .step-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
+  color: var(--text-main);
 }
 
 .step-desc {
-  font-size: 0.88rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
   line-height: 1.75;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 
-/* ─── MEET ACIDITHIOBACILLIA ──────────────────────────────────────────── */
-.meet-section {
-  margin: 2rem 6vw 5rem;
-  padding: 4rem 3.5rem;
-  border: 1px solid var(--border);
-  background: var(--glass);
+/* ── MEET ACIDITHIOBACILLIA ── */
+.aciditho-section {
+  padding: 5rem 6vw;
+  border-top: 1px solid var(--border);
+  background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(122,172,110,0.05) 0%, transparent 70%);
+  text-align: center;
   position: relative;
   overflow: hidden;
-  text-align: center;
 }
 
-.meet-section::before {
-  content: 'Acidithiobacillia';
+.aciditho-bg-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(4rem, 10vw, 9rem);
+  font-size: clamp(4rem, 12vw, 10rem);
   font-weight: 300;
   font-style: italic;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(157,255,79,0.07);
+  -webkit-text-stroke: 1px rgba(122,172,110,0.07);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
   letter-spacing: -0.02em;
 }
 
-.meet-eyebrow {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.28em;
-  color: var(--acid-green);
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
+.aciditho-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
-.meet-title {
+.aciditho-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.5rem;
+}
+
+.aciditho-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 300;
   line-height: 1.1;
   margin-bottom: 1.4rem;
-  position: relative;
-  z-index: 1;
 }
 
-.meet-title em { color: var(--sulfur); font-style: italic; }
-
-.meet-desc {
-  font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.85;
-  max-width: 560px;
-  margin: 0 auto 2.2rem;
-  position: relative;
-  z-index: 1;
+.aciditho-title em {
+  font-style: italic;
+  color: var(--amber);
 }
 
-.meet-badge {
-  display: inline-block;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.22em;
-  padding: 0.6rem 1.4rem;
-  border: 1px solid rgba(157,255,79,0.35);
-  color: var(--acid-green);
+.aciditho-body {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--text-soft);
+  margin-bottom: 2rem;
+}
+
+.aciditho-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.aciditho-badge {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  position: relative;
-  z-index: 1;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid rgba(122,172,110,0.25);
+  color: var(--text-muted);
+}
+
+.aciditho-status {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(122,172,110,0.3);
+  color: var(--sage);
   animation: pulse 2.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; border-color: rgba(157,255,79,0.35); }
-  50%       { opacity: 0.55; border-color: rgba(157,255,79,0.1); }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
 }
 
-/* ─── FOOTER ─────────────────────────────────────────────────────────── */
-.site-footer {
+/* ── FOOTER ── */
+.page-footer {
   padding: 1.8rem 6vw;
   border-top: 1px solid var(--border);
   display: flex;
@@ -547,21 +558,15 @@ body {
 }
 
 .footer-text {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
   color: var(--text-muted);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.footer-text span { color: var(--acid-green); }
-
-/* ─── RESPONSIVE ─────────────────────────────────────────────────────── */
-@media (max-width: 500px) {
-  .nav-links { display: none; }
-  .hero-coords { display: none; }
-  .meet-section { padding: 3rem 1.8rem; }
-}
+.footer-text span { color: var(--sage); }
 
 </style>
 </head>
@@ -569,27 +574,30 @@ body {
 
 <!-- NAV -->
 <nav class="site-nav">
-  <a class="nav-logo" href="index.html">Extreme <span>Microbiology</span> Lab</a>
+  <a href="index.html" class="nav-logo">Quatrini Lab</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="research.html" class="active">Research</a></li>
-    <li><a href="people.html">People</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="outreach.html">Outreach</a></li>
     <li><a href="publications.html">Publications</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg"></div>
+
   <div class="hero-coords">
     <div>37 deg 45 min S</div>
     <div>71 deg 10 min W</div>
     <div class="hi">2,415 m.a.s.l.</div>
-    <div style="margin-top:0.4rem;">Copahue · Caviahue · Chancoco</div>
+    <div style="margin-top:0.4rem;">Copahue – Caviahue – Chancoco</div>
     <div>Neuquen, Argentina</div>
   </div>
 
-  <div class="hero-eyebrow">Research Program / Extreme Microbiology</div>
+  <div class="hero-label">Research Program / Extreme Microbiology</div>
 
   <h1 class="hero-title">
     <span>Life at the</span>
@@ -598,49 +606,48 @@ body {
   </h1>
 
   <p class="hero-sub">
-    Along the geothermal gradient of the Copahue-Caviahue-Chancoco system,
-    we decode how extreme physical and chemical conditions shape microbial
+    Along the geothermal gradient of the Copahue–Caviahue–Chancoco system,
+    we decode how extreme physicochemical conditions shape microbial
     communities — from species distribution to evolutionary adaptation,
     one acid pool at a time.
   </p>
 </section>
 
-<hr class="divider">
-
-<!-- ENVIRONMENTAL GRADIENT -->
-<section class="gradient-section">
-  <span class="section-tag">// model system</span>
+<!-- GRADIENT SECTION -->
+<section class="page-section">
+  <div class="section-tag">// model system</div>
   <h2 class="section-title">The Copahue<br><em>Geothermal Gradient</em></h2>
-  <p class="gradient-intro">
-    A natural laboratory spanning kilometers: from highly acidic, metal-rich hot
-    springs near the volcanic crater to progressively milder environments downstream.
-    Each sampling point is a data point in the story of microbial adaptation.
+  <p class="section-body">
+    A natural laboratory spanning kilometers: from highly acidic, metal-rich
+    hot springs near the volcanic crater to progressively milder environments
+    downstream. Each sampling point is a data point in the story of microbial
+    adaptation.
   </p>
 
-  <div class="env-bar-wrap">
-    <div class="bar-labels">
-      <span>CRATER / SOURCE</span>
-      <span>DOWNSTREAM</span>
+  <div style="margin-top:2.5rem;">
+    <div class="gradient-labels">
+      <span>Crater / Source</span>
+      <span>Downstream</span>
     </div>
-    <div class="bar-track"></div>
-    <div class="bar-markers">
+    <div class="gradient-bar-track"></div>
+    <div class="gradient-markers">
       <div class="marker">
-        <div class="marker-dot" style="background:#c42a2a;"></div>
+        <div class="marker-dot" style="background:#a03030;"></div>
         <span class="marker-name">Copahue</span>
         <span class="marker-ph">pH &lt;1</span>
       </div>
       <div class="marker">
-        <div class="marker-dot" style="background:#e8a030;"></div>
+        <div class="marker-dot" style="background:#c9a055;"></div>
         <span class="marker-name">Chancoco</span>
         <span class="marker-ph">pH 2–3</span>
       </div>
       <div class="marker">
-        <div class="marker-dot" style="background:#9dff4f;"></div>
+        <div class="marker-dot" style="background:#7aac6e;"></div>
         <span class="marker-name">Caviahue</span>
         <span class="marker-ph">pH 3–4</span>
       </div>
       <div class="marker">
-        <div class="marker-dot" style="background:#2ab8c4;"></div>
+        <div class="marker-dot" style="background:#4a9ea8;"></div>
         <span class="marker-name">Outflow</span>
         <span class="marker-ph">pH 4+</span>
       </div>
@@ -648,155 +655,157 @@ body {
   </div>
 
   <div class="param-grid">
-    <div class="param-cell" style="--ac:#c42a2a;">
-      <div class="param-label">pH Range</div>
-      <div class="param-value">&lt;1 <span class="param-unit">— 4.5</span></div>
+    <div class="param-cell" style="--cell-accent:#a03030;">
+      <div class="param-label">pH range</div>
+      <div class="param-value">&lt;1<span class="param-unit">— 4.5</span></div>
     </div>
-    <div class="param-cell" style="--ac:#e8a030;">
+    <div class="param-cell" style="--cell-accent:#c9a055;">
       <div class="param-label">Temperature</div>
-      <div class="param-value">20 <span class="param-unit">— 85 C</span></div>
+      <div class="param-value">20<span class="param-unit">— 85 C</span></div>
     </div>
-    <div class="param-cell" style="--ac:var(--sulfur);">
+    <div class="param-cell" style="--cell-accent:#b09030;">
       <div class="param-label">Chloride</div>
-      <div class="param-value" style="font-size:1.4rem;">High <span class="param-unit">gradient</span></div>
+      <div class="param-value" style="font-size:1.4rem;">High<span class="param-unit"> gradient</span></div>
     </div>
-    <div class="param-cell" style="--ac:#9dff4f;">
+    <div class="param-cell" style="--cell-accent:#7aac6e;">
       <div class="param-label">Metals</div>
-      <div class="param-value" style="font-size:1.6rem;">Fe, Cu <span class="param-unit">Al, Mn</span></div>
+      <div class="param-value" style="font-size:1.4rem;">Fe, Cu<span class="param-unit">, Al, Mn</span></div>
     </div>
-    <div class="param-cell" style="--ac:#4fff9d;">
-      <div class="param-label">Dominant Class</div>
-      <div class="param-value" style="font-size:1.1rem;line-height:1.35;font-style:italic;">Acidithio-<br>bacillia</div>
+    <div class="param-cell" style="--cell-accent:#4a9ea8;">
+      <div class="param-label">Dominant class</div>
+      <div class="param-value" style="font-size:1rem;line-height:1.3;font-style:italic;padding-top:0.3rem;">Acidithio-<br>bacillia</div>
     </div>
   </div>
 </section>
 
 <!-- RESEARCH QUESTIONS -->
-<section class="themes-section">
-  <div class="themes-header">
-    <span class="section-tag">// research questions</span>
-    <h2 class="section-title">What We <em>Ask</em></h2>
-  </div>
+<section class="page-section">
+  <div class="section-tag">// research questions</div>
+  <h2 class="section-title">What We <em>Ask</em></h2>
 
-  <div class="themes-grid">
+  <div class="questions-grid">
 
-    <div class="theme-box" style="--bc:#c42a2a;">
-      <div class="theme-box-num">01</div>
-      <h3>Community Assembly<br><em>Along the Gradient</em></h3>
-      <p>How do pH, temperature, metal concentration, and chloride levels shape
-      microbial species distributions and abundance patterns across the
-      Copahue-Caviahue-Chancoco system?</p>
-      <div class="theme-tags">
+    <div class="q-box" style="--q-color:#a03030;">
+      <div class="q-num">01</div>
+      <div class="q-title">Community Assembly<br><em>Along the Gradient</em></div>
+      <p class="q-body">How do pH, temperature, metal concentration, and chloride levels shape microbial species distributions and abundance patterns across the geothermal system?</p>
+      <div class="q-tags">
         <span class="tag">Metagenomics</span>
         <span class="tag">Amplicon Sequencing</span>
         <span class="tag">Biogeography</span>
       </div>
     </div>
 
-    <div class="theme-box" style="--bc:#e8a030;">
-      <div class="theme-box-num">02</div>
-      <h3>Microdiversity &amp;<br><em>Adaptive Evolution</em></h3>
-      <p>Within-species variation and population genomics of
-      <em>Acidithiobacillia</em>: how do selection, drift, and gene flow
-      operate across physicochemical barriers in extreme environments?</p>
-      <div class="theme-tags">
+    <div class="q-box" style="--q-color:#c9a055;">
+      <div class="q-num">02</div>
+      <div class="q-title">Microdiversity &amp;<br><em>Adaptive Evolution</em></div>
+      <p class="q-body">Within-species variation and population genomics of <em>Acidithiobacillia</em>: how do microevolutionary processes — selection, drift, gene flow — operate across physicochemical barriers?</p>
+      <div class="q-tags">
         <span class="tag">Population Genomics</span>
         <span class="tag">Microdiversity</span>
         <span class="tag">Pan-genome</span>
       </div>
     </div>
 
-    <div class="theme-box" style="--bc:#9dff4f;">
-      <div class="theme-box-num">03</div>
-      <h3>Taxonomy &amp;<br><em>Phenotypic Characterization</em></h3>
-      <p>Isolation and polyphasic characterization of novel
-      <em>Acidithiobacillia</em> strains. Linking genomic diversity to
-      phenotypic traits: growth kinetics, metal tolerance, and environmental optima.</p>
-      <div class="theme-tags">
+    <div class="q-box" style="--q-color:#7aac6e;">
+      <div class="q-num">03</div>
+      <div class="q-title">Taxonomy &amp;<br><em>Phenotypic Characterization</em></div>
+      <p class="q-body">Isolation, cultivation, and polyphasic characterization of novel <em>Acidithiobacillia</em> strains — linking genomic diversity to phenotypic traits, growth kinetics, and metal tolerance.</p>
+      <div class="q-tags">
         <span class="tag">Isolation</span>
         <span class="tag">Polyphasic Taxonomy</span>
-        <span class="tag">Phenotyping</span>
+        <span class="tag">Comparative Genomics</span>
       </div>
     </div>
 
-    <div class="theme-box" style="--bc:var(--sulfur);">
-      <div class="theme-box-num">04</div>
-      <h3>Global Distribution &amp;<br><em>Comparative Context</em></h3>
-      <p>Beyond Copahue: comparing local <em>Acidithiobacillia</em> populations
-      to global AMD communities via public databases — biogeographic patterns,
-      cosmopolitan vs. endemic lineages.</p>
-      <div class="theme-tags">
+    <div class="q-box" style="--q-color:#4a9ea8;">
+      <div class="q-num">04</div>
+      <div class="q-title">Global Distribution &amp;<br><em>AMD Contexts</em></div>
+      <p class="q-body">How do local <em>Acidithiobacillia</em> populations compare to global AMD communities? Cross-referencing field data with public databases to understand biogeographic patterns.</p>
+      <div class="q-tags">
         <span class="tag">AMD</span>
-        <span class="tag">NCBI / JGI</span>
         <span class="tag">Comparative Metagenomics</span>
+        <span class="tag">Global Databases</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- METHODS PIPELINE -->
-<section class="methods-section">
-  <div class="methods-header">
-    <div>
-      <span class="section-tag">// methodology</span>
-      <h2 class="section-title">From Field<br><em>to Genome</em></h2>
-    </div>
-    <p>
-      Our pipeline integrates classic microbiology with cutting-edge
-      multi-omics approaches. From collecting water samples in volcanic
-      craters to resolving population-level genomic variation — every
-      step is designed to capture the full complexity of life in
-      extreme geothermal environments.
-    </p>
-  </div>
+<!-- METHODS -->
+<section class="page-section">
+  <div class="section-tag">// methodology</div>
+  <h2 class="section-title">From Field <em>to Genome</em></h2>
+  <p class="section-body">
+    Our pipeline integrates classic microbiology with multi-omics approaches —
+    from collecting water samples in volcanic craters to resolving
+    population-level genomic variation.
+  </p>
 
-  <div class="pipeline">
-    <div class="step">
-      <div class="step-badge">01</div>
+  <div class="pipeline-grid">
+
+    <div class="pipeline-step">
+      <div class="step-num-badge">1</div>
       <div class="step-title">Field Sampling</div>
-      <div class="step-desc">In-situ measurements, water and sediment collection across the full geothermal gradient. Physicochemical characterization on-site.</div>
+      <p class="step-desc">In-situ measurements, water and sediment collection across the full geothermal gradient. Physicochemical characterization on-site.</p>
     </div>
-    <div class="step">
-      <div class="step-badge">02</div>
+
+    <div class="pipeline-step">
+      <div class="step-num-badge">2</div>
       <div class="step-title">Isolation &amp; Culture</div>
-      <div class="step-desc">Selective media, enrichment cultures, and strain isolation under acidic conditions. Growth characterization and preservation.</div>
+      <p class="step-desc">Selective media, enrichment cultures, and strain isolation under acidic conditions. Growth characterization and preservation.</p>
     </div>
-    <div class="step">
-      <div class="step-badge">03</div>
+
+    <div class="pipeline-step">
+      <div class="step-num-badge">3</div>
       <div class="step-title">Metagenomics</div>
-      <div class="step-desc">Shotgun sequencing of community DNA. Assembly, binning, and MAG recovery to resolve community-level functional potential.</div>
+      <p class="step-desc">Shotgun sequencing of community DNA. Assembly, binning, and MAG recovery to resolve community-level functional potential.</p>
     </div>
-    <div class="step">
-      <div class="step-badge">04</div>
+
+    <div class="pipeline-step">
+      <div class="step-num-badge">4</div>
       <div class="step-title">Genomics &amp; Evolution</div>
-      <div class="step-desc">Whole genome sequencing, pan-genome analysis, population genomics. Detecting selection signatures and adaptive genes.</div>
+      <p class="step-desc">Whole-genome sequencing, pan-genome analysis, population genomics, phylogenomics. Detecting selection signatures and adaptive genes.</p>
     </div>
-    <div class="step">
-      <div class="step-badge">05</div>
+
+    <div class="pipeline-step">
+      <div class="step-num-badge">5</div>
       <div class="step-title">Global Databases</div>
-      <div class="step-desc">Cross-referencing with NCBI, JGI/IMG, SILVA, and public AMD metagenomes to contextualize local findings globally.</div>
+      <p class="step-desc">Cross-referencing with NCBI, JGI/IMG, SILVA, and public AMD metagenomes to contextualize local findings at global scale.</p>
     </div>
+
   </div>
 </section>
 
 <!-- MEET ACIDITHIOBACILLIA -->
-<div class="meet-section">
-  <div class="meet-eyebrow">// coming section</div>
-  <h2 class="meet-title">Meet the <em>Acidithiobacillia</em></h2>
-  <p class="meet-desc">
-    A closer look at the organisms at the center of it all — their
-    diversity, ecology, and the genomic signatures that make them
-    masters of extreme environments.
-  </p>
-  <div class="meet-badge">In preparation</div>
-</div>
+<section class="aciditho-section">
+  <div class="aciditho-bg-text">Acidithiobacillia</div>
+  <div class="aciditho-inner">
+    <div class="aciditho-label">// coming section</div>
+    <h2 class="aciditho-title">Meet the<br><em>Acidithiobacillia</em></h2>
+    <p class="aciditho-body">
+      The class that defines life at the acid frontier. Sulfur-oxidizing,
+      iron-cycling, metal-tolerant — these organisms are the architects of
+      extreme geochemistry and the central focus of our research program.
+      A dedicated section exploring their taxonomy, ecology, and evolution
+      is currently in preparation.
+    </p>
+    <div class="aciditho-badges">
+      <span class="aciditho-badge">Acidithiobacillales</span>
+      <span class="aciditho-badge">Sulfur oxidation</span>
+      <span class="aciditho-badge">Iron cycling</span>
+      <span class="aciditho-badge">Chemolithotrophy</span>
+      <span class="aciditho-badge">Extreme acidophiles</span>
+    </div>
+    <div class="aciditho-status">In preparation</div>
+  </div>
+</section>
 
 <!-- FOOTER -->
-<footer class="site-footer">
+<footer class="page-footer">
   <div class="footer-text">
-    Copahue · Caviahue · Chancoco Geothermal System
-    <span> / </span> Extreme Microbiology Lab
+    Copahue – Caviahue – Chancoco Geothermal System
+    <span> / </span> Quatrini Lab
   </div>
   <div class="footer-text">
     <span>Acidithiobacillia</span> Research Program
