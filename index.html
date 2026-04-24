@@ -1,262 +1,523 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Quatrini Lab | Microbial Ecophysiology</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!-- Same Google Fonts as sub-pages -->
-		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<style>
-			/* ── Font overrides to match sub-pages ── */
-			body, input, select, textarea {
-				font-family: 'Jost', sans-serif;
-				font-weight: 300;
-				letter-spacing: 0.02em;
-			}
+  <head>
+    <title>Quatrini Lab | Microbial Ecophysiology</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
 
-			h1, h2, h3, h4, h5, h6 {
-				font-family: 'Cormorant Garamond', serif;
-				font-weight: 600;
-				letter-spacing: 0.04em;
-			}
+      /* ─────────────────────────────────────────────
+         SHARED PALETTE — calmer than research page
+         but same geothermal identity
+      ───────────────────────────────────────────── */
+      :root {
+        --sage:        #7aac6e;        /* muted acid green  */
+        --amber:       #c9a055;        /* warm sulfur amber */
+        --rust:        #a84e2a;        /* iron rust         */
+        --text-main:   #ddd8cc;        /* warm off-white    */
+        --text-muted:  #8a8d82;        /* muted grey-green  */
+        --box-bg:      rgba(8, 12, 8, 0.80);   /* dark overlay      */
+        --box-border:  rgba(122, 172, 110, 0.22);
+        --box-border-hover: rgba(122, 172, 110, 0.50);
+      }
 
-			nav ul li a {
-				font-family: 'Jost', sans-serif;
-				font-weight: 500;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
-				font-size: 0.75em;
-			}
+      /* ─────────────────────────────────────────────
+         GLOBAL FONT OVERRIDE — Jost everywhere
+      ───────────────────────────────────────────── */
+      *,
+      body,
+      input,
+      select,
+      textarea,
+      button,
+      p,
+      li,
+      span,
+      div {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+      }
 
-			/* Section subtitle / intro paragraph */
-			.main .content p {
-				font-family: 'Jost', sans-serif;
-				font-weight: 300;
-				line-height: 1.85;
-				font-size: 1.05em;
-			}
+      /* Headings: Cormorant Garamond */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.04em;
+      }
 
-			/* Button refinement */
-			.button.style2 {
-				font-family: 'Jost', sans-serif;
-				font-weight: 500;
-				letter-spacing: 0.12em;
-				text-transform: uppercase;
-				font-size: 0.78em;
-			}
+      /* ─────────────────────────────────────────────
+         HEADER / NAV
+      ───────────────────────────────────────────── */
+      #header {
+        background: rgba(6, 9, 6, 0.88) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--box-border);
+      }
 
-			/* Section explore buttons */
-			.section-btn {
-				display: inline-block;
-				margin-top: 1.8em;
-				padding: 0.75em 2.2em;
-				border: 1px solid rgba(255,255,255,0.55);
-				color: #fff;
-				font-family: 'Jost', sans-serif;
-				font-weight: 500;
-				font-size: 0.75em;
-				letter-spacing: 0.14em;
-				text-transform: uppercase;
-				text-decoration: none;
-				transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-				border-radius: 2px;
-			}
-			.section-btn:hover {
-				background: rgba(255,255,255,0.12);
-				border-color: #fff;
-				color: #fff;
-			}
+      #header h1 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 300 !important;
+        letter-spacing: 0.08em;
+        color: var(--text-main) !important;
+        font-size: 1.15em;
+      }
 
-			/* Outreach section accent */
-			#outreach .box.style2 p {
-				font-family: 'Jost', sans-serif;
-				font-weight: 300;
-			}
+      #header nav ul li a {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.7em;
+        color: var(--text-muted) !important;
+        transition: color 0.25s ease;
+        padding: 0 0.6em;
+      }
 
-			/* Gallery title font */
-			.gallery article .image img {
-				transition: transform 0.4s ease;
-			}
-			.gallery article:hover .image img {
-				transform: scale(1.03);
-			}
+      #header nav ul li a:hover {
+        color: var(--sage) !important;
+      }
 
-			/* Contact header refinement */
-			#contact header h2 {
-				font-size: 3em;
-			}
-		</style>
-	</head>
-	<body class="is-preload">
+      /* ─────────────────────────────────────────────
+         INTRO HERO — keep background image, refine text
+      ───────────────────────────────────────────── */
+      #intro .content header h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: clamp(2.8rem, 6vw, 5rem) !important;
+        font-weight: 300 !important;
+        color: #ffffff !important;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.4em;
+      }
 
-		<!-- Header -->
-			<header id="header">
-				<h1 style="font-family:'Cormorant Garamond',serif; font-weight:300; letter-spacing:0.06em;">
-					Quatrini Lab
-				</h1>
-				<nav>
-					<ul>
-						<li><a href="#intro">Home</a></li>
-						<li><a href="#research">Research</a></li>
-						<li><a href="#team">Team</a></li>
-						<li><a href="#outreach">Outreach</a></li>
-						<li><a href="#work">Publications</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-				</nav>
-			</header>
+      #intro .content p {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 1.05em !important;
+        line-height: 1.9 !important;
+        color: rgba(220, 215, 205, 0.88) !important;
+        letter-spacing: 0.03em;
+      }
 
-		<!-- Intro -->
-			<section id="intro" class="main style1 dark fullscreen">
-				<div class="content">
-					<header>
-						<h2>Quatrini Lab</h2>
-					</header>
-					<p>Welcome to the <strong>Laboratory of Microbial Ecophysiology</strong>.<br />
-					We study the evolution and adaptation of acidophilic microorganisms<br />
-					across extreme environmental gradients.</p>
-					<footer>
-						<a href="#research" class="button style2 down">Discover</a>
-					</footer>
-				</div>
-			</section>
+      #intro .content p strong {
+        font-weight: 500 !important;
+        color: var(--amber) !important;
+      }
 
-		<!-- Research (formerly #two, now comes FIRST) -->
-			<section id="research" class="main style2 left dark fullscreen">
-				<div class="content box style2">
-					<header>
-						<h2>Our Research</h2>
-					</header>
-					<p>We investigate microbial ecophysiology and evolution in extreme environments,
-					focusing on acidophilic communities, metabolic adaptation, and the
-					molecular mechanisms that allow life to thrive where few organisms can survive.</p>
-					<a href="research.html" class="section-btn">Explore Research</a>
-				</div>
-				<a href="#team" class="button style2 down anchored">Next</a>
-			</section>
+      /* ─────────────────────────────────────────────
+         CONTENT BOXES — research, team, outreach
+         Replacing the generic semi-transparent box
+         with something that matches the research page
+      ───────────────────────────────────────────── */
+      .box.style2 {
+        background: var(--box-bg) !important;
+        border: 1px solid var(--box-border) !important;
+        border-left: 3px solid var(--sage) !important;
+        border-radius: 0 !important;
+        padding: 2.8em 3em !important;
+        transition: border-color 0.3s ease, background 0.3s ease;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
 
-		<!-- Team (formerly #one, now comes SECOND) -->
-			<section id="team" class="main style2 right dark fullscreen">
-				<div class="content box style2">
-					<header>
-						<h2>Our Team</h2>
-					</header>
-					<p>We are a multidisciplinary group of scientists passionate about
-					microbiology, evolution, and extreme environments. Our team combines
-					molecular biology, bioinformatics, and field ecology to understand
-					the limits of life.</p>
-					<a href="team.html" class="section-btn">Meet the Team</a>
-				</div>
-				<a href="#outreach" class="button style2 down anchored">Next</a>
-			</section>
+      .box.style2:hover {
+        border-color: var(--box-border-hover) !important;
+        border-left-color: var(--amber) !important;
+        background: rgba(8, 12, 8, 0.88) !important;
+      }
 
-		<!-- Outreach (NEW section) -->
-			<section id="outreach" class="main style2 left dark fullscreen">
-				<div class="content box style2">
-					<header>
-						<h2>Outreach</h2>
-					</header>
-					<p>Science belongs to everyone. We are committed to communicating our research
-					beyond the laboratory — through public talks, science writing, educational
-					workshops, and community engagement. Bridging the gap between cutting-edge
-					microbial science and society.</p>
-					<a href="outreach.html" class="section-btn">See Our Outreach</a>
-				</div>
-				<a href="#work" class="button style2 down anchored">Next</a>
-			</section>
+      /* Section tag above each box title — matches research page */
+      .box.style2 header::before {
+        content: attr(data-tag);
+        display: block;
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.6em;
+        font-weight: 400 !important;
+        letter-spacing: 0.28em;
+        color: var(--sage);
+        text-transform: uppercase;
+        margin-bottom: 0.8em;
+        opacity: 0.85;
+      }
 
-		<!-- Publications (formerly #work) -->
-			<section id="work" class="main style3 primary">
-				<div class="content">
-					<header>
-						<h2>Publications</h2>
-						<p>A selection of our scientific contributions — from field ecology
-						to molecular mechanisms of extremophile adaptation.</p>
-					</header>
+      .box.style2 header h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem) !important;
+        font-weight: 300 !important;
+        color: var(--text-main) !important;
+        line-height: 1.1;
+        margin-bottom: 0.2em;
+      }
 
-					<!-- Gallery -->
-						<div class="gallery">
-							<article class="from-left">
-								<a href="images/fulls/01.jpg" class="image fit"><img src="images/thumbs/01.jpg" title="The Anonymous Red" alt="" /></a>
-							</article>
-							<article class="from-right">
-								<a href="images/fulls/02.jpg" class="image fit"><img src="images/thumbs/02.jpg" title="Airchitecture II" alt="" /></a>
-							</article>
-							<article class="from-left">
-								<a href="images/fulls/03.jpg" class="image fit"><img src="images/thumbs/03.jpg" title="Air Lounge" alt="" /></a>
-							</article>
-							<article class="from-right">
-								<a href="images/fulls/04.jpg" class="image fit"><img src="images/thumbs/04.jpg" title="Carry on" alt="" /></a>
-							</article>
-							<article class="from-left">
-								<a href="images/fulls/05.jpg" class="image fit"><img src="images/thumbs/05.jpg" title="The sparkling shell" alt="" /></a>
-							</article>
-							<article class="from-right">
-								<a href="images/fulls/06.jpg" class="image fit"><img src="images/thumbs/06.jpg" title="Bent IX" alt="" /></a>
-							</article>
-						</div>
+      .box.style2 p {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 0.93em !important;
+        line-height: 1.85 !important;
+        color: var(--text-muted) !important;
+        margin-top: 1em;
+      }
 
-					<div style="text-align:center; margin-top:3em;">
-						<a href="publications.html" class="section-btn" style="border-color:rgba(240, 236, 236, 0.35); color:#f0e9e9;">
-							View All Publications
-						</a>
-					</div>
+      /* ─────────────────────────────────────────────
+         SECTION BUTTONS — matches research page style
+      ───────────────────────────────────────────── */
+      .section-btn {
+        display: inline-block;
+        margin-top: 1.8em;
+        padding: 0.65em 2em;
+        border: 1px solid var(--box-border-hover) !important;
+        color: var(--sage) !important;
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 500 !important;
+        font-size: 0.7em !important;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 0;
+        transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        background: transparent;
+      }
 
-				</div>
-			</section>
+      .section-btn:hover {
+        background: rgba(122, 172, 110, 0.10) !important;
+        border-color: var(--sage) !important;
+        color: #fff !important;
+      }
 
-		<!-- Contact -->
-			<section id="contact" class="main style3 secondary">
-				<div class="content">
-					<header>
-						<h2>Say Hello.</h2>
-						<p>Interested in collaboration, questions about our research,<br />
-						or just want to connect? We would love to hear from you.</p>
-					</header>
-					<div class="box">
-						<form method="post" action="#">
-							<div class="fields">
-								<div class="field half"><input type="text" name="name" placeholder="Name" /></div>
-								<div class="field half"><input type="email" name="email" placeholder="Email" /></div>
-								<div class="field"><textarea name="message" placeholder="Message" rows="6"></textarea></div>
-							</div>
-							<ul class="actions special">
-								<li><input type="submit" value="Send Message" /></li>
-							</ul>
-						</form>
-					</div>
-				</div>
-			</section>
+      /* Down arrow button */
+      .button.style2.down {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.16em;
+        font-size: 0.72em !important;
+        border-color: rgba(220, 215, 205, 0.35) !important;
+        color: rgba(220, 215, 205, 0.7) !important;
+      }
 
-		<!-- Footer -->
-			<footer id="footer">
-				<ul class="icons">
-					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-					<li><a href="#" class="icon brands fa-researchgate"><span class="label">ResearchGate</span></a></li>
-				</ul>
-				<ul class="menu">
-					<li style="font-family:'Jost',sans-serif; font-weight:300; letter-spacing:0.06em;">
-						&copy; Quatrini Lab
-					</li>
-					<li>
-						<a href="https://html5up.net" style="font-family:'Jost',sans-serif;">HTML5 UP</a>
-					</li>
-				</ul>
-			</footer>
+      .button.style2.down:hover {
+        border-color: var(--sage) !important;
+        color: var(--sage) !important;
+      }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+      /* ─────────────────────────────────────────────
+         PER-SECTION ACCENT COLORS
+         Each box gets a slightly different left border
+         to echo the geothermal gradient palette
+      ───────────────────────────────────────────── */
+      #research .box.style2 {
+        border-left-color: var(--sage) !important;
+      }
 
-	</body>
+      #team .box.style2 {
+        border-left-color: var(--amber) !important;
+      }
+
+      #outreach .box.style2 {
+        border-left-color: var(--rust) !important;
+      }
+
+      /* ─────────────────────────────────────────────
+         PUBLICATIONS SECTION
+      ───────────────────────────────────────────── */
+      #work {
+        background-color: #0b0f0b !important;
+      }
+
+      #work header h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: clamp(2rem, 4vw, 3.2rem) !important;
+        font-weight: 300 !important;
+        color: var(--text-main) !important;
+        letter-spacing: 0.06em;
+      }
+
+      #work header p {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        color: var(--text-muted) !important;
+        font-size: 0.95em !important;
+        line-height: 1.8 !important;
+      }
+
+      /* Gallery hover */
+      .gallery article .image img {
+        transition: transform 0.4s ease, filter 0.4s ease;
+        filter: brightness(0.88) saturate(0.9);
+      }
+
+      .gallery article:hover .image img {
+        transform: scale(1.04);
+        filter: brightness(1.0) saturate(1.1);
+      }
+
+      /* Publications button */
+      #work .section-btn {
+        border-color: rgba(122, 172, 110, 0.35) !important;
+        color: var(--text-muted) !important;
+      }
+
+      #work .section-btn:hover {
+        color: var(--sage) !important;
+      }
+
+      /* ─────────────────────────────────────────────
+         CONTACT SECTION
+      ───────────────────────────────────────────── */
+      #contact header h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: clamp(2.2rem, 5vw, 3.5rem) !important;
+        font-weight: 300 !important;
+        letter-spacing: 0.06em;
+        color: var(--text-main) !important;
+      }
+
+      #contact header p {
+        font-family: 'Jost', sans-serif !important;
+        color: var(--text-muted) !important;
+        font-size: 0.95em !important;
+        line-height: 1.8 !important;
+      }
+
+      #contact .box {
+        background: var(--box-bg) !important;
+        border: 1px solid var(--box-border) !important;
+        border-radius: 0 !important;
+      }
+
+      #contact input[type="text"],
+      #contact input[type="email"],
+      #contact textarea {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 0.88em !important;
+        background: rgba(255,255,255,0.04) !important;
+        border: 1px solid var(--box-border) !important;
+        border-radius: 0 !important;
+        color: var(--text-main) !important;
+        letter-spacing: 0.04em;
+        transition: border-color 0.25s ease;
+      }
+
+      #contact input:focus,
+      #contact textarea:focus {
+        border-color: var(--sage) !important;
+        outline: none;
+      }
+
+      #contact input[type="submit"] {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.16em;
+        font-size: 0.75em !important;
+        text-transform: uppercase;
+        background: transparent !important;
+        border: 1px solid var(--box-border-hover) !important;
+        color: var(--sage) !important;
+        border-radius: 0 !important;
+        padding: 0.8em 2.5em;
+        cursor: pointer;
+        transition: background 0.3s, border-color 0.3s, color 0.3s;
+      }
+
+      #contact input[type="submit"]:hover {
+        background: rgba(122, 172, 110, 0.10) !important;
+        border-color: var(--sage) !important;
+        color: #fff !important;
+      }
+
+      /* ─────────────────────────────────────────────
+         FOOTER
+      ───────────────────────────────────────────── */
+      #footer {
+        background: #060906 !important;
+        border-top: 1px solid var(--box-border);
+      }
+
+      #footer ul.icons li a {
+        font-family: 'Jost', sans-serif !important;
+        color: var(--text-muted) !important;
+        transition: color 0.25s ease;
+      }
+
+      #footer ul.icons li a:hover {
+        color: var(--sage) !important;
+      }
+
+      #footer ul.menu li,
+      #footer ul.menu li a {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 0.78em !important;
+        letter-spacing: 0.08em;
+        color: var(--text-muted) !important;
+      }
+
+      #footer ul.menu li a:hover {
+        color: var(--sage) !important;
+      }
+
+    </style>
+  </head>
+  <body class="is-preload">
+
+    <!-- Header -->
+    <header id="header">
+      <h1>Quatrini Lab</h1>
+      <nav>
+        <ul>
+          <li><a href="#intro">Home</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#outreach">Outreach</a></li>
+          <li><a href="#work">Publications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Intro -->
+    <section id="intro" class="main style1 dark fullscreen">
+      <div class="content">
+        <header>
+          <h2>Quatrini Lab</h2>
+        </header>
+        <p>Welcome to the <strong>Laboratory of Microbial Ecophysiology</strong>.<br />
+        We study the evolution and adaptation of acidophilic microorganisms<br />
+        across extreme environmental gradients.</p>
+        <footer>
+          <a href="#research" class="button style2 down">Discover</a>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research" class="main style2 left dark fullscreen">
+      <div class="content box style2">
+        <header data-tag="// research program">
+          <h2>Our Research</h2>
+        </header>
+        <p>We investigate microbial ecophysiology and evolution in extreme environments,
+        focusing on acidophilic communities, metabolic adaptation, and the
+        molecular mechanisms that allow life to thrive where few organisms can survive.</p>
+        <a href="research.html" class="section-btn">Explore Research</a>
+      </div>
+      <a href="#team" class="button style2 down anchored">Next</a>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="main style2 right dark fullscreen">
+      <div class="content box style2">
+        <header data-tag="// people">
+          <h2>Our Team</h2>
+        </header>
+        <p>We are a multidisciplinary group of scientists passionate about
+        microbiology, evolution, and extreme environments. Our team combines
+        molecular biology, bioinformatics, and field ecology to understand
+        the limits of life.</p>
+        <a href="team.html" class="section-btn">Meet the Team</a>
+      </div>
+      <a href="#outreach" class="button style2 down anchored">Next</a>
+    </section>
+
+    <!-- Outreach -->
+    <section id="outreach" class="main style2 left dark fullscreen">
+      <div class="content box style2">
+        <header data-tag="// science communication">
+          <h2>Outreach</h2>
+        </header>
+        <p>Science belongs to everyone. We are committed to communicating our research
+        beyond the laboratory — through public talks, science writing, educational
+        workshops, and community engagement. Bridging the gap between cutting-edge
+        microbial science and society.</p>
+        <a href="outreach.html" class="section-btn">See Our Outreach</a>
+      </div>
+      <a href="#work" class="button style2 down anchored">Next</a>
+    </section>
+
+    <!-- Publications -->
+    <section id="work" class="main style3 primary">
+      <div class="content">
+        <header>
+          <h2>Publications</h2>
+          <p>A selection of our scientific contributions — from field ecology
+          to molecular mechanisms of extremophile adaptation.</p>
+        </header>
+        <div class="gallery">
+          <article class="from-left">
+            <a href="images/fulls/01.jpg" class="image fit"><img src="images/thumbs/01.jpg" title="Publication 01" alt="" /></a>
+          </article>
+          <article class="from-right">
+            <a href="images/fulls/02.jpg" class="image fit"><img src="images/thumbs/02.jpg" title="Publication 02" alt="" /></a>
+          </article>
+          <article class="from-left">
+            <a href="images/fulls/03.jpg" class="image fit"><img src="images/thumbs/03.jpg" title="Publication 03" alt="" /></a>
+          </article>
+          <article class="from-right">
+            <a href="images/fulls/04.jpg" class="image fit"><img src="images/thumbs/04.jpg" title="Publication 04" alt="" /></a>
+          </article>
+          <article class="from-left">
+            <a href="images/fulls/05.jpg" class="image fit"><img src="images/thumbs/05.jpg" title="Publication 05" alt="" /></a>
+          </article>
+          <article class="from-right">
+            <a href="images/fulls/06.jpg" class="image fit"><img src="images/thumbs/06.jpg" title="Publication 06" alt="" /></a>
+          </article>
+        </div>
+        <div style="text-align:center; margin-top:3em;">
+          <a href="publications.html" class="section-btn">View All Publications</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="main style3 secondary">
+      <div class="content">
+        <header>
+          <h2>Say Hello.</h2>
+          <p>Interested in collaboration, questions about our research,<br />
+          or just want to connect? We would love to hear from you.</p>
+        </header>
+        <div class="box">
+          <form method="post" action="#">
+            <div class="fields">
+              <div class="field half"><input type="text" name="name" placeholder="Name" /></div>
+              <div class="field half"><input type="email" name="email" placeholder="Email" /></div>
+              <div class="field"><textarea name="message" placeholder="Message" rows="6"></textarea></div>
+            </div>
+            <ul class="actions special">
+              <li><input type="submit" value="Send Message" /></li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <ul class="icons">
+        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+        <li><a href="#" class="icon brands fa-researchgate"><span class="label">ResearchGate</span></a></li>
+      </ul>
+      <ul class="menu">
+        <li>&copy; Quatrini Lab</li>
+        <li><a href="https://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </footer>
+
+    <!-- Scripts — unchanged, required by HTML5UP -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.poptrox.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+  </body>
 </html>
