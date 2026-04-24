@@ -15,11 +15,10 @@
     --sulfur:      #e8c44a;
     --rust:        #c45c2a;
     --iron-red:    #8b1a1a;
-    --mist:        rgba(157,255,79,0.07);
     --glass:       rgba(255,255,255,0.04);
     --border:      rgba(157,255,79,0.15);
     --text-main:   #e8e4d8;
-    --text-muted:  #7a7d70;
+    --text-muted:  #9a9d90;
   }
 
   html { scroll-behavior: smooth; }
@@ -32,7 +31,6 @@
     overflow-x: hidden;
   }
 
-  /* Noise overlay */
   body::before {
     content: '';
     position: fixed;
@@ -43,13 +41,100 @@
     opacity: 0.35;
   }
 
-  /* HERO */
+  /* ── NAVIGATION ───────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6vw;
+    height: 64px;
+    background: rgba(8,10,8,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span {
+    color: var(--acid-green);
+    font-style: italic;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--acid-green);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+  }
+
+  .nav-links a:hover { color: var(--text-main); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--acid-green); }
+  .nav-links a.active::after { transform: scaleX(1); }
+
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--text-main);
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+  }
+
+  /* ── HERO ─────────────────────────────────────── */
   .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 6vw 8vh;
+    padding: 0 6vw 7vh;
+    padding-top: 64px;
     position: relative;
     overflow: hidden;
   }
@@ -65,7 +150,6 @@
     z-index: 0;
   }
 
-  /* Animated acid drip lines */
   .drip-lines {
     position: absolute;
     inset: 0;
@@ -97,11 +181,11 @@
 
   .hero-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     letter-spacing: 0.25em;
     color: var(--acid-green);
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
     position: relative;
     z-index: 2;
     opacity: 0;
@@ -120,11 +204,7 @@
     animation: fadeUp 0.9s 0.5s forwards;
   }
 
-  .hero-title em {
-    font-style: italic;
-    color: var(--sulfur);
-  }
-
+  .hero-title em { font-style: italic; color: var(--sulfur); }
   .hero-title .accent-word {
     -webkit-text-stroke: 1px var(--acid-green);
     color: transparent;
@@ -132,10 +212,10 @@
   }
 
   .hero-sub {
-    margin-top: 2.5rem;
-    max-width: 520px;
-    font-size: 0.95rem;
-    line-height: 1.8;
+    margin-top: 2rem;
+    max-width: 540px;
+    font-size: 1.05rem;
+    line-height: 1.85;
     color: var(--text-muted);
     position: relative;
     z-index: 2;
@@ -147,22 +227,20 @@
 
   .hero-coords {
     position: absolute;
-    top: 3rem;
+    top: 5rem;
     right: 6vw;
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     color: var(--text-muted);
     letter-spacing: 0.1em;
     text-align: right;
     z-index: 2;
     opacity: 0;
     animation: fadeIn 1s 1.2s forwards;
-    line-height: 2;
+    line-height: 2.2;
   }
 
-  .hero-coords .coord-highlight {
-    color: var(--acid-green);
-  }
+  .hero-coords .coord-highlight { color: var(--acid-green); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -173,66 +251,66 @@
     to   { opacity: 1; }
   }
 
-  /* GRADIENT BAR — the environmental gradient visualized */
-  .gradient-section {
-    padding: 6rem 6vw 4rem;
-    position: relative;
-    z-index: 1;
-  }
-
+  /* ── SHARED SECTION STYLES ────────────────────── */
   .section-tag {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     letter-spacing: 0.3em;
     color: var(--acid-green);
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .gradient-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
     font-weight: 300;
     margin-bottom: 1rem;
     line-height: 1.1;
   }
 
-  .env-gradient-bar {
-    margin: 3rem 0;
+  /* ── GRADIENT SECTION ─────────────────────────── */
+  .gradient-section {
+    padding: 4rem 6vw 3rem;
     position: relative;
+    z-index: 1;
   }
+
+  .gradient-section p.intro {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 580px;
+    line-height: 1.85;
+    margin-bottom: 0.5rem;
+  }
+
+  .env-gradient-bar { margin: 2.5rem 0; position: relative; }
 
   .gradient-labels {
     display: flex;
     justify-content: space-between;
     font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
+    font-size: 0.6rem;
     color: var(--text-muted);
     letter-spacing: 0.1em;
     margin-bottom: 0.5rem;
   }
 
   .gradient-bar-track {
-    height: 6px;
+    height: 7px;
     width: 100%;
-    border-radius: 3px;
+    border-radius: 4px;
     background: linear-gradient(
       to right,
-      #c42a2a 0%,
-      #c45c2a 15%,
-      #e8a030 30%,
-      #c8b820 50%,
-      #9dff4f 70%,
-      #4fff9d 85%,
-      #2ab8c4 100%
+      #c42a2a 0%, #c45c2a 15%, #e8a030 30%,
+      #c8b820 50%, #9dff4f 70%, #4fff9d 85%, #2ab8c4 100%
     );
-    position: relative;
   }
 
   .gradient-markers {
     display: flex;
     justify-content: space-between;
-    margin-top: 0.6rem;
+    margin-top: 0.8rem;
   }
 
   .marker {
@@ -240,18 +318,16 @@
     flex-direction: column;
     align-items: center;
     gap: 0.3rem;
-    position: relative;
   }
 
   .marker-dot {
-    width: 8px; height: 8px;
+    width: 9px; height: 9px;
     border-radius: 50%;
-    border: 1px solid var(--text-muted);
   }
 
   .marker-name {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.55rem;
     color: var(--text-muted);
     white-space: nowrap;
     letter-spacing: 0.05em;
@@ -259,22 +335,22 @@
 
   .marker-ph {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     color: var(--sulfur);
     font-weight: 700;
   }
 
-  /* param pills */
+  /* param grid */
   .param-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1px;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     border: 1px solid var(--border);
   }
 
   .param-cell {
-    padding: 1.5rem;
+    padding: 1.4rem 1.2rem;
     background: var(--glass);
     border-right: 1px solid var(--border);
     transition: background 0.3s;
@@ -300,8 +376,8 @@
 
   .param-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
     color: var(--text-muted);
     text-transform: uppercase;
     margin-bottom: 0.6rem;
@@ -309,21 +385,21 @@
 
   .param-value {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 300;
     line-height: 1;
     color: var(--text-main);
   }
 
   .param-unit {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
-    margin-left: 0.3rem;
+    margin-left: 0.2rem;
   }
 
-  /* RESEARCH THEMES */
+  /* ── THEMES / WHAT WE ASK ─────────────────────── */
   .themes-section {
-    padding: 6rem 6vw;
+    padding: 4rem 6vw;
     position: relative;
   }
 
@@ -338,122 +414,106 @@
   .themes-header {
     display: flex;
     align-items: flex-end;
-    gap: 3rem;
-    margin-bottom: 4rem;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
     flex-wrap: wrap;
   }
 
-  .themes-header-text { flex: 1; min-width: 260px; }
+  .themes-header-text { flex: 1; min-width: 200px; }
 
   .themes-count {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(5rem, 12vw, 10rem);
+    font-size: clamp(4rem, 9vw, 8rem);
     font-weight: 300;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(157,255,79,0.2);
+    -webkit-text-stroke: 1px rgba(157,255,79,0.18);
     line-height: 1;
     user-select: none;
   }
 
-  .theme-list {
+  /* BOX GRID instead of rows */
+  .theme-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     background: var(--border);
   }
 
-  .theme-item {
-    background: var(--deep);
-    padding: 2.2rem 2.5rem;
-    display: grid;
-    grid-template-columns: 3rem 1fr auto;
-    align-items: start;
-    gap: 1.5rem;
-    transition: background 0.3s, padding-left 0.3s;
-    cursor: default;
-    position: relative;
-    overflow: hidden;
+  @media (max-width: 680px) {
+    .theme-grid { grid-template-columns: 1fr; }
   }
 
-  .theme-item::after {
+  .theme-box {
+    background: var(--deep);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .theme-box::after {
     content: '';
     position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
+    top: 0; left: 0; right: 0;
+    height: 3px;
     background: var(--item-color, var(--acid-green));
-    transform: scaleY(0);
-    transform-origin: top;
+    transform: scaleX(0);
+    transform-origin: left;
     transition: transform 0.35s ease;
   }
 
-  .theme-item:hover::after { transform: scaleY(1); }
-  .theme-item:hover {
-    background: var(--glass);
-    padding-left: 3rem;
-  }
+  .theme-box:hover::after { transform: scaleX(1); }
+  .theme-box:hover { background: rgba(255,255,255,0.03); }
 
-  .theme-num {
+  .theme-box-num {
     font-family: 'Space Mono', monospace;
     font-size: 0.6rem;
     color: var(--text-muted);
-    letter-spacing: 0.1em;
-    padding-top: 0.3rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
   }
 
-  .theme-content h3 {
+  .theme-box h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 400;
-    margin-bottom: 0.6rem;
-    line-height: 1.1;
+    line-height: 1.15;
+    margin-bottom: 0.9rem;
   }
 
-  .theme-content p {
-    font-size: 0.88rem;
+  .theme-box p {
+    font-size: 0.92rem;
     line-height: 1.8;
     color: var(--text-muted);
-    max-width: 520px;
   }
 
   .theme-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-top: 1rem;
+    margin-top: 1.2rem;
   }
 
   .tag {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
-    letter-spacing: 0.12em;
-    padding: 0.25rem 0.6rem;
+    font-size: 0.52rem;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.65rem;
     border: 1px solid var(--border);
     color: var(--text-muted);
     text-transform: uppercase;
     transition: border-color 0.2s, color 0.2s;
   }
 
-  .theme-item:hover .tag {
+  .theme-box:hover .tag {
     border-color: rgba(157,255,79,0.3);
     color: var(--acid-green);
   }
 
-  .theme-arrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    padding-top: 0.3rem;
-    transition: color 0.2s, transform 0.2s;
-  }
-
-  .theme-item:hover .theme-arrow {
-    color: var(--acid-green);
-    transform: translateX(4px);
-  }
-
-  /* METHODS SECTION */
+  /* ── METHODS ──────────────────────────────────── */
   .methods-section {
-    padding: 6rem 6vw;
+    padding: 4rem 6vw;
     position: relative;
     background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(157,255,79,0.04) 0%, transparent 70%);
   }
@@ -469,33 +529,37 @@
   .methods-intro {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    margin-bottom: 4rem;
+    gap: 4rem;
+    margin-bottom: 3rem;
     align-items: start;
   }
 
+  .methods-intro p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+  }
+
   @media (max-width: 768px) {
-    .methods-intro { grid-template-columns: 1fr; gap: 2rem; }
+    .methods-intro { grid-template-columns: 1fr; gap: 1.5rem; }
   }
 
   .methods-pipeline {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1px;
     background: var(--border);
     position: relative;
   }
 
-  /* connecting arrow line */
   .pipeline-connector {
     position: absolute;
-    top: 50%;
-    left: 0; right: 0;
+    top: 50%; left: 0; right: 0;
     height: 1px;
     background: linear-gradient(to right,
       transparent 0%,
-      rgba(157,255,79,0.25) 20%,
-      rgba(157,255,79,0.25) 80%,
+      rgba(157,255,79,0.2) 20%,
+      rgba(157,255,79,0.2) 80%,
       transparent 100%
     );
     z-index: 0;
@@ -504,7 +568,7 @@
 
   .pipeline-step {
     background: var(--deep);
-    padding: 2rem 1.5rem;
+    padding: 1.8rem 1.4rem;
     position: relative;
     z-index: 1;
     transition: background 0.3s;
@@ -519,7 +583,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     position: relative;
   }
 
@@ -532,7 +596,7 @@
 
   .step-num {
     position: absolute;
-    top: -6px; right: -6px;
+    top: -5px; right: -5px;
     width: 14px; height: 14px;
     background: var(--acid-green);
     border-radius: 50%;
@@ -547,92 +611,140 @@
 
   .step-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
   }
 
   .step-desc {
-    font-size: 0.78rem;
-    line-height: 1.7;
+    font-size: 0.85rem;
+    line-height: 1.75;
     color: var(--text-muted);
   }
 
-  /* AMD / Global dist banner */
-  .global-banner {
-    margin: 6rem 6vw;
-    padding: 3rem;
-    border: 1px solid var(--border);
-    background: var(--glass);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 3rem;
-    align-items: center;
+  /* ── MEET ACIDITHIOBACILLIA — BIG ─────────────── */
+  .coming-section {
+    margin: 2rem 0 0;
     position: relative;
     overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(ellipse 70% 60% at 30% 50%, rgba(157,255,79,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 70% at 80% 60%, rgba(196,92,42,0.08) 0%, transparent 60%),
+      var(--deep);
+    padding: 5rem 6vw;
+    cursor: default;
   }
 
-  .global-banner::before {
-    content: '';
+  .coming-section:hover .coming-glow {
+    opacity: 1;
+  }
+
+  .coming-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(196,92,42,0.08) 0%, transparent 70%);
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(157,255,79,0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
   }
 
-  .global-ph-display {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(5rem, 10vw, 8rem);
-    font-weight: 300;
-    line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--rust);
+  .coming-inner {
     position: relative;
-    z-index: 1;
-    user-select: none;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
   }
 
-  .global-banner-text { position: relative; z-index: 1; }
+  .coming-sup {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--acid-green);
+    text-transform: uppercase;
+  }
 
-  .global-banner-text h3 {
+  .coming-headline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
+    font-size: clamp(2.8rem, 7vw, 6rem);
     font-weight: 300;
-    margin-bottom: 1rem;
+    line-height: 1.05;
+    color: var(--text-main);
   }
 
-  .global-banner-text p {
-    font-size: 0.9rem;
-    line-height: 1.8;
+  .coming-headline em {
+    font-style: italic;
+    color: var(--acid-green);
+    display: block;
+  }
+
+  .coming-desc {
+    font-size: 1rem;
+    line-height: 1.85;
     color: var(--text-muted);
     max-width: 540px;
   }
 
-  .database-tags {
+  .coming-badges {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 1.2rem;
+    justify-content: center;
+    margin-top: 0.5rem;
   }
 
-  .db-tag {
+  .coming-badge {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
-    padding: 0.3rem 0.8rem;
-    background: rgba(196,92,42,0.12);
-    border: 1px solid rgba(196,92,42,0.3);
-    color: var(--rust);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    padding: 0.6rem 1.4rem;
+    border: 1px solid rgba(157,255,79,0.3);
+    color: var(--acid-green);
     text-transform: uppercase;
+    animation: pulse 2.5s infinite;
   }
 
-  @media (max-width: 600px) {
-    .global-banner { grid-template-columns: 1fr; gap: 1.5rem; }
-    .global-ph-display { font-size: 4rem; }
+  .coming-badge.rust-badge {
+    border-color: rgba(196,92,42,0.3);
+    color: var(--rust);
+    animation-delay: 0.8s;
   }
 
-  /* FOOTER strip */
+  .coming-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+
+  /* decorative large text bg */
+  .coming-bg-text {
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 14vw, 12rem);
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(157,255,79,0.06);
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── FOOTER ───────────────────────────────────── */
   .research-footer {
-    padding: 2rem 6vw;
+    padding: 1.8rem 6vw;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
@@ -643,68 +755,32 @@
 
   .footer-text {
     font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
+    font-size: 0.6rem;
     color: var(--text-muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  .footer-accent {
-    color: var(--acid-green);
-  }
-
-  /* Acidithiobacillia teaser */
-  .coming-banner {
-    margin: 0 6vw 6rem;
-    padding: 2rem 2.5rem;
-    border: 1px dashed rgba(157,255,79,0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    transition: border-color 0.3s;
-    cursor: default;
-  }
-
-  .coming-banner:hover { border-color: rgba(157,255,79,0.5); }
-
-  .coming-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.25em;
-    color: var(--acid-green);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .coming-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  .coming-badge {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
-    letter-spacing: 0.2em;
-    padding: 0.5rem 1rem;
-    border: 1px solid rgba(157,255,79,0.3);
-    color: var(--acid-green);
-    text-transform: uppercase;
-    white-space: nowrap;
-    animation: pulse 2.5s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+  .footer-accent { color: var(--acid-green); }
 
 </style>
 </head>
 <body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="index.html" class="nav-logo">Extreme<span>Micro</span>biology</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html" class="active">Research</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -738,11 +814,11 @@
   </p>
 </section>
 
-<!-- ENVIRONMENTAL GRADIENT VISUALIZER -->
+<!-- ENVIRONMENTAL GRADIENT -->
 <section class="gradient-section">
   <div class="section-tag">// model system</div>
   <h2 class="gradient-title">The Copahue<br><em style="color:var(--sulfur);">Geothermal Gradient</em></h2>
-  <p style="font-size:0.9rem;color:var(--text-muted);max-width:560px;line-height:1.8;margin-bottom:1rem;">
+  <p class="intro">
     A natural laboratory spanning kilometers: from highly acidic, metal-rich hot
     springs near the volcanic crater to progressively milder environments downstream.
     Each sampling point is a data point in the story of microbial adaptation.
@@ -756,54 +832,53 @@
     <div class="gradient-bar-track"></div>
     <div class="gradient-markers">
       <div class="marker">
-        <div class="marker-dot" style="background:#c42a2a;border-color:#c42a2a;"></div>
+        <div class="marker-dot" style="background:#c42a2a;"></div>
         <span class="marker-name">Copahue</span>
         <span class="marker-ph">pH &lt;1</span>
       </div>
       <div class="marker">
-        <div class="marker-dot" style="background:#e8a030;border-color:#e8a030;"></div>
+        <div class="marker-dot" style="background:#e8a030;"></div>
         <span class="marker-name">Chancoco</span>
         <span class="marker-ph">pH 2-3</span>
       </div>
       <div class="marker">
-        <div class="marker-dot" style="background:#9dff4f;border-color:#9dff4f;"></div>
+        <div class="marker-dot" style="background:#9dff4f;"></div>
         <span class="marker-name">Caviahue</span>
         <span class="marker-ph">pH 3-4</span>
       </div>
       <div class="marker">
-        <div class="marker-dot" style="background:#2ab8c4;border-color:#2ab8c4;"></div>
+        <div class="marker-dot" style="background:#2ab8c4;"></div>
         <span class="marker-name">Outflow</span>
         <span class="marker-ph">pH 4+</span>
       </div>
     </div>
   </div>
 
-  <!-- Environmental parameters -->
   <div class="param-grid">
-    <div class="param-cell" style="--accent-color: #c42a2a;">
+    <div class="param-cell" style="--accent-color:#c42a2a;">
       <div class="param-label">pH range</div>
-      <div class="param-value">&lt;1<span class="param-unit">—4.5</span></div>
+      <div class="param-value">&lt;1<span class="param-unit">— 4.5</span></div>
     </div>
-    <div class="param-cell" style="--accent-color: #e8a030;">
+    <div class="param-cell" style="--accent-color:#e8a030;">
       <div class="param-label">Temperature</div>
-      <div class="param-value">20<span class="param-unit">—85 C</span></div>
+      <div class="param-value">20<span class="param-unit">— 85 C</span></div>
     </div>
-    <div class="param-cell" style="--accent-color: var(--sulfur);">
+    <div class="param-cell" style="--accent-color:var(--sulfur);">
       <div class="param-label">Chloride</div>
       <div class="param-value">High<span class="param-unit">gradient</span></div>
     </div>
-    <div class="param-cell" style="--accent-color: #9dff4f;">
+    <div class="param-cell" style="--accent-color:#9dff4f;">
       <div class="param-label">Metals</div>
       <div class="param-value">Fe, Cu<span class="param-unit">, Al, Mn</span></div>
     </div>
-    <div class="param-cell" style="--accent-color: #4fff9d;">
+    <div class="param-cell" style="--accent-color:#4fff9d;">
       <div class="param-label">Dominant class</div>
-      <div class="param-value" style="font-size:1.1rem;line-height:1.3;font-style:italic;">Acidithio-<br>bacillia</div>
+      <div class="param-value" style="font-size:1.15rem;line-height:1.3;font-style:italic;">Acidithio-<br>bacillia</div>
     </div>
   </div>
 </section>
 
-<!-- RESEARCH THEMES -->
+<!-- RESEARCH THEMES — BOX GRID -->
 <section class="themes-section">
   <div class="themes-header">
     <div class="themes-header-text">
@@ -813,77 +888,65 @@
     <div class="themes-count">04</div>
   </div>
 
-  <div class="theme-list">
+  <div class="theme-grid">
 
-    <div class="theme-item" style="--item-color: #c42a2a;">
-      <div class="theme-num">01</div>
-      <div class="theme-content">
-        <h3>Community Assembly<br><em style="color:var(--sulfur);">Along the Gradient</em></h3>
-        <p>How do pH, temperature, metal concentration, and chloride levels shape
-        microbial species distributions and abundance patterns across the
-        Copahue-Caviahue-Chancoco geothermal system?</p>
-        <div class="theme-tags">
-          <span class="tag">Metagenomics</span>
-          <span class="tag">Amplicon Sequencing</span>
-          <span class="tag">Biogeography</span>
-          <span class="tag">Environmental Gradients</span>
-        </div>
+    <div class="theme-box" style="--item-color:#c42a2a;">
+      <div class="theme-box-num">01</div>
+      <h3>Community Assembly<br><em style="color:var(--sulfur);">Along the Gradient</em></h3>
+      <p>How do pH, temperature, metal concentration, and chloride levels shape
+      microbial species distributions and abundance patterns across the
+      Copahue-Caviahue-Chancoco geothermal system?</p>
+      <div class="theme-tags">
+        <span class="tag">Metagenomics</span>
+        <span class="tag">Amplicon Sequencing</span>
+        <span class="tag">Biogeography</span>
+        <span class="tag">Env. Gradients</span>
       </div>
-      <div class="theme-arrow">-&gt;</div>
     </div>
 
-    <div class="theme-item" style="--item-color: #e8a030;">
-      <div class="theme-num">02</div>
-      <div class="theme-content">
-        <h3>Microdiversity &amp;<br><em style="color:var(--sulfur);">Adaptive Evolution</em></h3>
-        <p>Within-species variation and population genomics of
-        <em>Acidithiobacillia</em> populations: how do microevolutionary
-        processes — selection, drift, gene flow — operate across
-        physicochemical barriers in extreme environments?</p>
-        <div class="theme-tags">
-          <span class="tag">Population Genomics</span>
-          <span class="tag">Microdiversity</span>
-          <span class="tag">Adaptive Signatures</span>
-          <span class="tag">Pan-genome</span>
-        </div>
+    <div class="theme-box" style="--item-color:#e8a030;">
+      <div class="theme-box-num">02</div>
+      <h3>Microdiversity &amp;<br><em style="color:var(--sulfur);">Adaptive Evolution</em></h3>
+      <p>Within-species variation and population genomics of
+      <em>Acidithiobacillia</em>: how do microevolutionary
+      processes — selection, drift, gene flow — operate across
+      physicochemical barriers in extreme environments?</p>
+      <div class="theme-tags">
+        <span class="tag">Population Genomics</span>
+        <span class="tag">Microdiversity</span>
+        <span class="tag">Adaptive Signatures</span>
+        <span class="tag">Pan-genome</span>
       </div>
-      <div class="theme-arrow">-&gt;</div>
     </div>
 
-    <div class="theme-item" style="--item-color: #9dff4f;">
-      <div class="theme-num">03</div>
-      <div class="theme-content">
-        <h3>Taxonomy &amp;<br><em style="color:var(--sulfur);">Phenotypic Characterization</em></h3>
-        <p>Isolation, cultivation, and polyphasic characterization of novel
-        <em>Acidithiobacillia</em> strains. Linking genomic diversity to
-        phenotypic traits: growth kinetics, metal tolerance,
-        oxidation capacities, and environmental optima.</p>
-        <div class="theme-tags">
-          <span class="tag">Isolation</span>
-          <span class="tag">Polyphasic Taxonomy</span>
-          <span class="tag">Phenotyping</span>
-          <span class="tag">Comparative Genomics</span>
-        </div>
+    <div class="theme-box" style="--item-color:#9dff4f;">
+      <div class="theme-box-num">03</div>
+      <h3>Taxonomy &amp;<br><em style="color:var(--sulfur);">Phenotypic Characterization</em></h3>
+      <p>Isolation, cultivation, and polyphasic characterization of novel
+      <em>Acidithiobacillia</em> strains. Linking genomic diversity to
+      phenotypic traits: growth kinetics, metal tolerance,
+      oxidation capacities, and environmental optima.</p>
+      <div class="theme-tags">
+        <span class="tag">Isolation</span>
+        <span class="tag">Polyphasic Taxonomy</span>
+        <span class="tag">Phenotyping</span>
+        <span class="tag">Comparative Genomics</span>
       </div>
-      <div class="theme-arrow">-&gt;</div>
     </div>
 
-    <div class="theme-item" style="--item-color: var(--sulfur);">
-      <div class="theme-num">04</div>
-      <div class="theme-content">
-        <h3>Acid Mine Drainage &amp;<br><em style="color:var(--sulfur);">Global Distribution</em></h3>
-        <p>Beyond Copahue: how do local <em>Acidithiobacillia</em> populations
-        compare to global AMD communities? Cross-referencing field data with
-        public databases to understand biogeographic patterns and
-        cosmopolitan vs. endemic distribution.</p>
-        <div class="theme-tags">
-          <span class="tag">AMD</span>
-          <span class="tag">Global Databases</span>
-          <span class="tag">Comparative Metagenomics</span>
-          <span class="tag">Biogeography</span>
-        </div>
+    <div class="theme-box" style="--item-color:var(--sulfur);">
+      <div class="theme-box-num">04</div>
+      <h3>Global Distribution &amp;<br><em style="color:var(--sulfur);">Database Mining</em></h3>
+      <p>Beyond Copahue: how do local <em>Acidithiobacillia</em> populations
+      compare to global communities? Cross-referencing field data with
+      NCBI, JGI/IMG, SILVA, and public AMD metagenomes to map
+      biogeographic and cosmopolitan vs. endemic patterns.</p>
+      <div class="theme-tags">
+        <span class="tag">AMD</span>
+        <span class="tag">NCBI / SRA</span>
+        <span class="tag">Comparative Metagenomics</span>
+        <span class="tag">Biogeography</span>
       </div>
-      <div class="theme-arrow">-&gt;</div>
     </div>
 
   </div>
@@ -898,7 +961,7 @@
       <h2 class="gradient-title">From Field<br><em style="color:var(--sulfur);">to Genome</em></h2>
     </div>
     <div>
-      <p style="font-size:0.9rem;line-height:1.9;color:var(--text-muted);">
+      <p>
         Our pipeline integrates classic microbiology with cutting-edge
         multi-omics approaches. From collecting water samples in volcanic
         craters to resolving population-level genomic variation — every
@@ -958,38 +1021,32 @@
   </div>
 </section>
 
-<!-- AMD / Global Banner -->
-<div class="global-banner">
-  <div class="global-ph-display">AMD</div>
-  <div class="global-banner-text">
-    <h3>Acid Mine Drainage &amp; <em style="color:var(--sulfur);">Global Context</em></h3>
-    <p>
-      The same organisms thriving in Copahue's volcanic acid pools are key
-      drivers of acid mine drainage worldwide — a billion-dollar environmental
-      challenge. Understanding their ecology, evolution, and metabolic
-      capabilities has direct implications for bioremediation, biomining,
-      and environmental monitoring at industrial scales.
+<!-- MEET ACIDITHIOBACILLIA — BIG TEASER -->
+<div class="coming-section">
+  <div class="coming-glow"></div>
+  <div class="coming-bg-text">Acidithiobacillia</div>
+
+  <div class="coming-inner">
+    <div class="coming-sup">// coming section</div>
+    <div class="coming-divider"></div>
+    <h2 class="coming-headline">
+      Meet the
+      <em>Acidithiobacillia</em>
+    </h2>
+    <p class="coming-desc">
+      The dominant class across the entire Copahue-Caviahue-Chancoco gradient.
+      A deep dive into their phylogeny, metabolism, and extraordinary capacity
+      to thrive where almost nothing else can — section currently in preparation.
     </p>
-    <div class="database-tags">
-      <span class="db-tag">NCBI / SRA</span>
-      <span class="db-tag">JGI / IMG</span>
-      <span class="db-tag">SILVA</span>
-      <span class="db-tag">GTDB</span>
-      <span class="db-tag">MG-RAST</span>
+    <div class="coming-badges">
+      <span class="coming-badge">In preparation</span>
+      <span class="coming-badge rust-badge">Taxonomy update</span>
+      <span class="coming-badge">Genomic portraits</span>
     </div>
   </div>
 </div>
 
-<!-- Acidithiobacillia teaser -->
-<div class="coming-banner">
-  <div>
-    <div class="coming-label">// coming section</div>
-    <div class="coming-text">Meet the <em>Acidithiobacillia</em></div>
-  </div>
-  <div class="coming-badge">In preparation</div>
-</div>
-
-<!-- FOOTER STRIP -->
+<!-- FOOTER -->
 <footer class="research-footer">
   <div class="footer-text">
     Copahue - Caviahue - Chancoco Geothermal System
@@ -1002,11 +1059,11 @@
 </footer>
 
 <script>
-  // Intersection observer for staggered reveals
+  // Intersection observer — staggered reveals
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        entry.target.style.transition = `opacity 0.7s ${i * 0.08}s, transform 0.7s ${i * 0.08}s`;
+        entry.target.style.transition = `opacity 0.7s ${i * 0.07}s, transform 0.7s ${i * 0.07}s`;
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
         observer.unobserve(entry.target);
@@ -1014,9 +1071,9 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.theme-item, .pipeline-step, .param-cell').forEach(el => {
+  document.querySelectorAll('.theme-box, .pipeline-step, .param-cell').forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
+    el.style.transform = 'translateY(20px)';
     observer.observe(el);
   });
 </script>
