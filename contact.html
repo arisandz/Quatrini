@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Quatrini Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:        #7aac6e;
+      --amber:       #c9a055;
+      --rust:        #a84e2a;
+      --teal:        #4a9a8a;
+      --text-main:   #ddd8cc;
+      --text-muted:  #8a8d82;
+      --box-bg:      rgba(8, 12, 8, 0.82);
+      --box-border:  rgba(122, 172, 110, 0.22);
+      --box-border-h:rgba(122, 172, 110, 0.50);
+      --page-bg:     #070c07;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--page-bg);
+      color: var(--text-main);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── Background layers ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(122,172,110,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 75%, rgba(74,154,138,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 55% 10%, rgba(201,160,85,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* ── Header ── */
+    #header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3em;
+      height: 56px;
+      background: rgba(6, 9, 6, 0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--box-border);
+    }
+
+    #header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.1em;
+      letter-spacing: 0.1em;
+      color: var(--text-main);
+    }
+
+    #header h1 a { color: inherit; text-decoration: none; }
+
+    #header nav ul {
+      list-style: none;
+      display: flex; gap: 0.2em;
+    }
+
+    #header nav ul li a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68em;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4em 0.7em;
+      transition: color 0.25s;
+    }
+
+    #header nav ul li a:hover,
+    #header nav ul li a.active { color: var(--sage); }
+
+    /* ── Page wrapper ── */
+    .page-wrap {
+      position: relative; z-index: 1;
+      padding-top: 56px;
+      min-height: 100vh;
+    }
+
+    /* ── Hero bar ── */
+    .hero {
+      padding: 5em 3em 3.5em;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62em;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      opacity: 0.85;
+      margin-bottom: 0.8em;
+    }
+
+    .hero h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--text-main);
+      line-height: 1.1;
+      margin-bottom: 0.5em;
+    }
+
+    .hero p {
+      font-size: 0.93em;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.85;
+      max-width: 520px;
+    }
+
+    .hero-bar {
+      height: 1px;
+      background: linear-gradient(90deg, var(--sage) 0%, rgba(74,154,138,0.4) 40%, transparent 100%);
+      max-width: 1100px;
+      margin: 0 auto 3em;
+    }
+
+    /* ── Main grid ── */
+    .contact-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3em 5em;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2em;
+    }
+
+    /* ── Info panel ── */
+    .info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6em;
+    }
+
+    .info-card {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      border-left: 3px solid var(--sage);
+      padding: 2em 2.2em;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .info-card:hover {
+      border-color: var(--box-border-h);
+      border-left-color: var(--amber);
+      background: rgba(8,12,8,0.92);
+    }
+
+    .info-card .card-tag {
+      font-size: 0.6em;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.2em;
+      opacity: 0.85;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1em;
+      margin-bottom: 1.1em;
+    }
+
+    .info-row:last-child { margin-bottom: 0; }
+
+    .info-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--box-border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1em;
+    }
+
+    .info-icon svg {
+      width: 14px; height: 14px;
+      fill: none;
+      stroke: var(--sage);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .info-text {
+      flex: 1;
+    }
+
+    .info-text .label {
+      font-size: 0.6em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.3em;
+    }
+
+    .info-text .value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05em;
+      font-weight: 300;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .info-text a {
+      color: var(--text-main);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .info-text a:hover { color: var(--sage); }
+
+    /* getting here note */
+    .getting-here {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      border-left: 3px solid var(--teal);
+      padding: 1.6em 2.2em;
+      backdrop-filter: blur(8px);
+    }
+
+    .getting-here .card-tag {
+      font-size: 0.6em;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.9em;
+      opacity: 0.85;
+    }
+
+    .getting-here p {
+      font-size: 0.85em;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .getting-here p strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* ── Map panel ── */
+    .map-panel {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .map-panel:hover { border-color: var(--box-border-h); }
+
+    .map-header {
+      padding: 1.2em 1.8em;
+      border-bottom: 1px solid var(--box-border);
+      display: flex;
+      align-items: center;
+      gap: 0.8em;
+    }
+
+    .map-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--sage);
+      box-shadow: 0 0 8px rgba(122,172,110,0.6);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(122,172,110,0.6); }
+      50%       { opacity: 0.5; box-shadow: 0 0 16px rgba(122,172,110,0.3); }
+    }
+
+    .map-header span {
+      font-size: 0.68em;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .map-frame {
+      flex: 1;
+      min-height: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-frame iframe {
+      width: 100%; height: 100%;
+      min-height: 300px;
+      border: none;
+      display: block;
+      filter: saturate(0.5) brightness(0.7) hue-rotate(10deg);
+      transition: filter 0.4s ease;
+    }
+
+    .map-panel:hover .map-frame iframe {
+      filter: saturate(0.75) brightness(0.85) hue-rotate(5deg);
+    }
+
+    .map-footer {
+      padding: 0.9em 1.8em;
+      border-top: 1px solid var(--box-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .map-footer span {
+      font-size: 0.75em;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .map-link {
+      font-size: 0.65em;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-decoration: none;
+      border: 1px solid var(--box-border);
+      padding: 0.4em 1em;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+    }
+
+    .map-link:hover {
+      background: rgba(122,172,110,0.1);
+      border-color: var(--sage);
+      color: #fff;
+    }
+
+    /* ── Form section ── */
+    .form-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3em 5em;
+    }
+
+    .form-wrap {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      border-left: 3px solid var(--amber);
+      padding: 2.8em 3em;
+      backdrop-filter: blur(8px);
+      position: relative;
+    }
+
+    .form-tag {
+      font-size: 0.6em;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.6em;
+      opacity: 0.85;
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+      margin-bottom: 0.4em;
+    }
+
+    .form-note {
+      font-size: 0.82em;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2em;
+    }
+
+    .form-note a {
+      color: var(--sage);
+      text-decoration: none;
+    }
+
+    /* Formspree notice */
+    .formspree-note {
+      background: rgba(201,160,85,0.08);
+      border: 1px solid rgba(201,160,85,0.25);
+      border-left: 3px solid var(--amber);
+      padding: 0.9em 1.2em;
+      margin-bottom: 2em;
+      font-size: 0.78em;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .formspree-note strong {
+      color: var(--amber);
+      font-weight: 500;
+    }
+
+    .formspree-note code {
+      background: rgba(255,255,255,0.06);
+      padding: 0.1em 0.4em;
+      font-size: 0.92em;
+      color: var(--sage);
+      letter-spacing: 0.04em;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1em;
+      margin-bottom: 1em;
+    }
+
+    .field { margin-bottom: 1em; }
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      display: block;
+      font-size: 0.62em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5em;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--box-border);
+      color: var(--text-main);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.88em;
+      letter-spacing: 0.04em;
+      padding: 0.75em 1em;
+      outline: none;
+      transition: border-color 0.25s, background 0.25s;
+      -webkit-appearance: none;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(138,141,130,0.5);
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--sage);
+      background: rgba(122,172,110,0.04);
+    }
+
+    .field input.error,
+    .field textarea.error {
+      border-color: var(--rust) !important;
+    }
+
+    .field select option { background: #0e140e; color: var(--text-main); }
+
+    .field textarea { resize: vertical; min-height: 130px; }
+
+    .form-actions { margin-top: 1.6em; display: flex; align-items: center; gap: 1.5em; }
+
+    .btn-submit {
+      display: inline-block;
+      padding: 0.75em 2.5em;
+      background: transparent;
+      border: 1px solid var(--box-border-h);
+      color: var(--sage);
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 0.7em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: rgba(122,172,110,0.1);
+      border-color: var(--sage);
+      color: #fff;
+    }
+
+    .form-privacy {
+      font-size: 0.72em;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3em 2em;
+    }
+
+    .form-success.visible { display: block; }
+
+    .success-icon {
+      width: 48px; height: 48px;
+      border: 1px solid var(--sage);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2em;
+    }
+
+    .success-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--sage);
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .success-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--text-main);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4em;
+    }
+
+    .success-note {
+      font-size: 0.85em;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    #footer {
+      position: relative; z-index: 1;
+      background: #060906;
+      border-top: 1px solid var(--box-border);
+      padding: 2em 3em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8em;
+    }
+
+    #footer .icons {
+      list-style: none;
+      display: flex; gap: 0.6em;
+    }
+
+    #footer .icons li a {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      border: 1px solid var(--box-border);
+      color: var(--text-muted);
+      font-size: 0.8em;
+      text-decoration: none;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    #footer .icons li a:hover {
+      color: var(--sage);
+      border-color: var(--sage);
+    }
+
+    #footer .menu {
+      list-style: none;
+      display: flex; gap: 1.5em;
+    }
+
+    #footer .menu li,
+    #footer .menu li a {
+      font-size: 0.75em;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    #footer .menu li a:hover { color: var(--sage); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; padding: 0 2em 3em; }
+      .form-section  { padding: 0 2em 3em; }
+      .field-grid    { grid-template-columns: 1fr; }
+      .hero          { padding: 4em 2em 2.5em; }
+      #header        { padding: 0 1.5em; }
+    }
+
+    @media (max-width: 600px) {
+      .contact-grid, .form-section { padding: 0 1.2em 2.5em; }
+      .form-wrap { padding: 2em 1.5em; }
+      .map-frame, .map-frame iframe { min-height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <h1><a href="index.html">Quatrini Lab</a></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="outreach.html">Outreach</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-wrap">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-tag">// contact</div>
+      <h2>Get in Touch</h2>
+      <p>Questions about our research, collaboration opportunities, or joining the lab — we would love to hear from you.</p>
+    </div>
+    <div class="hero-bar"></div>
+
+    <!-- Info + Map grid -->
+    <div class="contact-grid">
+
+      <!-- Left: Info -->
+      <div class="info-panel">
+
+        <div class="info-card">
+          <div class="card-tag">// find us</div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.75-7-12a7 7 0 0 1 14 0c0 5.25-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="label">Address</div>
+              <div class="value">Avenida del Valle 725<br/>Huechuraba, Santiago, Chile</div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.25 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="label">Phone</div>
+              <div class="value"><a href="tel:+56223672054">+56 22 3672054</a></div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="label">Email</div>
+              <div class="value"><a href="mailto:microecolab@cienciavida.org">microecolab@cienciavida.org</a></div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="label">Institution</div>
+              <div class="value"><a href="https://www.cienciavida.org" target="_blank" rel="noopener">Fundacion Ciencia &amp; Vida</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="getting-here">
+          <div class="card-tag">// getting here</div>
+          <p>
+            Located in the <strong>Ciudad Empresarial</strong> complex in Huechuraba, northern Santiago.<br/><br/>
+            <strong>By Metro:</strong> Line 1 to Baquedano, then Bus 206 toward Huechuraba.<br/>
+            <strong>By Car:</strong> Access via Av. del Valle from the Costanera Norte highway.<br/>
+            <strong>Parking:</strong> Available within the Ciudad Empresarial complex.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Right: Map -->
+      <div class="map-panel">
+        <div class="map-header">
+          <div class="map-dot"></div>
+          <span>Live Location</span>
+        </div>
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.0!2d-70.65!3d-33.37!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c3b1b1b1b1b1%3A0x1!2sAvenida+del+Valle+725%2C+Huechuraba%2C+Santiago%2C+Chile!5e0!3m2!1sen!2scl!4v1700000000000!5m2!1sen!2scl"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Quatrini Lab location">
+          </iframe>
+        </div>
+        <div class="map-footer">
+          <span>Avenida del Valle 725, Huechuraba</span>
+          <a class="map-link"
+             href="https://www.google.com/maps/search/Avenida+del+Valle+725,+Huechuraba,+Santiago,+Chile"
+             target="_blank"
+             rel="noopener">
+            Open in Maps
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /contact-grid -->
+
+    <!-- Form section -->
+    <div class="form-section">
+      <div class="form-wrap">
+        <div class="form-tag">// message us</div>
+        <h3 class="form-title">Send a Message</h3>
+        <p class="form-note">
+          Fill out the form below and your message will be sent directly to
+          <a href="mailto:microecolab@cienciavida.org">microecolab@cienciavida.org</a>.
+        </p>
+
+        <!-- FORMSPREE SETUP NOTICE — remove once configured -->
+        <div class="formspree-note">
+          <strong>Setup required:</strong> To activate this form, replace <code>YOUR_FORM_ID</code>
+          in the <code>action</code> attribute with your Formspree endpoint.
+          Sign up free at <strong>formspree.io</strong>, create a form, and paste the ID.
+          Messages will then arrive directly at your email inbox.
+        </div>
+
+        <form id="contactForm"
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST">
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="first_name" placeholder="Rosa"/>
+            </div>
+            <div class="field">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="last_name" placeholder="Coloma"/>
+            </div>
+            <div class="field">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="r.coloma@university.edu"/>
+            </div>
+            <div class="field">
+              <label for="affil">Institution / Affiliation</label>
+              <input type="text" id="affil" name="affiliation" placeholder="University of ..."/>
+            </div>
+            <div class="field full">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">Select a topic...</option>
+                <option value="collaboration">Research Collaboration</option>
+                <option value="phd">PhD Inquiry</option>
+                <option value="postdoc">Postdoc Inquiry</option>
+                <option value="visit">Lab Visit</option>
+                <option value="media">Media / Press</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Tell us about your inquiry..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">Send Message</button>
+            <span class="form-privacy">Your information is never shared with third parties.</span>
+          </div>
+        </form>
+
+        <!-- Success message -->
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="success-title">Message Sent</div>
+          <p class="success-note">Thank you for reaching out.<br/>We will get back to you as soon as possible.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <!-- Footer -->
+  <footer id="footer">
+    <ul class="icons">
+      <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+      <li><a href="#" title="ResearchGate"><i class="fab fa-researchgate"></i></a></li>
+    </ul>
+    <ul class="menu">
+      <li>&copy; Quatrini Lab</li>
+      <li><a href="https://html5up.net">HTML5 UP</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const successBox = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', async function(e) {
+      // Validate required fields
+      const required = ['fname','lname','email','message'];
+      let valid = true;
+      required.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.classList.add('error');
+          valid = false;
+        } else {
+          el.classList.remove('error');
+        }
+      });
+      if (!valid) { e.preventDefault(); return; }
+
+      // If Formspree not yet configured, show demo success
+      if (form.action.includes('YOUR_FORM_ID')) {
+        e.preventDefault();
+        form.style.opacity = '0';
+        form.style.transition = 'opacity 0.4s';
+        setTimeout(() => {
+          form.style.display = 'none';
+          successBox.classList.add('visible');
+          successBox.style.opacity = '0';
+          successBox.style.transition = 'opacity 0.4s';
+          requestAnimationFrame(() => { successBox.style.opacity = '1'; });
+        }, 400);
+      }
+      // If real Formspree ID is set, let the form submit normally
+    });
+
+    // Remove error highlight on input
+    ['fname','lname','email','message'].forEach(id => {
+      document.getElementById(id).addEventListener('input', function() {
+        this.classList.remove('error');
+      });
+    });
+  </script>
+
+</body>
+</html>
