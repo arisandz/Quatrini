@@ -3,461 +3,1309 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Publications | Lab Name</title>
-  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <title>Publications | Quatrini Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #f9f6f0;
-      --dark: #2a2d2e;
-      --mid: #5a6066;
-      --accent: #7a9e7e;
-      --accent-light: #a8c5aa;
-      --border: #ddd9d0;
+      --bg-image:    url("images/volcano.jpg");
+      --sage:        #7aac6e;
+      --amber:       #c9a055;
+      --rust:        #a84e2a;
+      --teal:        #4a9a8a;
+      --text-main:   #ddd8cc;
+      --text-muted:  #8a8d82;
+      --box-bg:      rgba(8, 12, 8, 0.80);
+      --box-border:  rgba(122, 172, 110, 0.22);
+      --box-border-hover: rgba(122, 172, 110, 0.50);
+      --sage-dim:    rgba(122,172,110,0.12);
+      --amber-dim:   rgba(201,160,85,0.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Jost", sans-serif;
-      font-weight: 300;
-      font-size: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
       line-height: 1.8;
-      color: var(--dark);
-      background: #ffffff;
+      min-height: 100vh;
+      position: relative;
     }
 
-    /* ---- HEADER ---- */
-    #header {
+    body::before {
+      content: '';
       position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 3em;
-      line-height: 3em;
-      background: rgba(255,255,255,0.96);
-      box-shadow: 0 0 0.15em rgba(0,0,0,0.08);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5em;
+      inset: 0;
+      z-index: -2;
+      background: var(--bg-image) center center / cover no-repeat;
+      filter: blur(2px) brightness(0.8) saturate(0.75);
+      transform: scale(1.04);
     }
 
-    #header h1 a {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 600;
-      font-size: 1.2em;
-      color: var(--dark);
-      text-decoration: none;
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(6, 10, 6, 0.55);
+    }
+
+    *, body, input, select, textarea, button, p, li, span, div {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400;
       letter-spacing: 0.02em;
     }
 
-    #header nav a {
-      font-family: "Jost", sans-serif;
-      font-weight: 400;
-      font-size: 0.85em;
-      color: var(--mid);
-      text-decoration: none;
-      margin-left: 1.4em;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.04em;
     }
 
-    #header nav a:hover { color: var(--accent); }
-    #header nav a.active { color: var(--accent); }
+    /* ── HEADER ── */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2em;
+      height: 3.5em;
+      background: rgba(6, 9, 6, 0.88) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--box-border);
+      z-index: 1000;
+    }
 
-    /* ---- HERO ---- */
+    #header h1 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.08em;
+      color: var(--text-main) !important;
+      font-size: 1.15em;
+    }
+
+    #header h1 a { color: inherit; text-decoration: none; }
+
+    #header nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    #header nav ul li a {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.7em;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      padding: 0 0.6em;
+    }
+
+    #header nav ul li a:hover,
+    #header nav ul li a.active { color: var(--sage) !important; }
+
+    /* ── HERO ── */
     .hero {
+      margin-top: 3.5em;
       position: relative;
-      height: 70vh;
-      min-height: 420px;
-      background: url("images/publications.jpg") center center / cover no-repeat;
+      height: 38vh;
+      min-height: 240px;
       display: flex;
       align-items: flex-end;
-      padding-bottom: 4em;
-      margin-top: 3em;
+      padding-bottom: 3em;
+      overflow: hidden;
     }
 
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(30,33,35,0.2) 0%, rgba(30,33,35,0.65) 100%);
+      background: linear-gradient(to bottom, rgba(6,10,6,0.0) 0%, rgba(6,10,6,0.65) 100%);
+      pointer-events: none;
+    }
+
+    .hero-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #8b4513 0%, #c9a055 28%, #7aac6e 60%, #4a9a8a 100%);
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 860px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2em;
+      padding: 0 2.5em;
       width: 100%;
-      color: #fff;
     }
 
     .hero-content .label {
-      font-family: "Jost", sans-serif;
-      font-size: 0.75em;
-      font-weight: 500;
-      letter-spacing: 0.2em;
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      opacity: 0.75;
+      color: var(--sage);
       margin-bottom: 0.6em;
+      opacity: 0.85;
+      display: block;
     }
 
     .hero-content h1 {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 300;
-      font-size: clamp(2.8em, 6vw, 4.5em);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: clamp(2.8rem, 6vw, 5rem) !important;
+      letter-spacing: 0.06em;
+      color: #ffffff !important;
+      line-height: 1.0;
     }
 
-    /* ---- MAIN CONTENT ---- */
+    /* ── PAGE BODY ── */
     .page-body {
-      max-width: 860px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 5em 2em 6em;
+      padding: 4em 2.5em 7em;
     }
 
+    /* ── SECTION LABEL ── */
     .section-label {
-      font-family: "Jost", sans-serif;
-      font-size: 0.72em;
-      font-weight: 500;
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.8em;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      opacity: 0.85;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--box-border);
+    }
+
+    /* ── INTRO BLOCK ── */
+    .intro-block {
+      background: var(--box-bg) !important;
+      border: 1px solid var(--box-border) !important;
+      border-left: 3px solid var(--amber) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2em 2.5em !important;
+      margin-bottom: 3em;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3em;
+      flex-wrap: wrap;
+    }
+
+    .intro-block:hover {
+      border-color: var(--box-border-hover) !important;
+      border-left-color: var(--sage) !important;
+      background: rgba(8,12,8,0.88) !important;
+    }
+
+    .intro-block p {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.92em !important;
+      line-height: 1.85 !important;
+      color: var(--text-muted) !important;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 2.5em;
+      flex-shrink: 0;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: 2.4em !important;
+      color: var(--text-main) !important;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      display: block;
+    }
+
+    .stat-label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em;
+      font-weight: 400 !important;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2em;
+      color: var(--text-muted) !important;
+      margin-top: 0.3em;
+      display: block;
     }
 
-    /* ---- FILTER BAR ---- */
-    .filter-bar {
-      display: flex;
-      gap: 0.6em;
-      flex-wrap: wrap;
-      margin-bottom: 3.5em;
-      padding-bottom: 3.5em;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .filter-btn {
-      font-family: "Jost", sans-serif;
-      font-size: 0.78em;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: var(--mid);
-      border: 1px solid var(--border);
-      background: none;
-      padding: 0.4em 1.1em;
-      border-radius: 2em;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    /* ---- YEAR GROUPS ---- */
-    .year-group {
-      margin-bottom: 4em;
-    }
-
-    .year-heading {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2.5em;
-      font-weight: 300;
-      color: var(--border);
-      line-height: 1;
-      margin-bottom: 1.5em;
-    }
-
-    /* ---- PAPER ENTRIES ---- */
-    .paper {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1.5em;
-      align-items: start;
-      padding: 1.8em 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .paper:first-of-type {
-      border-top: 1px solid var(--border);
-    }
-
-    .paper-meta .authors {
-      font-size: 0.82em;
-      color: var(--mid);
-      margin-bottom: 0.3em;
-    }
-
-    .paper-meta .title {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 600;
-      font-size: 1.12em;
-      color: var(--dark);
-      line-height: 1.3;
-      margin-bottom: 0.4em;
-    }
-
-    .paper-meta .journal {
-      font-size: 0.82em;
-      color: var(--mid);
-      font-style: italic;
-    }
-
-    .paper-meta .journal strong {
-      font-style: normal;
-      font-weight: 500;
-      color: var(--dark);
-    }
-
-    .paper-tags {
-      display: flex;
-      gap: 0.4em;
-      margin-top: 0.7em;
-      flex-wrap: wrap;
-    }
-
-    .paper-tag {
-      font-size: 0.7em;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--mid);
-      border: 1px solid var(--border);
-      padding: 0.2em 0.7em;
-      border-radius: 2em;
-    }
-
-    .paper-links {
+    /* ── YEAR ACCORDION ── */
+    .year-list {
       display: flex;
       flex-direction: column;
-      gap: 0.5em;
-      align-items: flex-end;
-      padding-top: 0.2em;
+      gap: 0;
     }
 
-    .paper-links a {
-      font-family: "Jost", sans-serif;
-      font-size: 0.75em;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent-light);
-      padding-bottom: 0.1em;
-      transition: color 0.2s;
-      white-space: nowrap;
+    .year-block {
+      border: 1px solid var(--box-border);
+      border-bottom: none;
+      background: var(--box-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: background 0.25s ease;
     }
 
-    .paper-links a:hover { color: var(--dark); }
+    .year-block:first-child {
+      border-top: 1px solid var(--box-border);
+    }
 
-    /* ---- SCHOLAR LINK ---- */
-    .scholar-block {
-      margin-top: 4em;
-      padding: 2.5em 3em;
-      background: var(--cream);
+    .year-block:last-child {
+      border-bottom: 1px solid var(--box-border);
+    }
+
+    .year-block.open {
+      background: rgba(8,14,8,0.90);
+    }
+
+    .year-trigger {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 2em;
+      padding: 0.85em 1.8em;
+      cursor: pointer;
+      user-select: none;
+      border-left: 3px solid transparent;
+      transition: border-color 0.25s ease, background 0.25s ease;
+      list-style: none;
+    }
+
+    .year-trigger::-webkit-details-marker { display: none; }
+
+    .year-block.open .year-trigger {
+      border-left-color: var(--sage);
+    }
+
+    .year-trigger:hover {
+      background: rgba(122,172,110,0.05);
+      border-left-color: var(--sage);
+    }
+
+    .year-trigger-left {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2em;
+    }
+
+    .year-num {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: 1.6em !important;
+      color: var(--text-main) !important;
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+
+    .year-count {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted) !important;
+    }
+
+    .year-arrow {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .year-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--text-muted);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    .year-block.open .year-arrow {
+      transform: rotate(180deg);
+    }
+
+    .year-block.open .year-arrow svg {
+      stroke: var(--sage);
+    }
+
+    .year-body {
+      display: none;
+      padding: 0 1.8em 1.4em 3.1em;
+      border-top: 1px solid var(--box-border);
+    }
+
+    .year-block.open .year-body {
+      display: block;
+    }
+
+    /* ── PUBLICATION ENTRY ── */
+    .pub-entry {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.2em;
+      padding: 0.85em 0;
+      border-bottom: 1px solid rgba(122,172,110,0.08);
+      transition: background 0.2s ease;
+      position: relative;
+    }
+
+    .pub-entry:last-child {
+      border-bottom: none;
+    }
+
+    .pub-entry:hover {
+      background: rgba(122,172,110,0.03);
+    }
+
+    .pub-num {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.62em;
+      font-weight: 400 !important;
+      color: rgba(122,172,110,0.35) !important;
+      letter-spacing: 0.08em;
+      min-width: 2em;
+      text-align: right;
+      padding-top: 0.18em;
+      flex-shrink: 0;
+    }
+
+    .pub-content { flex: 1; }
+
+    .pub-authors {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.8em !important;
+      color: var(--text-muted) !important;
+      line-height: 1.55 !important;
+      letter-spacing: 0.01em;
+    }
+
+    .pub-authors em {
+      font-family: 'Jost', sans-serif !important;
+      font-style: normal !important;
+      font-weight: 500 !important;
+      color: var(--text-main) !important;
+    }
+
+    .pub-title {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      font-size: 1.05em !important;
+      color: var(--text-main) !important;
+      line-height: 1.35;
+      margin: 0.18em 0 0.22em;
+      letter-spacing: 0.02em;
+    }
+
+    .pub-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8em;
       flex-wrap: wrap;
     }
 
-    .scholar-block p {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.3em;
-      font-weight: 300;
-      color: var(--dark);
-      line-height: 1.4;
+    .pub-journal {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-style: italic !important;
+      font-weight: 400 !important;
+      font-size: 0.88em !important;
+      color: var(--amber) !important;
+      letter-spacing: 0.02em;
     }
 
-    .btn {
-      display: inline-block;
-      font-family: "Jost", sans-serif;
-      font-size: 0.8em;
-      font-weight: 500;
+    .pub-doi {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.62em !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.10em;
+      color: rgba(122,172,110,0.55) !important;
+      text-decoration: none;
+      text-transform: uppercase;
+      border: 1px solid rgba(122,172,110,0.20);
+      padding: 0.15em 0.55em;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .pub-doi:hover {
+      color: var(--sage) !important;
+      border-color: rgba(122,172,110,0.55);
+    }
+
+    .pub-tag {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em !important;
+      font-weight: 500 !important;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #fff;
-      background: var(--accent);
-      text-decoration: none;
-      padding: 0.9em 2.2em;
-      border-radius: 3em;
-      transition: background 0.2s;
-      white-space: nowrap;
+      padding: 0.15em 0.55em;
+      border-radius: 2em;
     }
 
-    .btn:hover { background: var(--accent-light); }
+    .tag-book  { background: rgba(201,160,85,0.12); color: var(--amber); border: 1px solid rgba(201,160,85,0.25); }
+    .tag-preprint { background: rgba(168,78,42,0.12); color: #d4825a; border: 1px solid rgba(168,78,42,0.25); }
 
-    /* ---- FOOTER ---- */
+    /* ── EMPTY YEAR ── */
+    .year-empty {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.78em;
+      font-weight: 300 !important;
+      color: rgba(138,141,130,0.40) !important;
+      font-style: italic;
+      padding: 1.1em 0 0.4em;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── FOOTER ── */
     #footer {
-      background: #2a2d2e;
-      color: rgba(185,186,187,0.55);
-      padding: 1.5em 2em;
+      background: rgba(4, 6, 4, 0.92) !important;
+      border-top: 1px solid var(--box-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.5em 2.5em;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.82em;
       flex-wrap: wrap;
       gap: 0.8em;
     }
 
-    #footer a { color: inherit; text-decoration: none; }
-    #footer a:hover { color: #b9babb; }
-    #footer ul { list-style: none; display: flex; gap: 1.2em; }
+    #footer ul.icons { list-style: none; display: flex; gap: 0; }
 
-    /* ---- RESPONSIVE ---- */
-    @media (max-width: 700px) {
-      .paper { grid-template-columns: 1fr; }
-      .paper-links { flex-direction: row; align-items: flex-start; }
-      .scholar-block { flex-direction: column; align-items: flex-start; }
+    #footer ul.icons li a {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 400 !important;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+      font-size: 0.85em;
+      padding: 0 0.5em;
+      transition: color 0.25s ease;
+    }
+
+    #footer ul.icons li a:hover { color: var(--sage) !important; }
+
+    #footer ul.menu { list-style: none; display: flex; gap: 0; }
+
+    #footer ul.menu li,
+    #footer ul.menu li a {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.78em !important;
+      letter-spacing: 0.08em;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+    }
+
+    #footer ul.menu li + li::before {
+      content: '|';
+      padding: 0 0.75em;
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    #footer ul.menu li a:hover { color: var(--sage) !important; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
       #header nav { display: none; }
+      .stats-row { gap: 1.5em; }
+      .intro-block { gap: 1.5em; }
+    }
+
+    @media (max-width: 560px) {
+      .page-body { padding: 3em 1.2em 5em; }
+      .hero-content { padding: 0 1.2em; }
+      .year-body { padding: 0 1em 1.2em 1.8em; }
+      .year-trigger { padding: 0.8em 1em; }
+      .stats-row { flex-wrap: wrap; gap: 1.2em; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- ── HEADER ── -->
   <header id="header">
-    <h1><a href="index.html">Lab Name</a></h1>
+    <h1><a href="index.html">Quatrini Lab</a></h1>
     <nav>
-      <a href="index.html#research">Research</a>
-      <a href="index.html#team">Team</a>
-      <a href="index.html#outreach">Outreach</a>
-      <a href="publications.html" class="active">Publications</a>
-      <a href="index.html#contact">Contact</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="outreach.html">Outreach</a></li>
+        <li><a href="publications.html" class="active">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- ── HERO ── -->
   <section class="hero">
     <div class="hero-content">
-      <div class="label">Our Output</div>
+      <span class="label">// scientific output</span>
       <h1>Publications</h1>
     </div>
+    <div class="hero-bar"></div>
   </section>
 
-  <!-- Body -->
+  <!-- ── PAGE BODY ── -->
   <main class="page-body">
 
-    <!-- Filter -->
-    <div class="section-label">Filter by Topic</div>
-    <div class="filter-bar">
-      <button class="filter-btn active">All</button>
-      <button class="filter-btn">Microbial Evolution</button>
-      <button class="filter-btn">Acid Mine Drainage</button>
-      <button class="filter-btn">Genomics</button>
-      <button class="filter-btn">Ecology</button>
-      <button class="filter-btn">Biogeochemistry</button>
-    </div>
-
-    <!-- 2025 -->
-    <div class="year-group">
-      <div class="year-heading">2025</div>
-
-      <div class="paper">
-        <div class="paper-meta">
-          <div class="authors">Surname A, Surname B, Your Name, Surname C</div>
-          <div class="title">Full title of the paper goes here in this space and can be long</div>
-          <div class="journal"><em>Journal Name</em>, <strong>Vol(Issue)</strong>, pages. doi:10.xxxx</div>
-          <div class="paper-tags">
-            <span class="paper-tag">Microbial Evolution</span>
-            <span class="paper-tag">Genomics</span>
-          </div>
+    <!-- INTRO / STATS -->
+    <div class="section-label">Overview</div>
+    <div class="intro-block">
+      <p>
+        Peer-reviewed articles, book chapters, conference proceedings, and preprints
+        from the Quatrini Lab. Our work spans microbial genomics, extreme environment
+        ecology, experimental evolution, and applied biotechnology — from the Atacama
+        to the global acidophile literature.
+      </p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num">90+</span>
+          <span class="stat-label">Publications</span>
         </div>
-        <div class="paper-links">
-          <a href="#">PDF</a>
-          <a href="#">DOI</a>
+        <div class="stat-item">
+          <span class="stat-num">22</span>
+          <span class="stat-label">Years Active</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">2001</span>
+          <span class="stat-label">First Record</span>
         </div>
       </div>
-
     </div>
 
-    <!-- 2024 -->
-    <div class="year-group">
-      <div class="year-heading">2024</div>
-
-      <div class="paper">
-        <div class="paper-meta">
-          <div class="authors">Your Name, Surname B, Surname C</div>
-          <div class="title">Full title of the paper goes here in this space and can be long</div>
-          <div class="journal"><em>Journal Name</em>, <strong>Vol(Issue)</strong>, pages. doi:10.xxxx</div>
-          <div class="paper-tags">
-            <span class="paper-tag">Acid Mine Drainage</span>
-            <span class="paper-tag">Ecology</span>
-          </div>
-        </div>
-        <div class="paper-links">
-          <a href="#">PDF</a>
-          <a href="#">DOI</a>
-        </div>
-      </div>
-
-      <div class="paper">
-        <div class="paper-meta">
-          <div class="authors">Surname A, Your Name, Surname D, Surname E</div>
-          <div class="title">Full title of the second paper from this year goes here</div>
-          <div class="journal"><em>Journal Name</em>, <strong>Vol(Issue)</strong>, pages. doi:10.xxxx</div>
-          <div class="paper-tags">
-            <span class="paper-tag">Biogeochemistry</span>
-          </div>
-        </div>
-        <div class="paper-links">
-          <a href="#">PDF</a>
-          <a href="#">DOI</a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- 2023 -->
-    <div class="year-group">
-      <div class="year-heading">2023</div>
-
-      <div class="paper">
-        <div class="paper-meta">
-          <div class="authors">Your Name, Surname B</div>
-          <div class="title">Full title of the paper goes here in this space and can be long</div>
-          <div class="journal"><em>Journal Name</em>, <strong>Vol(Issue)</strong>, pages. doi:10.xxxx</div>
-          <div class="paper-tags">
-            <span class="paper-tag">Microbial Evolution</span>
-          </div>
-        </div>
-        <div class="paper-links">
-          <a href="#">PDF</a>
-          <a href="#">DOI</a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Google Scholar CTA -->
-    <div class="scholar-block">
-      <p>Full publication list available on Google Scholar and ORCID.</p>
-      <a href="#" class="btn">Google Scholar</a>
-    </div>
+    <!-- YEAR ACCORDION -->
+    <div class="section-label">By Year</div>
+    <div class="year-list" id="yearList"></div>
 
   </main>
 
-  <!-- Footer -->
+  <!-- ── FOOTER ── -->
   <footer id="footer">
-    <span>&copy; Lab Name. All rights reserved.</span>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#team">Team</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+    <ul class="icons">
+      <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+      <li><a href="#" class="icon brands fa-researchgate"><span class="label">ResearchGate</span></a></li>
+    </ul>
+    <ul class="menu">
+      <li>&copy; Quatrini Lab</li>
+      <li><a href="https://html5up.net">HTML5 UP</a></li>
     </ul>
   </footer>
+
+  <script>
+    const data = {
+      2026: [],
+      2025: [],
+      2024: [],
+      2023: [],
+      2022: [
+        {
+          authors: "Salgado O, Guajardo-Leiva S, Moya-Beltr\u00e1n A, Barbosa C, Ridley CM, Tamayo J, Quatrini R, Mojica FJM, Diez B.",
+          title: "Global phylogenomic novelty of the Cas1 gene from hot spring microbial communities.",
+          journal: "Front. Microbiol.",
+          ref: "13: 1069452.",
+          doi: "10.3389/fmicb.2022.1069452",
+          tag: null
+        },
+        {
+          authors: "Quatrini R, Watkin ELJ, Johnson DB.",
+          title: "Biomolecular and Cultivation Tools.",
+          journal: "BIOMINING TECHNOLOGIES: Extracting and Recovering Metals from Ores and Wastes.",
+          ref: "Springer-Verlag. Chapter 6, 111-131. ISBN: 978-3-031-05381-8.",
+          doi: "10.1007/978-3-031-05382-5_6",
+          tag: "book"
+        }
+      ],
+      2021: [
+        {
+          authors: "Moya-Beltr\u00e1n A, Makarova KS, Acu\u00f1a LG, Wolf YI, Covarrubias PC, Shmakov SA, Silva C, Tolstoy I, Johnson DB, Koonin EV, Quatrini R.",
+          title: "Evolution of Type IV CRISPR-Cas systems: insights from CRISPR loci in Integrative Conjugative Elements of Acidithiobacillia.",
+          journal: "CRISPR J.",
+          ref: "4:656-672.",
+          doi: "10.1089/crispr.2021.0051",
+          tag: null
+        },
+        {
+          authors: "Degli Esposti M, Moya-Beltran A, Quatrini R, Hedersted L.",
+          title: "Respiratory Heme A-containing oxidases originated in the ancestors of iron-oxidizing bacteria.",
+          journal: "Front. Microbiol.",
+          ref: "12: 664216.",
+          doi: "10.3389/fmicb.2021.664216",
+          tag: null
+        },
+        {
+          authors: "Moya-Beltr\u00e1n A, Beard S, Rojas-Villalobos C, Issotta F, Gallardo Y, Ulloa R, Giaveno A, Degli Esposti M, Johnson DB, Quatrini R.",
+          title: "Genomic evolution of the class Acidithiobacillia: deep branching Proteobacteria living in extreme acidic conditions.",
+          journal: "ISME J.",
+          ref: "15:3221-3238.",
+          doi: "10.1038/s41396-021-00995-x",
+          tag: null
+        },
+        {
+          authors: "Beard S, Ossand\u00f3n FJ, Rawlings DE, Quatrini R.",
+          title: "The Flexible Genome of Acidophilic Prokaryotes.",
+          journal: "Curr. Issues Mol. Biol.",
+          ref: "40: 231-266.",
+          doi: "10.21775/cimb.040.231",
+          tag: null
+        }
+      ],
+      2020: [
+        {
+          authors: "Norris PR, Falag\u00e1n C, Moya-Beltr\u00e1n A, Castro M, Quatrini R, Johnson DB.",
+          title: "Acidithiobacillus ferrianus sp. nov.: an ancestral extremely acidophilic and facultatively anaerobic chemolithoautotroph.",
+          journal: "Extremophiles.",
+          ref: "24: 329-337.",
+          doi: "10.1007/s00792-020-01157-1",
+          tag: null
+        },
+        {
+          authors: "Johnson DB, Quatrini R.",
+          title: "Acidophile Microbiology in Space and Time.",
+          journal: "Curr. Issues Mol. Biol.",
+          ref: "39: 63-76.",
+          doi: "10.21775/cimb.039.06",
+          tag: null
+        },
+        {
+          authors: "Degli Esposti M, Garcia-Meza V, Ceniceros Gomez A, Moya-Beltran A, Quatrini R, Hedersted L.",
+          title: "Heme A-containing oxidases evolved in the ancestors of iron oxidizing bacteria.",
+          journal: "bioRxiv",
+          ref: "2020.03.01.968255.",
+          doi: "10.1101/2020.03.01.968255",
+          tag: "preprint"
+        },
+        {
+          authors: "Gonzalez D, Huber K, Tindall B, Hedrich S, Rojas-Villalobos C, Quatrini R, Dinamarca MA, Ibacache-Quiroga C, Schwarz A, Canales C, Nancucheo I.",
+          title: "Acidiferrimicrobium australe gen. nov., sp. nov., an acidophilic and obligately heterotrophic, member of the Actinobacteria that catalyses dissimilatory oxido-reduction of iron isolated from metal-rich acidic water in Chile.",
+          journal: "Int. J. Syst. Evol. Micr.",
+          ref: "70: 3348-3354.",
+          doi: "10.1099/ijsem.0.004179",
+          tag: null
+        },
+        {
+          authors: "Saavedra F, Gurard-Levin ZA, Rojas-Villalobos C, Vassias I, Quatrini R, Almouzni G, Loyola A.",
+          title: "JMJD1B, a novel player in histone H3 and H4 processing to ensure genome stability.",
+          journal: "Epigenetics Chromatin.",
+          ref: "13:6.",
+          doi: "10.1186/s13072-020-00331-1",
+          tag: null
+        }
+      ],
+      2019: [
+        {
+          authors: "Quatrini R, Johnson DB.",
+          title: "Acidithiobacillus ferrooxidans.",
+          journal: "Trends Microbiol.",
+          ref: "27: 282.",
+          doi: "10.1016/j.tim.2018.11.009",
+          tag: null
+        },
+        {
+          authors: "Moya-Beltr\u00e1n A, Rojas-Villalobos C, D\u00edaz M, Guiliani N, Quatrini R, Castro M.",
+          title: "Nucleotide second messenger-based signaling in extreme acidophiles of the Acidithiobacillus species complex: partition between the core and variable gene complements.",
+          journal: "Front. Microbiol.",
+          ref: "10: 381.",
+          doi: "10.3389/fmicb.2019.00381",
+          tag: null
+        },
+        {
+          authors: "Ulloa R, Moya-Beltr\u00e1n A, Rojas-Villalobos C, Nu\u00f1ez H, Chiacchiarini P, Donati E, Giaveno A, Quatrini R.",
+          title: "Domestication of local microbial consortia for efficient recovery of gold through top-down selection in airlift bioreactors.",
+          journal: "Front. Microbiol.",
+          ref: "10: 60.",
+          doi: "10.3389/fmicb.2019.0006",
+          tag: null
+        },
+        {
+          authors: "Flores-R\u00edos R, Moya-Beltr\u00e1n A, Pareja-Barrueto C, Arenas-Salinas M, Valenzuela S, Orellana O, Quatrini R.",
+          title: "The Type IV Secretion System of ICEAfe1: formation of a conjugative pilus in Acidithiobacillus ferrooxidans.",
+          journal: "Front. Microbiol.",
+          ref: "10: 30.",
+          doi: "10.3389/fmicb.2019.00030",
+          tag: null
+        },
+        {
+          authors: "Flores-Rios R, Quatrini R, Loyola A.",
+          title: "Endogenous and Foreign Nucleoid-Associated Proteins of Bacteria: occurrence, interactions and effects on Mobile Genetic Elements and host's biology.",
+          journal: "Comput. Struct. Biotechnol. J.",
+          ref: "17: 746.",
+          doi: "10.1016/j.csbj.2019.06.010",
+          tag: null
+        }
+      ],
+      2018: [
+        {
+          authors: "Quatrini R, Johnson DB.",
+          title: "Microbiomes in extremely acidic environments: functionalities and interactions that allow survival and growth of prokaryotes at low pH.",
+          journal: "Curr. Opin. Microbiol.",
+          ref: "43: 139-147.",
+          doi: "10.1016/j.mib.2018.01.011",
+          tag: null
+        },
+        {
+          authors: "Covarrubias PC, Moya-Beltr\u00e1n A, Atavales J, Moya-Flores F, Tapia PS, Acu\u00f1a LG, Spinelli S, Quatrini R.",
+          title: "Occurrence, integrity and functionality of AcaML1-like viruses infecting extreme acidophiles of the Acidithiobacillus species complex.",
+          journal: "Res Microbiol.",
+          ref: "169: 628-637.",
+          doi: "10.1016/j.resmic.2018.07.005",
+          tag: null
+        },
+        {
+          authors: "Issotta F, Moya-Beltr\u00e1n A, Mena C, Covarrubias PC, Thyssen C, Bellenberg S, Sand W, Quatrini R, Vera M.",
+          title: "Insights into the biology of acidophilic members of the Acidiferrobacteraceae family derived from comparative genomic analyses.",
+          journal: "Res Microbiol.",
+          ref: "169: 608-617.",
+          doi: "10.1016/j.resmic.2018.08.001",
+          tag: null
+        }
+      ],
+      2017: [
+        {
+          authors: "Nu\u00f1ez H, Moya-Beltr\u00e1n A, Covarrubias PC, Issotta F, Cardenas JP, Gonzalez M, Atavales J, Acu\u00f1a LG, Johnson DB, Quatrini R.",
+          title: "Molecular systematics of the genus Acidithiobacillus: insights into the phylogenetic structure and diversification of the taxon.",
+          journal: "Front. Microbiol.",
+          ref: "8:30.",
+          doi: "10.3389/fmicb.2017.00030",
+          tag: null
+        },
+        {
+          authors: "Castro-Severyn J, Remonsellez F, Salinas C, Valenzuela SL, Fortt J, Aguilar P, Pardo-Est\u00e9 C, Aguayo D, Dorador C, Quatrini R, Molina F, Castro-Nallar E, Saavedra CP.",
+          title: "Comparative genomics analysis of a new Exiguobacterium strain from Salar de Huasco reveals a repertoire of stress-related genes and arsenic resistance.",
+          journal: "Front. Microbiol.",
+          ref: "8:456.",
+          doi: "10.3389/fmicb.2017.00456",
+          tag: null
+        },
+        {
+          authors: "Valdebenito-Maturana B, Reyes-Suarez JA, Henr\u00edquez J, Holmes DS, Quatrini R, Pohl E, Arenas-Salinas M.",
+          title: "Mutantelec: an in silico mutation simulation platform for comparative electrostatic potential profiling of proteins.",
+          journal: "J. Comput. Chem.",
+          ref: "38: 467-474.",
+          doi: "10.1002/jcc.24712",
+          tag: null
+        },
+        {
+          authors: "Castillo A, Tello M, Ringwald K, Acu\u00f1a LG, Quatrini R, Orellana O.",
+          title: "A DNA segment encoding the anticodon stem/loop of tRNA determines the specific recombination of integrative-conjugative elements in Acidithiobacillus species.",
+          journal: "RNA Biol.",
+          ref: "20:1-8.",
+          doi: "10.1080/15476286.2017.1408765",
+          tag: null
+        },
+        {
+          authors: "Quatrini R, Escudero LV, Moya-Beltr\u00e1n A, Galleguillos PA, Issotta F, Acosta M, C\u00e1rdenas JP, Nu\u00f1ez H, Salinas K, Holmes DS, Demergasso C.",
+          title: "Draft genome sequence of Acidithiobacillus thiooxidans CLST isolated from the acidic hypersaline Gorbea salt flat in northern Chile.",
+          journal: "Stand. Genom. Sci.",
+          ref: "12: 84.",
+          doi: "10.1186/s40793-017-0305-8",
+          tag: null
+        },
+        {
+          authors: "Castro M, Moya-Beltr\u00e1n A, Covarrubias PC, Gonzalez M, Cardenas JP, Issotta F, Nu\u00f1ez H, Acu\u00f1a LG, Encina G, Holmes DS, Johnson DB, Quatrini R.",
+          title: "Draft genome sequence of the type strain of the sulfur-oxidizing acidophile, Acidithiobacillus albertensis (DSM 14366).",
+          journal: "Stand. Genom. Sci.",
+          ref: "12: 77.",
+          doi: "10.1186/s40793-017-0282-y",
+          tag: null
+        },
+        {
+          authors: "Issotta F, Bobadilla-Fazzini R, Moya-Beltr\u00e1n A, Covarrubias P, Quatrini R, Martinez P.",
+          title: "Genetic basis of metal resistance in Acidiphilium sp. DSM 27270 (Yenapatur).",
+          journal: "Solid State Phenom.",
+          ref: "262: 358-363.",
+          doi: "10.4028/www.scientific.net/SSP.262.358",
+          tag: null
+        },
+        {
+          authors: "Issotta F, Covarrubias PC, Moya-Beltr\u00e1n A, Bellenberg S, Thyssen C, Wolfgang S, Nu\u00f1ez H, Mena C, Holmes DS, Quatrini R, Vera M.",
+          title: "16S rRNA and Multilocus Phylogenetic Analysis of the Iron Oxidizing Acidophiles of the Acidiferrobacteraceae Family.",
+          journal: "Solid State Phenom.",
+          ref: "262: 339-343.",
+          doi: "10.4028/www.scientific.net/SSP.262.339",
+          tag: null
+        },
+        {
+          authors: "Ulloa R, Moya-Beltr\u00e1n A, Issotta F, Nu\u00f1ez H, Covarrubias PC, Donati ER, Quatrini R, Giaveno A.",
+          title: "Metagenome-derived draft genome sequence of Acidithiobacillus ferroxidans RV1 from an abandoned gold tailing in Neuqu\u00e9n, Argentina.",
+          journal: "Solid State Phenom.",
+          ref: "262: 439-442.",
+          doi: "10.4028/www.scientific.net/SSP.262.439",
+          tag: null
+        },
+        {
+          authors: "Flores-R\u00edos R, Moya-Beltr\u00e1n A, Covarrubias PC, Acu\u00f1a LG, Orellana O, Quatrini R.",
+          title: "Type IV secretion systems diversity in the Acidithiobacillus genus.",
+          journal: "Solid State Phenom.",
+          ref: "262: 429-433.",
+          doi: "10.4028/www.scientific.net/SSP.262.429",
+          tag: null
+        },
+        {
+          authors: "Covarrubias P, Mu\u00f1oz R, Bobadilla-Fazzini R, Martinez P, Quatrini R.",
+          title: "Are there viruses in industrial bioleaching econiches?",
+          journal: "Solid State Phenom.",
+          ref: "262: 521-525.",
+          doi: "10.4028/www.scientific.net/SSP.262.521",
+          tag: null
+        }
+      ],
+      2016: [
+        {
+          authors: "C\u00e1rdenas JP, Quatrini R, Holmes DS.",
+          title: "Aerobic Lineage of the Oxidative Stress Response Protein Rubrerythrin Emerged in an Ancient Microaerobic, (Hyper)Thermophilic Environment.",
+          journal: "Front. Microbiol.",
+          ref: "7:1822.",
+          doi: "10.3389/fmicb.2016.01822",
+          tag: null
+        },
+        {
+          authors: "C\u00e1rdenas JP, Quatrini R, Holmes DS.",
+          title: "Genomic and metagenomic challenges and opportunities for bioleaching: a mini-review.",
+          journal: "Res. Microbiol.",
+          ref: "167: 529-38.",
+          doi: "10.1016/j.resmic.2016.06.007",
+          tag: null
+        },
+        {
+          authors: "Nu\u00f1ez H, Covarrubias PC, Moya-Beltr\u00e1n A, Issotta F, Atavales J, Acu\u00f1a LG, Johnson DB, Quatrini R.",
+          title: "Detection, identification and typing of Acidithiobacillus species and strains: a review.",
+          journal: "Res. Microbiol.",
+          ref: "167: 555-67.",
+          doi: "10.1016/j.resmic.2016.05.006",
+          tag: null
+        },
+        {
+          authors: "Issotta F, Galleguillos P, Moya-Beltr\u00e1n A, Davis-Belmar CS, Rautenbach G, Covarrubias PC, Acosta-Grinok M, Ossandon FJ, Contador Y, Holmes DS, Mar\u00edn-Eliantonio S, Quatrini R, Demergasso C.",
+          title: "Draft genome sequence of chloride-tolerant Leptospirillum ferriphilum Sp-Cl from industrial bioleaching operations in northern Chile.",
+          journal: "Stand. Genom. Sci.",
+          ref: "11:19.",
+          doi: "10.1186/s40793-016-0142-1",
+          tag: null
+        }
+      ],
+      2015: [],
+      2014: [
+        {
+          authors: "Ossandon FJ, C\u00e1rdenas JP, Corbett M, Quatrini R, Holmes DS, Watkin E.",
+          title: "Draft genome sequence of the iron-oxidizing, acidophilic and halotolerant 'Thiobacillus prosperus' type strain DSM 5130.",
+          journal: "Genome Announc.",
+          ref: "2(5):e01042-14.",
+          doi: "10.1128/genomeA.01042-14",
+          tag: null
+        },
+        {
+          authors: "Nu\u00f1ez H, Loyola D, C\u00e1rdenas JP, Holmes DS, Johnson DB, Quatrini R.",
+          title: "Multi Locus Sequence Typing scheme for Acidithiobacillus caldus strain evaluation and differentiation.",
+          journal: "Res. Microbiol.",
+          ref: "S0923-2508(14)00116-8.",
+          doi: "10.1016/j.resmic.2014.07.014",
+          tag: null
+        },
+        {
+          authors: "Gonz\u00e1lez C, Yanquepe M, Cardenas JP, Valdes J, Quatrini R, Holmes DS, Dopson M.",
+          title: "Genetic variability of psychrotolerant Acidithiobacillus ferrivorans revealed by (meta)genomic analysis.",
+          journal: "Res. Microbiol.",
+          ref: "S0923-2508(14)00135-1.",
+          doi: "10.1016/j.resmic.2014.08.005",
+          tag: null
+        },
+        {
+          authors: "Moya-Beltr\u00e1n A, C\u00e1rdenas JP, Covarrubias PC, Issotta F, Ossandon FJ, Grail BM, Holmes DS, Quatrini R, Johnson DB.",
+          title: "Draft Genome Sequence of the Nominated Type Strain of \"Ferrovum myxofaciens,\" an Acidophilic, Iron-Oxidizing Betaproteobacterium.",
+          journal: "Genome Announc.",
+          ref: "2(4): e00834-14.",
+          doi: "10.1128/genomeA.00834-14",
+          tag: null
+        },
+        {
+          authors: "Arenas-Salinas M, Ortega-Salazar S, Gonzales-Nilo F, Pohl E, Holmes DS, Quatrini R.",
+          title: "AFAL: a web service for profiling amino acids surrounding ligands in proteins.",
+          journal: "J. Comput. Aided Mol. Des.",
+          ref: "28: 1069-1076.",
+          doi: "10.1007/s10822-014-9783-6",
+          tag: null
+        }
+      ],
+      2013: [
+        {
+          authors: "Molina-Quiroz RC, Loyola DE, Mu\u00f1oz-Villagr\u00e1n CM, Quatrini R, V\u00e1squez CC, P\u00e9rez-Donoso JM.",
+          title: "DNA, Cell Wall and General Oxidative Damage Underlie the Tellurite/Cefotaxime Synergistic Effect in Escherichia coli.",
+          journal: "PLoS One.",
+          ref: "8(11):e79499.",
+          doi: "10.1371/journal.pone.0079499",
+          tag: null
+        },
+        {
+          authors: "Acu\u00f1a LG, C\u00e1rdenas JP, Covarrubias PC, Haristoy JJ, Flores R, Nu\u00f1ez H, Riadi G, Shmaryahu A, Vald\u00e9s J, Dopson M, Rawlings DE, Banfield JF, Holmes DS, Quatrini R.",
+          title: "Architecture and Gene Repertoire of the Flexible Genome of the Extreme Acidophile Acidithiobacillus caldus.",
+          journal: "PLoS One.",
+          ref: "8(11):e78237.",
+          doi: "10.1371/journal.pone.0078237",
+          tag: null
+        },
+        {
+          authors: "Bustamante P, Covarrubias P, Levic\u00e1n G, Katz A, Tapia P, Bonnefoy V, Holmes DS, Quatrini R, Orellana O.",
+          title: "ICEAfe1, an actively excising integrative-conjugative element from the biomining bacterium Acidithiobacillus ferrooxidans.",
+          journal: "J. Mol. Microbiol. Biotech.",
+          ref: "22: 399-407.",
+          doi: "10.1159/00034666",
+          tag: null
+        },
+        {
+          authors: "Salazar CN, Acosta M, Galleguillos PA, Shmaryahu A, Quatrini R, Holmes DS, Demergasso CS.",
+          title: "Analysis of Gene Expression in Response to Copper Stress in Acidithiobacillus ferrooxidans Strain D2, Isolated from a Copper Bioleaching Operation.",
+          journal: "Adv. Mat. Res.",
+          ref: "825: 157-161.",
+          doi: "10.4028/www.scientific.net/AMR.825.157",
+          tag: null
+        },
+        {
+          authors: "Galleguillos PA, Music V, Acosta M, Salazar CN, Quatrini R, Shmaryahu A, Holmes DS, Vel\u00e1squez A, Espoz C, Pinilla C, Demergasso CS.",
+          title: "Temporal Dynamics of Genes Involved in Metabolic Pathways of C and N of Leptospirillum ferriphilum, in the Industrial Bioleaching Process of Escondida Mine, Chile.",
+          journal: "Adv. Mat. Res.",
+          ref: "825: 162-165.",
+          doi: "10.4028/www.scientific.net/AMR.825.162",
+          tag: null
+        }
+      ],
+      2012: [
+        {
+          authors: "Tapia P, Flores FM, Covarrubias PC, Acu\u00f1a LG, Holmes DS, Quatrini R.",
+          title: "Complete Genome Sequence of Temperate Bacteriophage AcaML1 from the Extreme Acidophile Acidithiobacillus caldus ATCC 51756.",
+          journal: "J. Virol.",
+          ref: "86:12452-12453.",
+          doi: "10.1128/JVI.02261-12",
+          tag: null
+        },
+        {
+          authors: "Norambuena J, Flores R, C\u00e1rdenas JP, Quatrini R, Ch\u00e1vez R, Levic\u00e1n G.",
+          title: "Thiol/Disulfide System Plays a Crucial Role in Redox Protection in the Acidophilic Iron-Oxidizing Bacterium Leptospirillum ferriphilum.",
+          journal: "PLoS One.",
+          ref: "7(9):e44576.",
+          doi: "10.1371/journal.pone.0044576",
+          tag: null
+        },
+        {
+          authors: "C\u00e1rdenas JP, Covarrubias P, Shmaryahu A, Demergasso C, Levic\u00e1n G, Holmes DS, Quatrini R.",
+          title: "Comparative genomics of the oxidative stress response in bioleaching microorganisms.",
+          journal: "Hydrometallurgy.",
+          ref: "127-128: 62-167.",
+          doi: "10.1016/j.hydromet.2012.07.014",
+          tag: null
+        }
+      ],
+      2011: [
+        {
+          authors: "Vald\u00e9s J, Ossandon F, Quatrini R, Dopson M, Holmes DS.",
+          title: "Draft genome sequence of the extreme acidiphillic biomining proteobacterium Acidithiobacillus thiooxidans ATCC 19377 provides insights into the evolution of the Acidithiobacillus genus.",
+          journal: "J. Bacteriol.",
+          ref: "193: 7003-7004.",
+          doi: "10.1128/JB.06281-11",
+          tag: null
+        }
+      ],
+      2010: [
+        {
+          authors: "C\u00e1rdenas JP, Vald\u00e9s J, Quatrini R, Duarte F, Holmes DS.",
+          title: "Lessons from the Genomes of Extremely Acidophilic Bacteria and Archaea with Special Emphasis on Bioleaching Microorganisms.",
+          journal: "Appl. Microbiol. Biotechnol.",
+          ref: "88: 605-620.",
+          doi: "10.1007/s00253-010-2795-9",
+          tag: null
+        },
+        {
+          authors: "Vald\u00e9s J, C\u00e1rdenas JP, Quatrini R, Esparza M, Osorio H, Duarte F, Lefimil C, Sepulveda R, Jedlicki E, Holmes DS.",
+          title: "Comparative genomics begins to unravel the ecophysiology of bioleaching.",
+          journal: "Hydrometallurgy.",
+          ref: "104: 471-476.",
+          doi: "10.1016/j.hydromet.2010.03.028",
+          tag: null
+        }
+      ],
+      2009: [
+        {
+          authors: "Quatrini R, Appia-Ayme C, Denis Y, Jedlicki E, Holmes DS, Bonnefoy V.",
+          title: "Extending the Models for Iron and Sulfur Oxidation in the extreme Acidophile Acidithiobacillus ferrooxidans.",
+          journal: "BMC Genomics.",
+          ref: "10:394.",
+          doi: "10.1186/1471-2164-10-394",
+          tag: null
+        },
+        {
+          authors: "Valdes J, Quatrini R, Hallberg K, Dopson M, Valenzuela PD, Holmes DS.",
+          title: "Draft genome sequence of the extremely acidophilic bacterium Acidithiobacillus caldus ATCC 51756 reveals metabolic versatility in the genus Acidithiobacillus.",
+          journal: "J. Bacteriol.",
+          ref: "191: 5877-5878.",
+          doi: "10.1128/JB.00843-09",
+          tag: null
+        },
+        {
+          authors: "Nieto PA, Covarrubias PC, Jedlicki E, Holmes DS, Quatrini R.",
+          title: "Selection and evaluation of reference genes for improved interrogation of microbial transcriptomes: case study with the extremophile Acidithiobacillus ferrooxidans.",
+          journal: "BMC Mol. Biol.",
+          ref: "10: 63.",
+          doi: "10.1186/1471-2199-10-63",
+          tag: null
+        },
+        {
+          authors: "Holmes DS, C\u00e1rdenas JP, Vald\u00e9s J, Quatrini R, Esparza M, Osorio H, Duarte F, Lefimil C, Jedlicki E.",
+          title: "Comparative genomics begins to unravel the ecophysiology of bioleaching.",
+          journal: "Adv. Mat. Res.",
+          ref: "71-73: 143-150.",
+          doi: "10.4028/www.scientific.net/AMR.71-73.143",
+          tag: null
+        },
+        {
+          authors: "Levic\u00e1n G, Katz A, Vald\u00e9s J, Quatrini R, Holmes DS, Orellana O.",
+          title: "A 300 kpb genome segment, including a complete set of tRNA genes, is dispensable for Acidithiobacillus ferrooxidans.",
+          journal: "Adv. Mat. Res.",
+          ref: "71-73: 187-190.",
+          doi: "10.4028/www.scientific.net/AMR.71-73.187",
+          tag: null
+        },
+        {
+          authors: "Lefimil C, Osorio H, Quatrini R, Holmes DS, Jedlicki E.",
+          title: "Regulation of expression of the PetI operon involved in iron oxidation in the biomining bacterium Acidithiobacillus ferrooxidans.",
+          journal: "Adv. Mat. Res.",
+          ref: "71-73: 199-202.",
+          doi: "10.4028/www.scientific.net/AMR.71-73.199",
+          tag: null
+        },
+        {
+          authors: "C\u00e1rdenas JP, Mart\u00ednez V, Covarrubias P, Holmes DS, Quatrini R.",
+          title: "Predicted CO/CO2 fixation in Ferroplasma spp. via a novel chimaeric pathway.",
+          journal: "Adv. Mat. Res.",
+          ref: "71-73: 219-222.",
+          doi: "10.4028/www.scientific.net/AMR.71-73.219",
+          tag: null
+        }
+      ],
+      2008: [
+        {
+          authors: "Osorio H, Mart\u00ednez V, Nieto PA, Holmes DS, Quatrini R.",
+          title: "Microbial iron management mechanisms in extremely acidic environments: comparative genomics evidence for diversity and versatility.",
+          journal: "BMC Microbiol.",
+          ref: "8: 203.",
+          doi: "10.1186/1471-2180-8-203",
+          tag: null
+        },
+        {
+          authors: "Vald\u00e9s J, Pedroso I, Quatrini R, Tettelin H, Eisen JA, Holmes DS.",
+          title: "Acidithiobacillus ferrooxidans Metabolism: From Genome Sequence to Industrial Applications.",
+          journal: "BMC Genomics.",
+          ref: "9: 597.",
+          doi: "10.1186/1471-2164-9-597",
+          tag: null
+        },
+        {
+          authors: "Osorio H, Mart\u00ednez V, Veloso FA, Pedroso I, Vald\u00e9s J, Jedlicki E, Holmes DS, Quatrini R.",
+          title: "Iron Homeostasis Strategies in acidophilic iron oxidizers: studies in Acidithiobacillus and Leptospirillum.",
+          journal: "Hydrometallurgy.",
+          ref: "94:175-179.",
+          doi: "10.1016/j.hydromet.2008.05.038",
+          tag: null
+        },
+        {
+          authors: "Vald\u00e9s J, Pedroso I, Quatrini R, Holmes DS.",
+          title: "Comparative Genome Analysis of Acidithiobacillus ferrooxidans, A. thiooxidans and A. caldus: insights into their Metabolism and Ecophysiology.",
+          journal: "Hydrometallurgy.",
+          ref: "94: 180-184.",
+          doi: "10.1016/j.hydromet.2008.05.039",
+          tag: null
+        }
+      ],
+      2007: [
+        {
+          authors: "Quatrini R, Lefimil C, Veloso F, Pedroso I, Holmes DS, Jedlicki E.",
+          title: "Bioinformatic prediction and experimental verification of Fur-regulated genes in the extreme acidophile Acidithiobacillus ferrooxidans.",
+          journal: "Nucleic Acids Res.",
+          ref: "35: 2153-2166.",
+          doi: "10.1093/nar/gkm068",
+          tag: null
+        },
+        {
+          authors: "Quatrini R, Mart\u00ednez V, Osorio H, Veloso FA, Pedroso I, Vald\u00e9s J, Jedlicki E, Holmes DS.",
+          title: "Iron Homeostasis Strategies in Acidophilic Iron Oxidizers: Comparative Genome Analysis.",
+          journal: "Adv. Mat. Res.",
+          ref: "20-21: 531-534.",
+          doi: "10.4028/www.scientific.net/AMR.20-21.531",
+          tag: null
+        },
+        {
+          authors: "Vald\u00e9s J, Pedroso I, Quatrini R, Hallberg K, Valenzuela PDT, Holmes DS.",
+          title: "Insights into the Metabolism and Ecophysiology of Three Acidithiobacilli Species by Comparative Genome Analysis.",
+          journal: "Adv. Mat. Res.",
+          ref: "20-21: 439-442.",
+          doi: "10.4028/www.scientific.net/AMR.20-21.439",
+          tag: null
+        }
+      ],
+      2006: [
+        {
+          authors: "Quatrini R, Appia-Ayme C, Denis Y, Ratouchniak J, Veloso F, Valdes J, Lefimil C, Silver S, Roberto F, Orellana O, Denizot F, Jedlicki E, Holmes DS, Bonnefoy V.",
+          title: "Insights into the Iron and Sulfur Energetic Metabolism of Acidthiobacillus ferrooxidans by Microarray Transcriptome Profiling.",
+          journal: "Hydrometallurgy.",
+          ref: "83: 263-272.",
+          doi: "10.1016/j.hydromet.2006.03.030",
+          tag: null
+        },
+        {
+          authors: "Appia-Ayme C, Quatrini R, Denis Y, Denizot F, Silver S, Roberto F, Veloso F, Valdes J, C\u00e1rdenas JP, Esparza M, Orellana O, Jedlicki E, Bonnefoy V, Holmes DS.",
+          title: "Microarray and Bioinformatic Analyses Suggest Models for Carbon Metabolism in the Autotroph Acidithiobacillus ferrooxidans.",
+          journal: "Hydrometallurgy.",
+          ref: "83: 273-280.",
+          doi: "10.1016/j.hydromet.2006.03.029",
+          tag: null
+        }
+      ],
+      2005: [
+        {
+          authors: "Quatrini R, Lefimil C, Holmes DS, Jedlicki E.",
+          title: "The Ferric Iron Uptake Regulator (Fur) from the Extreme Acidophile Acidithiobacillus ferrooxidans.",
+          journal: "Microbiology.",
+          ref: "151: 2005-2015.",
+          doi: "10.1099/mic.0.27581-0",
+          tag: null
+        },
+        {
+          authors: "Quatrini R, Jedlicki E, Holmes DS.",
+          title: "Genomic Insights into the Iron Uptake Mechanisms of the Biomining Microorganism Acidithiobacillus ferrooxidans.",
+          journal: "J. Ind. Microbiol. Biotechnol.",
+          ref: "32: 606-614.",
+          doi: "10.1007/s10295-005-0233-2",
+          tag: null
+        }
+      ],
+      2004: [],
+      2003: [
+        {
+          authors: "Barreto M, Quatrini R, Bueno S, Arraigada C, Vald\u00e9s J, Silver S, et al.",
+          title: "Aspects of the predicted physiology of Acidithiobacillus ferrooxidans deduced from an analysis of its partial genome sequence.",
+          journal: "Hydrometallurgy.",
+          ref: "71: 97-105.",
+          doi: "10.1016/S0304-386X(03)00145-2",
+          tag: null
+        }
+      ],
+      2002: [],
+      2001: [
+        {
+          authors: "Quatrini R, Albino A, Barg M.",
+          title: "Variaci\u00f3n morfol\u00f3gica y dieta en dos poblaciones de Liolaemus elongatus Koslowsky, 1896 (Iguania: Tropiduridae) del noroeste patag\u00f3nico.",
+          journal: "Revista Chilena de Historia Natural.",
+          ref: "74(3): 639-651.",
+          doi: "10.4067/S0716-078X2001000300010",
+          tag: null
+        }
+      ]
+    };
+
+    const years = Object.keys(data).map(Number).sort((a, b) => b - a);
+    const list = document.getElementById('yearList');
+    const chevronSVG = `<svg viewBox="0 0 16 16"><polyline points="2,5 8,11 14,5"/></svg>`;
+
+    years.forEach((year, idx) => {
+      const pubs = data[year];
+      const count = pubs.length;
+      const isEmpty = count === 0;
+
+      const block = document.createElement('div');
+      block.className = 'year-block';
+      if (idx === 0) block.classList.add('open');
+
+      const trigger = document.createElement('div');
+      trigger.className = 'year-trigger';
+      trigger.innerHTML = `
+        <div class="year-trigger-left">
+          <span class="year-num">${year}</span>
+          <span class="year-count">${isEmpty ? 'no records' : count + ' publication' + (count !== 1 ? 's' : '')}</span>
+        </div>
+        <span class="year-arrow">${chevronSVG}</span>
+      `;
+
+      const body = document.createElement('div');
+      body.className = 'year-body';
+
+      if (isEmpty) {
+        body.innerHTML = `<p class="year-empty">No publications recorded for this year.</p>`;
+      } else {
+        pubs.forEach((pub, i) => {
+          const entry = document.createElement('div');
+          entry.className = 'pub-entry';
+
+          const tagHTML = pub.tag
+            ? `<span class="pub-tag tag-${pub.tag}">${pub.tag === 'book' ? 'Book Chapter' : 'Preprint'}</span>`
+            : '';
+
+          entry.innerHTML = `
+            <span class="pub-num">${String(i + 1).padStart(2, '0')}</span>
+            <div class="pub-content">
+              <div class="pub-authors">${pub.authors}</div>
+              <div class="pub-title">${pub.title}</div>
+              <div class="pub-meta">
+                <span class="pub-journal">${pub.journal}</span>
+                <span class="pub-authors" style="color:var(--text-muted) !important;">${pub.ref}</span>
+                ${tagHTML}
+                <a class="pub-doi" href="https://doi.org/${pub.doi}" target="_blank" rel="noopener">doi</a>
+              </div>
+            </div>
+          `;
+          body.appendChild(entry);
+        });
+      }
+
+      trigger.addEventListener('click', () => {
+        const isOpen = block.classList.contains('open');
+        block.classList.toggle('open', !isOpen);
+      });
+
+      block.appendChild(trigger);
+      block.appendChild(body);
+      list.appendChild(block);
+    });
+  </script>
 
 </body>
 </html>

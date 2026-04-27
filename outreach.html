@@ -1,536 +1,1231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outreach</title>
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Outreach | Quatrini Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --accent: #98c593;
-            --accent-dark: #6fa869;
-            --text: #39454b;
-            --light-bg: #f5f6f7;
-            --white: #ffffff;
-            --border: #e5e6e7;
-        }
+    :root {
+      --sage:        #7aac6e;
+      --amber:       #c9a055;
+      --rust:        #a84e2a;
+      --teal:        #4a9a8a;
+      --text-main:   #ddd8cc;
+      --text-muted:  #8a8d82;
+      --box-bg:      rgba(8, 12, 8, 0.80);
+      --box-border:  rgba(122, 172, 110, 0.22);
+      --box-border-hover: rgba(122, 172, 110, 0.50);
+      --sage-dim:    rgba(122,172,110,0.12);
+      --amber-dim:   rgba(201,160,85,0.12);
+      --teal-dim:    rgba(74,154,138,0.12);
+      --lavender:    #8a7eb0;
+      --lavender-dim: rgba(138,126,176,0.12);
+    }
 
-        body {
-            font-family: "Jost", sans-serif;
-            font-weight: 300;
-            font-size: 17pt;
-            line-height: 1.75em;
-            color: var(--text);
-            background: var(--white);
-        }
+    html { scroll-behavior: smooth; }
 
-        /* ── Header ── */
-        #header {
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            background: rgba(255,255,255,0.97);
-            height: 3em;
-            line-height: 3em;
-            box-shadow: 0 0 0.15em 0 rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 1.5em;
-        }
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+      line-height: 1.8;
+      min-height: 100vh;
+      position: relative;
+    }
 
-        #header h1 a {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1.25em;
-            font-weight: 600;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: url('images/volcano.jpg') center center / cover no-repeat;
+      filter: blur(2px) brightness(0.8) saturate(0.75);
+      transform: scale(1.04);
+    }
 
-        #header nav ul {
-            list-style: none;
-            display: flex;
-            gap: 0.25em;
-        }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(6, 10, 6, 0.55);
+    }
 
-        #header nav ul li a {
-            font-family: "Jost", sans-serif;
-            font-size: 0.85em;
-            font-weight: 400;
-            color: var(--text);
-            text-decoration: none;
-            padding: 0 0.6em;
-            height: 3em;
-            line-height: 3em;
-            display: block;
-            transition: color 0.2s;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
+    *, body, input, select, textarea, button, p, li, span, div {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
 
-        #header nav ul li a:hover { color: var(--accent); }
-        #header nav ul li a.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.04em;
+    }
 
-        /* ── Hero Banner ── */
-        .page-hero {
-            margin-top: 3em;
-            width: 100%;
-            height: 38vh;
-            min-height: 260px;
-            background: url("images/outreach.jpg") center center / cover no-repeat;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    /* ── HEADER ── */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2em;
+      height: 3.5em;
+      background: rgba(6, 9, 6, 0.88) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--box-border);
+      z-index: 1000;
+    }
 
-        .page-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(30, 45, 35, 0.52);
-        }
+    #header h1 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.08em;
+      color: var(--text-main) !important;
+      font-size: 1.15em;
+    }
 
-        .page-hero-content {
-            position: relative;
-            text-align: center;
-            color: var(--white);
-        }
+    #header h1 a { color: inherit; text-decoration: none; }
 
-        .page-hero-content h2 {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 3.5em;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            line-height: 1em;
-        }
+    #header nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
 
-        .page-hero-content p {
-            font-family: "Jost", sans-serif;
-            font-weight: 300;
-            font-size: 0.75em;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-top: 0.75em;
-            opacity: 0.85;
-        }
+    #header nav ul li a {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.7em;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      padding: 0 0.6em;
+    }
 
-        /* ── Main Content ── */
-        .page-content {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 4em 2em 5em;
-        }
+    #header nav ul li a:hover { color: var(--sage) !important; }
+    #header nav ul li a.active { color: var(--sage) !important; }
 
-        /* ── Intro text ── */
-        .section-intro {
-            text-align: center;
-            margin-bottom: 3.5em;
-        }
+    /* ── HERO ── */
+    .hero {
+      margin-top: 3.5em;
+      position: relative;
+      height: 44vh;
+      min-height: 280px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 3.5em;
+      overflow: hidden;
+    }
 
-        .section-intro h3 {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1.9em;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.5em;
-            letter-spacing: -0.02em;
-        }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(6,10,6,0.0) 0%, rgba(6,10,6,0.65) 100%);
+      pointer-events: none;
+    }
 
-        .section-intro p {
-            font-size: 0.75em;
-            line-height: 1.9em;
-            color: #5a6a72;
-            max-width: 620px;
-            margin: 0 auto;
-        }
+    .hero-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #8b4513 0%, #c9a055 28%, #7aac6e 60%, #4a9a8a 100%);
+    }
 
-        /* ── Divider ── */
-        .divider {
-            width: 3em;
-            height: 2px;
-            background: var(--accent);
-            margin: 1.5em auto 2em;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5em;
+      width: 100%;
+    }
 
-        /* ── Outreach Cards ── */
-        .outreach-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2em;
-            margin-bottom: 3.5em;
-        }
+    .hero-content .label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.6em;
+      opacity: 0.85;
+    }
 
-        .outreach-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-top: 3px solid var(--accent);
-            padding: 2em 1.75em;
-            transition: box-shadow 0.25s, transform 0.25s;
-        }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: clamp(2.8rem, 6vw, 5rem) !important;
+      letter-spacing: 0.06em;
+      color: #ffffff !important;
+      line-height: 1.0;
+    }
 
-        .outreach-card:hover {
-            box-shadow: 0 0.4em 1.5em rgba(0,0,0,0.08);
-            transform: translateY(-3px);
-        }
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--sage);
+    }
 
-        .outreach-card .card-icon {
-            width: 2.5em;
-            height: 2.5em;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1em;
-        }
+    .hero-content p {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 1em !important;
+      color: rgba(220,215,205,0.75) !important;
+      margin-top: 0.7em;
+      max-width: 520px;
+      line-height: 1.8 !important;
+    }
 
-        .outreach-card .card-icon svg {
-            width: 1.1em;
-            height: 1.1em;
-            fill: var(--white);
-        }
+    /* ── PAGE BODY ── */
+    .page-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5em 2.5em 7em;
+    }
 
-        .outreach-card h4 {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1.25em;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.5em;
-            letter-spacing: -0.02em;
-        }
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 2em;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      opacity: 0.85;
+    }
 
-        .outreach-card p {
-            font-size: 0.65em;
-            line-height: 1.85em;
-            color: #5a6a72;
-        }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--box-border);
+    }
 
-        /* ── Activities list ── */
-        .activities-section {
-            background: var(--light-bg);
-            padding: 2.5em;
-            margin-bottom: 3.5em;
-        }
+    .section-gap { margin-top: 4.5em; }
 
-        .activities-section h3 {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1.6em;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 1.25em;
-            letter-spacing: -0.02em;
-        }
+    /* ── DOCUMENTARY BLOCK ── */
+    .documentary-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      border-left: 3px solid var(--amber);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      margin-bottom: 4em;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
 
-        .activity-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1em;
-            padding: 1em 0;
-            border-bottom: 1px solid var(--border);
-        }
+    .documentary-block:hover {
+      border-color: var(--box-border-hover);
+      border-left-color: var(--amber);
+    }
 
-        .activity-item:last-child { border-bottom: none; }
+    .doc-visual {
+      position: relative;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #060a06;
+    }
 
-        .activity-year {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1em;
-            font-weight: 600;
-            color: var(--accent-dark);
-            min-width: 3.5em;
-            padding-top: 0.1em;
-        }
+    .doc-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      opacity: 0.45;
+      filter: saturate(0.7);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
 
-        .activity-body h5 {
-            font-family: "Jost", sans-serif;
-            font-weight: 500;
-            font-size: 0.7em;
-            color: var(--text);
-            letter-spacing: 0.03em;
-            margin-bottom: 0.2em;
-        }
+    .documentary-block:hover .doc-visual img {
+      opacity: 0.6;
+      transform: scale(1.03);
+    }
 
-        .activity-body p {
-            font-size: 0.6em;
-            color: #6a7a82;
-            line-height: 1.7em;
-        }
+    .play-btn {
+      position: relative;
+      z-index: 2;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1px solid var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease;
+      text-decoration: none;
+    }
 
-        /* ── Contact / CTA ── */
-        .cta-box {
-            text-align: center;
-            padding: 2.5em 2em;
-            border: 1px solid var(--border);
-            position: relative;
-        }
+    .play-btn:hover {
+      background: rgba(201,160,85,0.18);
+      transform: scale(1.08);
+    }
 
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 3em; height: 2px;
-            background: var(--accent);
-        }
+    .doc-content {
+      padding: 2.8em 2.8em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.9em;
+    }
 
-        .cta-box h3 {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1.6em;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.5em;
-        }
+    .doc-tag {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0.9;
+    }
 
-        .cta-box p {
-            font-size: 0.65em;
-            color: #5a6a72;
-            margin-bottom: 1.5em;
-            line-height: 1.85em;
-        }
+    .doc-title {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem) !important;
+      font-weight: 400 !important;
+      color: var(--text-main) !important;
+      line-height: 1.2;
+    }
 
-        .btn-primary {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--white);
-            text-decoration: none;
-            padding: 0 2em;
-            height: 3em;
-            line-height: 3em;
-            border-radius: 3em;
-            font-family: "Jost", sans-serif;
-            font-size: 0.65em;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            transition: background 0.2s;
-        }
+    .doc-desc {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.88em !important;
+      color: var(--text-muted) !important;
+      line-height: 1.85 !important;
+    }
 
-        .btn-primary:hover { background: var(--accent-dark); }
+    .doc-meta {
+      display: flex;
+      gap: 1.5em;
+      flex-wrap: wrap;
+    }
 
-        .btn-secondary {
-            display: inline-block;
-            background: transparent;
-            color: var(--text);
-            text-decoration: none;
-            padding: 0 2em;
-            height: 3em;
-            line-height: calc(3em - 4px);
-            border-radius: 3em;
-            border: 2px solid var(--border);
-            font-family: "Jost", sans-serif;
-            font-size: 0.65em;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            transition: background 0.2s;
-            margin-left: 0.75em;
-        }
+    .doc-meta-item {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.68em !important;
+      color: var(--text-muted) !important;
+      letter-spacing: 0.08em;
+    }
 
-        .btn-secondary:hover { background: rgba(0,0,0,0.04); }
+    .section-btn-amber {
+      display: inline-block;
+      margin-top: 0.4em;
+      padding: 0.65em 2em;
+      border: 1px solid rgba(201,160,85,0.45) !important;
+      color: var(--amber) !important;
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 0.7em !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      align-self: flex-start;
+    }
 
-        /* ── Footer ── */
-        #footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.5em;
-            background: #39454b;
-            color: rgba(185,186,187,0.5);
-            font-size: 0.6em;
-        }
+    .section-btn-amber:hover {
+      background: rgba(201,160,85,0.10) !important;
+      border-color: var(--amber) !important;
+      color: #fff !important;
+    }
 
-        #footer a { color: inherit; text-decoration: none; }
-        #footer a:hover { color: rgba(185,186,187,0.9); }
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--box-border);
+      margin-bottom: 4.5em;
+      background: var(--box-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
 
-        #footer ul { list-style: none; display: flex; gap: 1em; }
+    .stat-cell {
+      padding: 2em 1.5em;
+      border-right: 1px solid var(--box-border);
+      text-align: center;
+    }
 
-        /* ── Responsive ── */
-        @media screen and (max-width: 768px) {
-            body { font-size: 13pt; }
-            .page-hero-content h2 { font-size: 2.5em; }
-            .outreach-grid { grid-template-columns: 1fr; }
-            #footer { flex-direction: column; gap: 0.75em; text-align: center; }
-            .btn-secondary { margin-left: 0; margin-top: 0.75em; }
-        }
+    .stat-cell:last-child { border-right: none; }
 
-        @media screen and (max-width: 480px) {
-            .page-content { padding: 2.5em 1.25em 3em; }
-            .activities-section { padding: 1.5em; }
-        }
-    </style>
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 2.8rem !important;
+      font-weight: 300 !important;
+      color: var(--sage) !important;
+      line-height: 1;
+      margin-bottom: 0.4em;
+    }
+
+    .stat-label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em !important;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted) !important;
+    }
+
+    /* ── CAROUSEL SECTION ── */
+    .carousel-section {
+      margin-bottom: 4.5em;
+    }
+
+    .carousel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.4em;
+    }
+
+    .carousel-title-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9em;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .carousel-title {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
+      font-weight: 400 !important;
+      color: var(--text-main) !important;
+    }
+
+    .carousel-count {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.62em !important;
+      color: var(--text-muted) !important;
+      letter-spacing: 0.1em;
+    }
+
+    /* Arrow controls */
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+    }
+
+    .carousel-arrow {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--box-border);
+      background: var(--box-bg);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .carousel-arrow:hover {
+      border-color: var(--box-border-hover);
+      background: rgba(8,12,8,0.92);
+    }
+
+    .carousel-arrow.disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .carousel-arrow svg {
+      display: block;
+    }
+
+    .carousel-pager {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.65em !important;
+      color: var(--text-muted) !important;
+      letter-spacing: 0.08em;
+      min-width: 48px;
+      text-align: center;
+    }
+
+    /* Carousel viewport */
+    .carousel-viewport {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--box-border);
+      border: 1px solid var(--box-border);
+      transition: none;
+    }
+
+    /* ── MEDIA CARD ── */
+    .media-card {
+      background: var(--box-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: background 0.3s ease;
+      position: relative;
+    }
+
+    .media-card:hover {
+      background: rgba(10,16,10,0.92);
+    }
+
+    .media-card-img-wrap {
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .media-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75) saturate(0.8);
+      transition: transform 0.4s ease, filter 0.4s ease;
+      display: block;
+    }
+
+    .media-card:hover .media-card-img-wrap img {
+      transform: scale(1.05);
+      filter: brightness(0.88) saturate(1.0);
+    }
+
+    .media-card-img-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(to top, var(--box-bg) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .media-card-top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .media-card-body {
+      padding: 1.4em 1.5em 1.5em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4em;
+      flex: 1;
+    }
+
+    .media-card-tag {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .media-card-title {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1.1rem !important;
+      font-weight: 400 !important;
+      color: var(--text-main) !important;
+      line-height: 1.3;
+    }
+
+    .media-card-host {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.76em !important;
+      font-weight: 300 !important;
+      color: var(--text-muted) !important;
+    }
+
+    .media-card-desc {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.8em !important;
+      font-weight: 300 !important;
+      color: var(--text-muted) !important;
+      line-height: 1.7 !important;
+      margin-top: 0.3em;
+      flex: 1;
+    }
+
+    .media-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1em;
+      padding-top: 0.75em;
+      border-top: 1px solid var(--box-border);
+    }
+
+    .media-card-date {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.62em !important;
+      color: var(--text-muted) !important;
+      letter-spacing: 0.08em;
+    }
+
+    .media-link {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.62em !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .media-link:hover { opacity: 0.65; }
+
+    /* ── EDUCATION SECTION ── */
+    .education-section {
+      margin-bottom: 4.5em;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4em;
+    }
+
+    .education-card {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      position: relative;
+    }
+
+    .education-card:hover {
+      border-color: var(--box-border-hover);
+      transform: translateY(-3px);
+    }
+
+    .education-card-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--sage), var(--teal));
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .education-card:hover .education-card-bar { opacity: 1; }
+
+    .education-card-img {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .education-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75) saturate(0.75);
+      transition: transform 0.4s ease, filter 0.4s ease;
+      display: block;
+    }
+
+    .education-card:hover .education-card-img img {
+      transform: scale(1.05);
+      filter: brightness(0.88) saturate(0.9);
+    }
+
+    .education-card-body {
+      padding: 1.6em 1.8em 1.8em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      flex: 1;
+    }
+
+    .education-level {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage) !important;
+    }
+
+    .education-name {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1.25rem !important;
+      font-weight: 400 !important;
+      color: var(--text-main) !important;
+      line-height: 1.25;
+    }
+
+    .education-desc {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.82em !important;
+      font-weight: 300 !important;
+      color: var(--text-muted) !important;
+      line-height: 1.8 !important;
+      flex: 1;
+    }
+
+    /* ── CLOSING BLOCK ── */
+    .closing-block {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      border-left: 3px solid var(--lavender);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2.8em 3em;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .closing-block:hover {
+      border-color: var(--box-border-hover);
+      border-left-color: var(--lavender);
+    }
+
+    .closing-watermark {
+      position: absolute;
+      right: -0.5em;
+      bottom: -0.8em;
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 6.5em !important;
+      font-weight: 300 !important;
+      color: rgba(138,126,176,0.04);
+      letter-spacing: -0.02em;
+      pointer-events: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .closing-tag {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--lavender);
+      margin-bottom: 0.8em;
+      opacity: 0.9;
+    }
+
+    .closing-quote {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: clamp(1.4rem, 2.5vw, 2rem) !important;
+      font-weight: 300 !important;
+      font-style: italic;
+      color: var(--text-main) !important;
+      line-height: 1.5;
+      max-width: 680px;
+      margin-bottom: 1em;
+    }
+
+    .closing-sub {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.88em !important;
+      font-weight: 300 !important;
+      color: var(--text-muted) !important;
+      line-height: 1.85 !important;
+      max-width: 560px;
+    }
+
+    /* ── FOOTER ── */
+    #footer {
+      background: rgba(4, 6, 4, 0.92) !important;
+      border-top: 1px solid var(--box-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.5em 2.5em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8em;
+    }
+
+    #footer ul.icons { list-style: none; display: flex; gap: 0; }
+
+    #footer ul.icons li a {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 400 !important;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+      font-size: 0.85em;
+      padding: 0 0.5em;
+      transition: color 0.25s ease;
+    }
+
+    #footer ul.icons li a:hover { color: var(--sage) !important; }
+
+    #footer ul.menu { list-style: none; display: flex; gap: 0; }
+
+    #footer ul.menu li,
+    #footer ul.menu li a {
+      font-family: 'Jost', sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 0.78em !important;
+      letter-spacing: 0.08em;
+      color: var(--text-muted) !important;
+      text-decoration: none;
+    }
+
+    #footer ul.menu li + li::before {
+      content: '|';
+      padding: 0 0.75em;
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    #footer ul.menu li a:hover { color: var(--sage) !important; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 980px) {
+      .carousel-track { grid-template-columns: repeat(2, 1fr); }
+      .education-grid { grid-template-columns: repeat(2, 1fr); }
+      .documentary-block { grid-template-columns: 1fr; }
+      .doc-visual { min-height: 220px; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .carousel-track { grid-template-columns: 1fr; }
+      .education-grid { grid-template-columns: 1fr; }
+      #header nav { display: none; }
+      .page-body { padding: 3em 1.4em 5em; }
+      .hero-content { padding: 0 1.4em; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="index.html">Your Lab Name</a></h1>
-        <nav>
-            <ul>
-                <li><a href="index.html#research">Research</a></li>
-                <li><a href="index.html#team">Team</a></li>
-                <li><a href="index.html#work">Publications</a></li>
-                <li><a href="outreach.html" class="active">Outreach</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- ── HEADER ── -->
+  <header id="header">
+    <h1><a href="index.html">Quatrini Lab</a></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="outreach.html" class="active">Outreach</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Hero -->
-    <section class="page-hero">
-        <div class="page-hero-content">
-            <h2>Outreach</h2>
-            <p>Science beyond the lab walls</p>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="label">// Science Communication</div>
+      <h1>Outreach &amp; <em>Open Science</em></h1>
+      <p>Bridging the gap between extreme environments and the broader public — through film, education, media, and dialogue.</p>
+    </div>
+    <div class="hero-bar"></div>
+  </section>
+
+  <!-- ── PAGE BODY ── -->
+  <main class="page-body">
+
+    <!-- DOCUMENTARY -->
+    <div class="section-label">Featured Production</div>
+    <div class="documentary-block">
+      <div class="doc-visual">
+        <img src="images/copahue.jpg" alt="Documentary still" />
+        <a href="https://www.youtube.com/watch?v=fKLmIxDInQU" class="play-btn" aria-label="Watch documentary" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <polygon points="6,3 20,12 6,21" fill="#c9a055"/>
+          </svg>
+        </a>
+      </div>
+      <div class="doc-content">
+        <span class="doc-tag">Documentary Film</span>
+        <h2 class="doc-title">Title of the Documentary</h2>
+        <p class="doc-desc">This fascinating documentary follows a Chilean–Argentine team of scientists in their search for extremophiles—organisms that inhabit some of the most inhospitable environments on Earth—in order to understand how, after billions of years of evolution and environmental change, they continue to persist and thrive. The expedition not only traverses remote and striking landscapes, but also invites reflection on the major challenges facing humanity, from climate change to the search for life on other planets.</p>
+        <div class="doc-meta">
+          <span class="doc-meta-item">Year: 2024</span>
+          <span class="doc-meta-item">Duration: -- min</span>
+          <span class="doc-meta-item">Language: Spanish / English</span>
         </div>
-    </section>
+        <a href="https://www.youtube.com/watch?v=fKLmIxDInQU" class="section-btn-amber" target="_blank" rel="noopener">Watch Film</a>
+      </div>
+    </div>
 
-    <!-- Main Content -->
-    <main class="page-content">
+    <!-- STATS -->
+    <div class="stats-strip">
+      <div class="stat-cell">
+        <div class="stat-num">+50</div>
+        <div class="stat-label">Students Hosted</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">+12</div>
+        <div class="stat-label">Media Appearances</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Documentary</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">+20</div>
+        <div class="stat-label">Public Talks</div>
+      </div>
+    </div>
 
-        <!-- Intro -->
-        <div class="section-intro">
-            <h3>Connecting Science with Society</h3>
-            <div class="divider"></div>
-            <p>
-                We believe science is most powerful when shared. Our outreach efforts
-                aim to bring microbiology, evolution, and extreme environments to broader
-                audiences — from classrooms to the general public.
-            </p>
+    <!-- ── MEDIA & PUBLIC APPEARANCES ── -->
+    <div class="section-label section-gap">Media &amp; Public Appearances</div>
+
+    <!-- PODCASTS CAROUSEL -->
+    <div class="carousel-section">
+      <div class="carousel-header">
+        <div class="carousel-title-row">
+          <div class="carousel-dot" style="background: var(--teal);"></div>
+          <h3 class="carousel-title">Podcasts</h3>
+          <span class="carousel-count" id="podcast-count"></span>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-arrow" id="podcast-prev" aria-label="Previous">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <polyline points="9,2 4,7 9,12" stroke="#8a8d82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="carousel-pager" id="podcast-pager"></span>
+          <button class="carousel-arrow" id="podcast-next" aria-label="Next">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <polyline points="5,2 10,7 5,12" stroke="#8a8d82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="podcast-track"></div>
+      </div>
+    </div>
+
+    <!-- TV CAPSULES CAROUSEL -->
+    <div class="carousel-section">
+      <div class="carousel-header">
+        <div class="carousel-title-row">
+          <div class="carousel-dot" style="background: var(--amber);"></div>
+          <h3 class="carousel-title">TV Capsules &amp; Broadcasts</h3>
+          <span class="carousel-count" id="tv-count"></span>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-arrow" id="tv-prev" aria-label="Previous">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <polyline points="9,2 4,7 9,12" stroke="#8a8d82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="carousel-pager" id="tv-pager"></span>
+          <button class="carousel-arrow" id="tv-next" aria-label="Next">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <polyline points="5,2 10,7 5,12" stroke="#8a8d82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="tv-track"></div>
+      </div>
+    </div>
+
+    <!-- INTERVIEWS CAROUSEL -->
+    <div class="carousel-section">
+      <div class="carousel-header">
+        <div class="carousel-title-row">
+          <div class="carousel-dot" style="background: var(--lavender);"></div>
+          <h3 class="carousel-title">Interviews &amp; Press</h3>
+          <span class="carousel-count" id="press-count"></span>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-arrow" id="press-prev" aria-label="Previous">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <polyline points="9,2 4,7 9,12" stroke="#8a8d82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="carousel-pager" id="press-pager"></span>
+          <button class="carousel-arrow" id="press-next" aria-label="Next">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <polyline points="5,2 10,7 5,12" stroke="#8a8d82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="press-track"></div>
+      </div>
+    </div>
+
+    <!-- ── EDUCATION ── -->
+    <div class="section-label section-gap">Education &amp; Student Programs</div>
+    <div class="education-section">
+      <div class="education-grid">
+
+        <div class="education-card">
+          <div class="education-card-bar"></div>
+          <div class="education-card-img">
+            <img src="images/outreach/edu-undergraduate.jpg" alt="Undergraduate internships" />
+          </div>
+          <div class="education-card-body">
+            <p class="education-level">Undergraduate</p>
+            <p class="education-name">Lab Visits &amp; Internships</p>
+            <p class="education-desc">Undergraduate students from Chilean and international universities visit the lab for short research immersions, learning field and molecular techniques firsthand.</p>
+          </div>
         </div>
 
-        <!-- Cards -->
-        <div class="outreach-grid">
-
-            <div class="outreach-card">
-                <div class="card-icon">
-                    <!-- School icon -->
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                    </svg>
-                </div>
-                <h4>Science Education</h4>
-                <p>
-                    We visit local schools and universities to give talks and hands-on
-                    workshops about extremophiles, microbial life, and the scientific method.
-                    Making cutting-edge research accessible to young curious minds.
-                </p>
-            </div>
-
-            <div class="outreach-card">
-                <div class="card-icon">
-                    <!-- Mic / talk icon -->
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1 1.93A7.002 7.002 0 0 1 5 9H3a9 9 0 0 0 8 8.94V20H8v2h8v-2h-3v-2.07A9 9 0 0 0 21 9h-2a7 7 0 0 1-6 6.93z"/>
-                    </svg>
-                </div>
-                <h4>Public Talks</h4>
-                <p>
-                    From science festivals to community events, we participate in public
-                    forums to discuss extreme environments, astrobiology, and the origin
-                    of life. Science should spark curiosity in everyone.
-                </p>
-            </div>
-
-            <div class="outreach-card">
-                <div class="card-icon">
-                    <!-- Media / play icon -->
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 8.5L8 15V9l4 2.5 4 2.5-4 0z"/>
-                    </svg>
-                </div>
-                <h4>Science Communication</h4>
-                <p>
-                    Through articles, social media, and multimedia content, we translate
-                    our research into accessible stories — making the invisible world of
-                    microorganisms visible and exciting.
-                </p>
-            </div>
-
-            <div class="outreach-card">
-                <div class="card-icon">
-                    <!-- Collaboration / people icon -->
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                    </svg>
-                </div>
-                <h4>Student Mentoring</h4>
-                <p>
-                    We actively mentor undergraduate and early-career researchers,
-                    offering guidance on lab techniques, scientific writing, and career
-                    paths in academia and beyond.
-                </p>
-            </div>
-
+        <div class="education-card">
+          <div class="education-card-bar"></div>
+          <div class="education-card-img">
+            <img src="images/outreach/edu-school.jpg" alt="School outreach" />
+          </div>
+          <div class="education-card-body">
+            <p class="education-level">Secondary School</p>
+            <p class="education-name">School Outreach Program</p>
+            <p class="education-desc">We bring extreme microbiology into secondary school classrooms — live demos, Q&amp;A sessions, and curated materials about biodiversity in acid environments.</p>
+          </div>
         </div>
 
-        <!-- Activities Timeline -->
-        <div class="activities-section">
-            <h3>Recent Activities</h3>
-
-            <div class="activity-item">
-                <span class="activity-year">2025</span>
-                <div class="activity-body">
-                    <h5>Science Week — University Outreach Talk</h5>
-                    <p>Presented research on acidophilic microorganisms to undergraduate students. Discussed environmental gradients and microbial adaptation.</p>
-                </div>
-            </div>
-
-            <div class="activity-item">
-                <span class="activity-year">2024</span>
-                <div class="activity-body">
-                    <h5>National Science Festival</h5>
-                    <p>Interactive booth on extreme environments and the possibility of life on other planets. Reached over 300 visitors across two days.</p>
-                </div>
-            </div>
-
-            <div class="activity-item">
-                <span class="activity-year">2024</span>
-                <div class="activity-body">
-                    <h5>Workshop — Science Communication for Researchers</h5>
-                    <p>Co-organized a training workshop for PhD students on how to communicate science to non-specialist audiences effectively.</p>
-                </div>
-            </div>
-
-            <div class="activity-item">
-                <span class="activity-year">2023</span>
-                <div class="activity-body">
-                    <h5>High School Visit — Microbiology Day</h5>
-                    <p>Hands-on microscopy session introducing students to the diversity of microorganisms found in extreme habitats.</p>
-                </div>
-            </div>
-
+        <div class="education-card">
+          <div class="education-card-bar"></div>
+          <div class="education-card-img">
+            <img src="images/outreach/edu-openday.jpg" alt="Science open days" />
+          </div>
+          <div class="education-card-body">
+            <p class="education-level">Open Program</p>
+            <p class="education-name">Science Open Days</p>
+            <p class="education-desc">Annual open-door events where the public can visit the lab, meet researchers, and engage directly with ongoing experiments and field collections.</p>
+          </div>
         </div>
 
-        <!-- CTA -->
-        <div class="cta-box">
-            <h3>Want to Collaborate?</h3>
-            <p>
-                We are always open to new outreach opportunities — school visits, media
-                collaborations, public events, or mentoring programs. Get in touch!
-            </p>
-            <a href="index.html#contact" class="btn-primary">Contact Us</a>
-            <a href="index.html" class="btn-secondary">Back to Home</a>
-        </div>
+      </div>
+    </div>
 
-    </main>
+    <!-- CLOSING -->
+    <div class="closing-block">
+      <div class="closing-watermark">CIENCIA ABIERTA</div>
+      <p class="closing-tag">// Our Commitment</p>
+      <p class="closing-quote">"Science that stays inside the lab is science half done."</p>
+      <p class="closing-sub">We believe that communicating our research is as fundamental as conducting it. From the acidic rivers of northern Chile to classrooms and screens across the country, we work to make extreme microbiology visible, accessible, and inspiring.</p>
+    </div>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <p>&copy; Your Lab Name. All rights reserved.</p>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="publications.html">Publications</a></li>
-        </ul>
-    </footer>
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer id="footer">
+    <ul class="icons">
+      <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+      <li><a href="#" class="icon brands fa-researchgate"><span class="label">ResearchGate</span></a></li>
+    </ul>
+    <ul class="menu">
+      <li>&copy; Quatrini Lab</li>
+      <li>Fundacion Ciencia &amp; Vida — Santiago, Chile</li>
+    </ul>
+  </footer>
+
+  <script>
+    /* ─────────────────────────────────────────────────────
+       DATA — replace placeholder entries with real content.
+       Add as many items as needed; the carousel handles the rest.
+    ───────────────────────────────────────────────────── */
+    const PODCASTS = [
+      { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
+        img: 'images/outreach/podcast-01.jpg', title: 'Podcast Title One',
+        host: 'Host Name / Platform', date: 'Month Year',
+        desc: 'Brief description of the episode theme — extremophiles, acidic environments, or science communication in Chile.',
+        link: '#', linkLabel: 'Listen' },
+      { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
+        img: 'images/outreach/podcast-02.jpg', title: 'Podcast Title Two',
+        host: 'Host Name / Platform', date: 'Month Year',
+        desc: 'Brief description of the episode theme — microbial diversity, field work, or biotechnology applications.',
+        link: '#', linkLabel: 'Listen' },
+      { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
+        img: 'images/outreach/podcast-03.jpg', title: 'Podcast Title Three',
+        host: 'Host Name / Platform', date: 'Month Year',
+        desc: 'Brief description of the episode — evolution, extremophiles, or science policy in Latin America.',
+        link: '#', linkLabel: 'Listen' },
+      { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
+        img: 'images/outreach/podcast-04.jpg', title: 'Podcast Title Four',
+        host: 'Host Name / Platform', date: 'Month Year',
+        desc: 'Brief description of the episode — genome defense, CRISPR systems, or phage-host dynamics.',
+        link: '#', linkLabel: 'Listen' },
+      { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
+        img: 'images/outreach/podcast-05.jpg', title: 'Podcast Title Five',
+        host: 'Host Name / Platform', date: 'Month Year',
+        desc: 'Brief description of the episode — women in science, career paths, or field expeditions.',
+        link: '#', linkLabel: 'Listen' },
+    ];
+
+    const TV = [
+      { tag: 'Television', tagColor: 'var(--amber)', barColor: 'linear-gradient(90deg,var(--amber),var(--rust))',
+        img: 'images/outreach/tv-01.jpg', title: 'TV Capsule Title One',
+        host: 'Channel / Program Name', date: 'Month Year',
+        desc: 'Brief description of the segment — what was covered and in what context it aired.',
+        link: '#', linkLabel: 'Watch' },
+      { tag: 'Television', tagColor: 'var(--amber)', barColor: 'linear-gradient(90deg,var(--amber),var(--rust))',
+        img: 'images/outreach/tv-02.jpg', title: 'TV Capsule Title Two',
+        host: 'Channel / Program Name', date: 'Month Year',
+        desc: 'Brief description of the segment — topic covered, angle, and target audience.',
+        link: '#', linkLabel: 'Watch' },
+      { tag: 'Television', tagColor: 'var(--amber)', barColor: 'linear-gradient(90deg,var(--amber),var(--rust))',
+        img: 'images/outreach/tv-03.jpg', title: 'TV Capsule Title Three',
+        host: 'Channel / Program Name', date: 'Month Year',
+        desc: 'Brief description of the segment — research highlight, field footage, or interview format.',
+        link: '#', linkLabel: 'Watch' },
+      { tag: 'Television', tagColor: 'var(--amber)', barColor: 'linear-gradient(90deg,var(--amber),var(--rust))',
+        img: 'images/outreach/tv-04.jpg', title: 'TV Capsule Title Four',
+        host: 'Channel / Program Name', date: 'Month Year',
+        desc: 'Brief description of the segment — science communication for a general audience.',
+        link: '#', linkLabel: 'Watch' },
+    ];
+
+    const PRESS = [
+      { tag: 'Interview', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
+        img: 'images/outreach/press-01.jpg', title: 'Interview or Article Title One',
+        host: 'Publication / Outlet Name', date: 'Month Year',
+        desc: 'Brief description of the interview or press piece — topic, context, and key message communicated.',
+        link: '#', linkLabel: 'Read' },
+      { tag: 'Press', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
+        img: 'images/outreach/press-02.jpg', title: 'Interview or Article Title Two',
+        host: 'Publication / Outlet Name', date: 'Month Year',
+        desc: 'Brief description of the press piece — research findings communicated to general public.',
+        link: '#', linkLabel: 'Read' },
+      { tag: 'Interview', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
+        img: 'images/outreach/press-03.jpg', title: 'Interview or Article Title Three',
+        host: 'Publication / Outlet Name', date: 'Month Year',
+        desc: 'Brief description of the feature — research impact, women in science, or international collaboration.',
+        link: '#', linkLabel: 'Read' },
+      { tag: 'Press', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
+        img: 'images/outreach/press-04.jpg', title: 'Interview or Article Title Four',
+        host: 'Publication / Outlet Name', date: 'Month Year',
+        desc: 'Brief description of the press piece — biotechnology, bioleaching, or extremophile applications.',
+        link: '#', linkLabel: 'Read' },
+      { tag: 'Press', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
+        img: 'images/outreach/press-05.jpg', title: 'Interview or Article Title Five',
+        host: 'Publication / Outlet Name', date: 'Month Year',
+        desc: 'Brief description of the feature — science policy, open science, or public engagement.',
+        link: '#', linkLabel: 'Read' },
+    ];
+
+    /* ─────────────────────────────────────────────────────
+       CAROUSEL ENGINE
+       Detects visible columns via CSS breakpoint,
+       pages through items 3 (or 2/1 on smaller screens) at a time.
+    ───────────────────────────────────────────────────── */
+    function buildCard(item) {
+      return `
+        <div class="media-card">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${item.barColor};"></div>
+          <div class="media-card-img-wrap">
+            <img src="${item.img}" alt="${item.title}" loading="lazy" />
+            <div class="media-card-img-fade"></div>
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-tag" style="color:${item.tagColor};">${item.tag}</p>
+            <p class="media-card-title">${item.title}</p>
+            <p class="media-card-host">${item.host}</p>
+            <p class="media-card-desc">${item.desc}</p>
+            <div class="media-card-footer">
+              <span class="media-card-date">${item.date}</span>
+              <a href="${item.link}" class="media-link" style="color:${item.tagColor};">${item.linkLabel}</a>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function getPageSize() {
+      if (window.innerWidth <= 640)  return 1;
+      if (window.innerWidth <= 980)  return 2;
+      return 3;
+    }
+
+    function initCarousel(data, trackId, prevId, nextId, pagerId, countId) {
+      const track   = document.getElementById(trackId);
+      const prevBtn = document.getElementById(prevId);
+      const nextBtn = document.getElementById(nextId);
+      const pager   = document.getElementById(pagerId);
+      const counter = document.getElementById(countId);
+
+      if (!track) return;
+
+      // Render all cards
+      track.innerHTML = data.map(buildCard).join('');
+      const cards = Array.from(track.children);
+      counter.textContent = `${data.length} entries`;
+
+      let page = 0;
+
+      function update() {
+        const ps    = getPageSize();
+        const total = Math.ceil(data.length / ps);
+        const start = page * ps;
+        const end   = start + ps;
+
+        cards.forEach((card, i) => {
+          card.style.display = (i >= start && i < end) ? 'flex' : 'none';
+        });
+
+        pager.textContent = `${page + 1} / ${total}`;
+        prevBtn.classList.toggle('disabled', page === 0);
+        nextBtn.classList.toggle('disabled', page >= total - 1);
+      }
+
+      prevBtn.addEventListener('click', () => { if (page > 0) { page--; update(); } });
+      nextBtn.addEventListener('click', () => {
+        const ps    = getPageSize();
+        const total = Math.ceil(data.length / ps);
+        if (page < total - 1) { page++; update(); }
+      });
+
+      window.addEventListener('resize', () => {
+        const ps    = getPageSize();
+        const total = Math.ceil(data.length / ps);
+        if (page >= total) page = Math.max(0, total - 1);
+        update();
+      });
+
+      update();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initCarousel(PODCASTS, 'podcast-track', 'podcast-prev', 'podcast-next', 'podcast-pager', 'podcast-count');
+      initCarousel(TV,       'tv-track',      'tv-prev',      'tv-next',      'tv-pager',      'tv-count');
+      initCarousel(PRESS,    'press-track',   'press-prev',   'press-next',   'press-pager',   'press-count');
+    });
+  </script>
 
 </body>
 </html>
