@@ -227,7 +227,7 @@
       border-left: 3px solid var(--amber);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      margin-bottom: 4em;
+      margin-bottom: 0;
       overflow: hidden;
       transition: border-color 0.3s ease;
     }
@@ -353,40 +353,117 @@
       color: #fff !important;
     }
 
-    /* ── STATS STRIP ── */
-    .stats-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+    /* ── DOCUMENTARY PRESS STRIP ── */
+    .doc-press-strip {
+      background: rgba(8, 12, 8, 0.70);
       border: 1px solid var(--box-border);
-      margin-bottom: 4.5em;
-      background: var(--box-bg);
+      border-top: none;
+      border-left: 3px solid rgba(201,160,85,0.35);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+      margin-bottom: 4.5em;
+      overflow: hidden;
     }
 
-    .stat-cell {
-      padding: 2em 1.5em;
-      border-right: 1px solid var(--box-border);
-      text-align: center;
+    .doc-press-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85em 1.6em;
+      border-bottom: 1px solid var(--box-border);
     }
 
-    .stat-cell:last-child { border-right: none; }
+    .doc-press-label {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--amber) !important;
+      opacity: 0.85;
+    }
 
-    .stat-num {
+    .doc-press-count {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.58em !important;
+      color: var(--text-muted) !important;
+      letter-spacing: 0.1em;
+    }
+
+    .doc-press-list {
+      list-style: none;
+    }
+
+    .doc-press-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1.2em;
+      padding: 0.9em 1.6em;
+      border-bottom: 1px solid var(--box-border);
+      transition: background 0.25s ease;
+    }
+
+    .doc-press-item:last-child {
+      border-bottom: none;
+    }
+
+    .doc-press-item:hover {
+      background: rgba(201,160,85,0.045);
+    }
+
+    .doc-press-outlet {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.62em !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber) !important;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+
+    .doc-press-title {
       font-family: 'Cormorant Garamond', serif !important;
-      font-size: 2.8rem !important;
-      font-weight: 300 !important;
-      color: var(--sage) !important;
-      line-height: 1;
-      margin-bottom: 0.4em;
+      font-size: 1.05rem !important;
+      font-weight: 400 !important;
+      color: var(--text-main) !important;
+      line-height: 1.3;
     }
 
-    .stat-label {
+    .doc-press-right {
+      display: flex;
+      align-items: center;
+      gap: 1.4em;
+      flex-shrink: 0;
+    }
+
+    .doc-press-date {
       font-family: 'Jost', sans-serif !important;
       font-size: 0.6em !important;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
       color: var(--text-muted) !important;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .doc-press-link {
+      font-family: 'Jost', sans-serif !important;
+      font-size: 0.6em !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber) !important;
+      text-decoration: none;
+      border: 1px solid rgba(201,160,85,0.35);
+      padding: 0.3em 0.9em;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .doc-press-link:hover {
+      background: rgba(201,160,85,0.10) !important;
+      border-color: var(--amber) !important;
+      color: #fff !important;
     }
 
     /* ── CAROUSEL SECTION ── */
@@ -428,7 +505,6 @@
       letter-spacing: 0.1em;
     }
 
-    /* Arrow controls */
     .carousel-controls {
       display: flex;
       align-items: center;
@@ -459,9 +535,7 @@
       pointer-events: none;
     }
 
-    .carousel-arrow svg {
-      display: block;
-    }
+    .carousel-arrow svg { display: block; }
 
     .carousel-pager {
       font-family: 'Jost', sans-serif !important;
@@ -472,7 +546,6 @@
       text-align: center;
     }
 
-    /* Carousel viewport */
     .carousel-viewport {
       overflow: hidden;
       position: relative;
@@ -499,9 +572,7 @@
       position: relative;
     }
 
-    .media-card:hover {
-      background: rgba(10,16,10,0.92);
-    }
+    .media-card:hover { background: rgba(10,16,10,0.92); }
 
     .media-card-img-wrap {
       width: 100%;
@@ -531,12 +602,6 @@
       height: 60px;
       background: linear-gradient(to top, var(--box-bg) 0%, transparent 100%);
       pointer-events: none;
-    }
-
-    .media-card-top-bar {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
     }
 
     .media-card-body {
@@ -609,9 +674,7 @@
     .media-link:hover { opacity: 0.65; }
 
     /* ── EDUCATION SECTION ── */
-    .education-section {
-      margin-bottom: 4.5em;
-    }
+    .education-section { margin-bottom: 4.5em; }
 
     .education-grid {
       display: grid;
@@ -818,7 +881,13 @@
       .education-grid { grid-template-columns: repeat(2, 1fr); }
       .documentary-block { grid-template-columns: 1fr; }
       .doc-visual { min-height: 220px; }
-      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .doc-press-item {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+      }
+      .doc-press-outlet { grid-column: 1; grid-row: 1; }
+      .doc-press-title  { grid-column: 1; grid-row: 2; }
+      .doc-press-right  { grid-column: 2; grid-row: 1 / 3; flex-direction: column; align-items: flex-end; gap: 0.5em; }
     }
 
     @media (max-width: 640px) {
@@ -827,6 +896,8 @@
       #header nav { display: none; }
       .page-body { padding: 3em 1.4em 5em; }
       .hero-content { padding: 0 1.4em; }
+      .doc-press-item { grid-template-columns: 1fr; gap: 0.5em; }
+      .doc-press-right { flex-direction: row; align-items: center; }
     }
   </style>
 </head>
@@ -878,30 +949,21 @@
         <div class="doc-meta">
           <span class="doc-meta-item">Year: 2024</span>
           <span class="doc-meta-item">Duration: 40 min</span>
-          <span class="doc-meta-item">Language: Spanish - English(subtitles)</span>
+          <span class="doc-meta-item">Language: Spanish - English (subtitles)</span>
         </div>
-        <a href="https://www.youtube.com/watch?v=fKLmIxDInQU" class="section-btn-amber" target="_blank" rel="noopener">Watch it now! </a>
+        <a href="https://www.youtube.com/watch?v=fKLmIxDInQU" class="section-btn-amber" target="_blank" rel="noopener">Watch it now!</a>
       </div>
     </div>
 
-    <!-- STATS -->
-    <div class="stats-strip">
-      <div class="stat-cell">
-        <div class="stat-num">+50</div>
-        <div class="stat-label">Students Hosted</div>
+    <!-- ── DOCUMENTARY PRESS STRIP ── -->
+    <div class="doc-press-strip">
+      <div class="doc-press-header">
+        <span class="doc-press-label">Press Coverage</span>
+        <span class="doc-press-count" id="doc-press-count"></span>
       </div>
-      <div class="stat-cell">
-        <div class="stat-num">+12</div>
-        <div class="stat-label">Media Appearances</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Documentary</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num">+20</div>
-        <div class="stat-label">Public Talks</div>
-      </div>
+      <ul class="doc-press-list" id="doc-press-list">
+        <!-- rendered by JS -->
+      </ul>
     </div>
 
     <!-- ── MEDIA & PUBLIC APPEARANCES ── -->
@@ -1058,53 +1120,90 @@
 
   <script>
     /* ─────────────────────────────────────────────────────
-       DATA — replace placeholder entries with real content.
-       Add as many items as needed; the carousel handles the rest.
+       DOCUMENTARY PRESS DATA
+       Add or remove entries freely — each item renders as
+       one compact row inside the press strip below the film.
+    ───────────────────────────────────────────────────── */
+    const DOC_PRESS = [
+      {
+        outlet: '24 Horas, Conciencia 24/7 ',
+        title:  'Exploran el volcán Copahue en busca de vida extrema y soluciones verdes para la minería',
+        date:   'May 2025',
+        link:   'https://www.24horas.cl/conciencia-24-7/sostenibilidad/exploran-volcan-copahue-vida-extrema'
+      },
+      {
+        outlet: 'BioBioChile Noticias',
+        title:  'Documental registró pionera exploración que rastreó microorganismos prehistóricos en el volcán Copahue',
+        date:   'May 2025',
+        link:   'https://www.biobiochile.cl/noticias/ciencia-y-tecnologia/ciencia/2025/05/28/documental-registro-pionera-exploracion-que-rastreo-microorganismos-prehistoricos-en-el-volcan-copahue.shtml#'
+      },
+      {
+        outlet: 'Fundacion Ciencia & Vida',
+        title:  'Extremófilos en todo su esplendor en el documental “Copahue Extremo: Un viaje al Pasado y Futuro del Planeta”',
+        date:   'May 2025',
+        link:   'https://www.cienciavida.org/post/extremófilos-en-todo-su-esplendor-en-el-documental-copahue-extremo-un-viaje-al-pasado-y-futuro-del'
+      },
+    ];
+
+    /* ─────────────────────────────────────────────────────
+       RENDER DOC PRESS STRIP
+    ───────────────────────────────────────────────────── */
+    function renderDocPress() {
+      const list    = document.getElementById('doc-press-list');
+      const counter = document.getElementById('doc-press-count');
+      if (!list) return;
+
+      counter.textContent = DOC_PRESS.length + ' items';
+
+      list.innerHTML = DOC_PRESS.map(item => `
+        <li class="doc-press-item">
+          <span class="doc-press-outlet">${item.outlet}</span>
+          <span class="doc-press-title">${item.title}</span>
+          <span class="doc-press-right">
+            <span class="doc-press-date">${item.date}</span>
+            <a href="${item.link}" class="doc-press-link" target="_blank" rel="noopener">Read</a>
+          </span>
+        </li>
+      `).join('');
+    }
+
+    /* ─────────────────────────────────────────────────────
+       CAROUSEL DATA
     ───────────────────────────────────────────────────── */
     const PODCASTS = [
       { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
-        img: 'images/outreach/podcast-01.jpg', title: 'Podcast Title One',
-        host: 'Host Name / Platform', date: 'Month Year',
-        desc: 'Brief description of the episode theme — extremophiles, acidic environments, or science communication in Chile.',
-        link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Listen' },
+        img: 'images/outreach/rock.jpg', title: 'Rockstars',
+        host: 'Gabriel Leon / TSX Plus', date: 'April 2024',
+        desc: 'Brief description of the episode theme — extremophiles, acidic environments, and science communication in Chile.',
+        link: 'https://soundcloud.com/txsplus/rockstars-con-gabriel-leon-y-dra-raquel-quatrini-22-de-abril-del-2024?in=txsplus/sets/rockstars&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing', linkLabel: 'Listen' },
       { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
-        img: 'images/outreach/podcast-02.jpg', title: 'Podcast Title Two',
-        host: 'Host Name / Platform', date: 'Month Year',
-        desc: 'Brief description of the episode theme — microbial diversity, field work, or biotechnology applications.',
-        link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Listen' },
+        img: 'images/outreach/coop.jpg', title: 'Cooperativa Ciencia',
+        host: 'Emilia Aguilar / Cooperativa Ciencia', date: 'March 2024',
+        desc: 'Ancestral microorganisms and their potential contribution to mining — microbial diversity, field work, biotechnology applications.',
+        link: 'https://www.youtube.com/live/fKGCPvXzZ8s', linkLabel: 'Listen' },
       { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
-        img: 'images/outreach/podcast-03.jpg', title: 'Podcast Title Three',
-        host: 'Host Name / Platform', date: 'Month Year',
+        img: 'images/outreach/abierta.jpg', title: 'Clase Abierta',
+        host: 'Gabriel Leon / TSX Plus', date: 'March 2025',
         desc: 'Brief description of the episode — evolution, extremophiles, or science policy in Latin America.',
-        link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Listen' },
-      { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
-        img: 'images/outreach/podcast-04.jpg', title: 'Podcast Title Four',
-        host: 'Host Name / Platform', date: 'Month Year',
-        desc: 'Brief description of the episode — genome defense, CRISPR systems, or phage-host dynamics.',
-        link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Listen' },
-      { tag: 'Podcast', tagColor: 'var(--teal)', barColor: 'linear-gradient(90deg,var(--teal),var(--sage))',
-        img: 'images/outreach/podcast-05.jpg', title: 'Podcast Title Five',
-        host: 'Host Name / Platform', date: 'Month Year',
-        desc: 'Brief description of the episode — women in science, career paths, or field expeditions.',
-        link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Listen' },
+        link: 'https://soundcloud.com/txsplus/clase-abierta-estudio-de-extremofilos-y-su-uso-en-biomineria', linkLabel: 'Listen' },
     ];
 
     const TV = [
       { tag: 'Television', tagColor: 'var(--amber)', barColor: 'linear-gradient(90deg,var(--amber),var(--rust))',
-        img: 'images/outreach/tv-01.jpg', title: 'TV Capsule Title One',
-        host: 'Channel / Program Name', date: 'Month Year',
+        img: 'images/outreach/dila.jpg', title: 'How do microorganisms contribute to more environmentally responsible mining?',
+        host: 'TVN / Exploradores: del atomo al cosmos', date: '2024',
         desc: 'Brief description of the segment — what was covered and in what context it aired.',
-        link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Watch' },
+        link: 'https://www.youtube.com/watch?v=WQF2YxHDQfI', linkLabel: 'Watch' },
       { tag: 'Television', tagColor: 'var(--amber)', barColor: 'linear-gradient(90deg,var(--amber),var(--rust))',
-        img: 'images/outreach/tv-02.jpg', title: 'TV Capsule Title Two',
-        host: 'Channel / Program Name', date: 'Month Year',
+        img: 'images/outreach/ursi.jpg', title: 'Ursi y Magnogeek',
+        host: 'CNTV Infantil / Ursi y Magnogeek', date: '2016',
         desc: 'Brief description of the segment — topic covered, angle, and target audience.',
         link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Watch' },
       { tag: 'Television', tagColor: 'var(--amber)', barColor: 'linear-gradient(90deg,var(--amber),var(--rust))',
-        img: 'images/outreach/tv-03.jpg', title: 'TV Capsule Title Three',
-        host: 'Channel / Program Name', date: 'Month Year',
+        img: 'images/outreach/raquel2.jpg', title: 'TV Capsule Title Three',
+        host: 'TVN / Exploradores: del atomo al cosmos', date: 'Month Year',
         desc: 'Brief description of the segment — research highlight, field footage, or interview format.',
-        link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Watch' },
+        link: 'https://www.youtube.com/watch?v=XfC6LlQTrWo', linkLabel: 'Watch' },
       { tag: 'Television', tagColor: 'var(--amber)', barColor: 'linear-gradient(90deg,var(--amber),var(--rust))',
         img: 'images/outreach/tv-04.jpg', title: 'TV Capsule Title Four',
         host: 'Channel / Program Name', date: 'Month Year',
@@ -1114,18 +1213,18 @@
 
     const PRESS = [
       { tag: 'Interview', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
-        img: 'images/outreach/press-01.jpg', title: 'Interview or Article Title One',
-        host: 'Publication / Outlet Name', date: 'Month Year',
+        img: 'images/outreach/descub.jpg', title: 'Descubren mecanismo de adaptación evolutiva en bacterias del volcán Copahue',
+        host: 'EL MOSTRADOR/ Cultura|Ciencia', date: 'January 2026',
         desc: 'Brief description of the interview or press piece — topic, context, and key message communicated.',
-        link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Read' },
+        link: 'https://www.elmostrador.cl/cultura/ciencia-cultura/2026/01/15/descubren-mecanismo-de-adaptacion-evolutiva-en-bacterias-del-volcan-copahue/', linkLabel: 'Read' },
       { tag: 'Press', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
-        img: 'images/outreach/press-02.jpg', title: 'Interview or Article Title Two',
-        host: 'Publication / Outlet Name', date: 'Month Year',
+        img: 'images/outreach/tercera.jpg', title: 'Video Explorando el pasado prehistórico de la Tierra',
+        host: 'LA TERCERA / Formando Para Crear', date: 'June 2024',
         desc: 'Brief description of the press piece — research findings communicated to general public.',
         link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Read' },
       { tag: 'Interview', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
-        img: 'images/outreach/press-03.jpg', title: 'Interview or Article Title Three',
-        host: 'Publication / Outlet Name', date: 'Month Year',
+        img: 'images/outreach/press-03.jpg', title: 'Bióloga descubrió cómo una bacteria del volcán Copahue puede sobrevivir a condiciones letales',
+        host: 'BioBioChile / Ciencia y Technologia', date: 'January 2026',
         desc: 'Brief description of the feature — research impact, women in science, or international collaboration.',
         link: 'https://www.youtube.com/watch?v=fKLmIxDInQU', linkLabel: 'Read' },
       { tag: 'Press', tagColor: 'var(--lavender)', barColor: 'linear-gradient(90deg,var(--lavender),#6a5ea0)',
@@ -1142,8 +1241,6 @@
 
     /* ─────────────────────────────────────────────────────
        CAROUSEL ENGINE
-       Detects visible columns via CSS breakpoint,
-       pages through items 3 (or 2/1 on smaller screens) at a time.
     ───────────────────────────────────────────────────── */
     function buildCard(item) {
       return `
@@ -1160,7 +1257,7 @@
             <p class="media-card-desc">${item.desc}</p>
             <div class="media-card-footer">
               <span class="media-card-date">${item.date}</span>
-              <a href="${item.link}" class="media-link" style="color:${item.tagColor};">${item.linkLabel}</a>
+              <a href="${item.link}" class="media-link" style="color:${item.tagColor};" target="_blank" rel="noopener">${item.linkLabel}</a>
             </div>
           </div>
         </div>`;
@@ -1178,10 +1275,8 @@
       const nextBtn = document.getElementById(nextId);
       const pager   = document.getElementById(pagerId);
       const counter = document.getElementById(countId);
-
       if (!track) return;
 
-      // Render all cards
       track.innerHTML = data.map(buildCard).join('');
       const cards = Array.from(track.children);
       counter.textContent = `${data.length} entries`;
@@ -1193,11 +1288,9 @@
         const total = Math.ceil(data.length / ps);
         const start = page * ps;
         const end   = start + ps;
-
         cards.forEach((card, i) => {
           card.style.display = (i >= start && i < end) ? 'flex' : 'none';
         });
-
         pager.textContent = `${page + 1} / ${total}`;
         prevBtn.classList.toggle('disabled', page === 0);
         nextBtn.classList.toggle('disabled', page >= total - 1);
@@ -1221,6 +1314,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      renderDocPress();
       initCarousel(PODCASTS, 'podcast-track', 'podcast-prev', 'podcast-next', 'podcast-pager', 'podcast-count');
       initCarousel(TV,       'tv-track',      'tv-prev',      'tv-next',      'tv-pager',      'tv-count');
       initCarousel(PRESS,    'press-track',   'press-prev',   'press-next',   'press-pager',   'press-count');
