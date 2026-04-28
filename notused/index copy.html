@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quatrini Lab | Microbial Ecophysiology</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+
+      :root {
+        --sage:        #7aac6e;
+        --amber:       #c9a055;
+        --rust:        #a84e2a;
+        --text-main:   #ddd8cc;
+        --text-muted:  #8a8d82;
+        --box-bg:      rgba(8, 12, 8, 0.80);
+        --box-border:  rgba(122, 172, 110, 0.22);
+        --box-border-hover: rgba(122, 172, 110, 0.50);
+      }
+
+      *, body, input, select, textarea, button, p, li, span, div {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.04em;
+      }
+
+      #header {
+        background: rgba(6, 9, 6, 0.88) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--box-border);
+      }
+
+      #header h1 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.08em;
+        color: var(--text-main) !important;
+        font-size: 1.15em;
+      }
+
+      #header nav ul li a {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.7em;
+        color: var(--text-muted) !important;
+        transition: color 0.25s ease;
+        padding: 0 0.6em;
+      }
+
+      #header nav ul li a:hover { color: var(--sage) !important; }
+
+      #intro .content header h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: clamp(2.8rem, 6vw, 5rem) !important;
+        font-weight: 300 !important;
+        color: #ffffff !important;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.4em;
+      }
+
+      #intro .content p {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 1.05em !important;
+        line-height: 1.9 !important;
+        color: rgba(220, 215, 205, 0.88) !important;
+        letter-spacing: 0.03em;
+      }
+
+      #intro .content p strong {
+        font-weight: 500 !important;
+        color: var(--amber) !important;
+      }
+
+      .box.style2 {
+        background: var(--box-bg) !important;
+        border: 1px solid var(--box-border) !important;
+        border-left: 3px solid var(--sage) !important;
+        border-radius: 0 !important;
+        padding: 2.8em 3em !important;
+        transition: border-color 0.3s ease, background 0.3s ease;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .box.style2:hover {
+        border-color: var(--box-border-hover) !important;
+        border-left-color: var(--amber) !important;
+        background: rgba(8, 12, 8, 0.88) !important;
+      }
+
+      .box.style2 header::before {
+        content: attr(data-tag);
+        display: block;
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.6em;
+        font-weight: 400 !important;
+        letter-spacing: 0.28em;
+        color: var(--sage);
+        text-transform: uppercase;
+        margin-bottom: 0.8em;
+        opacity: 0.85;
+      }
+
+      .box.style2 header h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem) !important;
+        font-weight: 300 !important;
+        color: var(--text-main) !important;
+        line-height: 1.1;
+        margin-bottom: 0.2em;
+      }
+
+      .box.style2 p {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 0.93em !important;
+        line-height: 1.85 !important;
+        color: var(--text-muted) !important;
+        margin-top: 1em;
+      }
+
+      .section-btn {
+        display: inline-block;
+        margin-top: 1.8em;
+        padding: 0.65em 2em;
+        border: 1px solid var(--box-border-hover) !important;
+        color: var(--sage) !important;
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 500 !important;
+        font-size: 0.7em !important;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 0;
+        transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        background: transparent;
+      }
+
+      .section-btn:hover {
+        background: rgba(122, 172, 110, 0.10) !important;
+        border-color: var(--sage) !important;
+        color: #fff !important;
+      }
+
+      .button.style2.down {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.16em;
+        font-size: 0.72em !important;
+        border-color: rgba(220, 215, 205, 0.35) !important;
+        color: rgba(220, 215, 205, 0.7) !important;
+      }
+
+      .button.style2.down:hover {
+        border-color: var(--sage) !important;
+        color: var(--sage) !important;
+      }
+
+      #research .box.style2 { border-left-color: var(--sage) !important; }
+      #team .box.style2     { border-left-color: var(--amber) !important; }
+      #outreach .box.style2 { border-left-color: var(--rust) !important; }
+
+      /* ═══════════════════════════════════════════
+         PUBLICATIONS — SEDIMENT CORE DESIGN
+      ═══════════════════════════════════════════ */
+      #work {
+        background-color: #0b0f0b !important;
+        padding: 6em 0 !important;
+      }
+
+      .pub-wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 2.5em;
+      }
+
+      .pub-header {
+        margin-bottom: 3.5em;
+      }
+
+      .pub-header .section-micro {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.6em;
+        font-weight: 400 !important;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--sage);
+        display: block;
+        margin-bottom: 0.7em;
+        opacity: 0.85;
+      }
+
+      .pub-header h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: clamp(2rem, 4vw, 3.2rem) !important;
+        font-weight: 300 !important;
+        color: var(--text-main) !important;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.4em;
+      }
+
+      .pub-header p {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        color: var(--text-muted) !important;
+        font-size: 0.93em !important;
+        line-height: 1.8 !important;
+        max-width: 560px;
+      }
+
+      /* ── Core container ── */
+      .core-column {
+        position: relative;
+        padding-left: 80px;
+      }
+
+      /* The continuous vertical spine — the "drill core" line */
+      .core-column::before {
+        content: '';
+        position: absolute;
+        left: 34px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          rgba(139,69,19,0.6) 0%,
+          rgba(201,160,85,0.5) 18%,
+          rgba(122,172,110,0.5) 40%,
+          rgba(74,154,138,0.45) 60%,
+          rgba(122,172,110,0.4) 78%,
+          rgba(201,160,85,0.35) 100%
+        );
+      }
+
+      /* ── Year marker ── */
+      .core-year {
+        position: relative;
+        margin-bottom: 0;
+        padding-top: 2.4em;
+      }
+
+      .core-year:first-child {
+        padding-top: 0;
+      }
+
+      .year-node {
+        position: absolute;
+        left: -80px;
+        top: 2.6em;
+        width: 68px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4em;
+      }
+
+      .core-year:first-child .year-node {
+        top: 0.2em;
+      }
+
+      .year-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--amber);
+        border: 2px solid rgba(201,160,85,0.4);
+        box-shadow: 0 0 8px rgba(201,160,85,0.35);
+        flex-shrink: 0;
+        position: relative;
+        left: 0;
+        /* center on the spine */
+        margin-left: 29px;
+      }
+
+      .year-label {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.6em !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.12em;
+        color: var(--amber) !important;
+        text-align: center;
+        white-space: nowrap;
+        margin-left: 29px;
+      }
+
+      /* Thin horizontal tick from spine to content */
+      .year-tick {
+        position: absolute;
+        left: -46px;
+        top: 4px;
+        width: 42px;
+        height: 1px;
+        background: rgba(201,160,85,0.25);
+      }
+
+      /* ── Publication entry (stratum) ── */
+      .pub-entries {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .pub-entry {
+        position: relative;
+        padding: 1.4em 1.6em 1.4em 0;
+        border-bottom: 1px solid rgba(122,172,110,0.07);
+        transition: background 0.25s ease;
+        cursor: default;
+      }
+
+      .pub-entry:last-child {
+        border-bottom: none;
+      }
+
+      /* Left-side colored stratum bar — varies by topic */
+      .pub-entry::before {
+        content: '';
+        position: absolute;
+        left: -18px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
+      .pub-entry:hover::before { opacity: 1; }
+      .pub-entry:hover { background: rgba(122,172,110,0.03); }
+
+      .pub-entry[data-topic="genomics"]::before     { background: var(--sage); }
+      .pub-entry[data-topic="evolution"]::before    { background: var(--amber); }
+      .pub-entry[data-topic="ecology"]::before      { background: #4a9a8a; }
+      .pub-entry[data-topic="metabolism"]::before   { background: var(--rust); }
+      .pub-entry[data-topic="bioinformatics"]::before { background: #6a8faf; }
+
+      .pub-title {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 400 !important;
+        font-size: 1.08em !important;
+        color: var(--text-main) !important;
+        line-height: 1.35;
+        margin-bottom: 0.4em;
+        letter-spacing: 0.02em;
+        transition: color 0.2s ease;
+      }
+
+      .pub-entry:hover .pub-title { color: #fff !important; }
+
+      .pub-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5em 1.2em;
+        margin-bottom: 0.55em;
+      }
+
+      .pub-journal {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.7em !important;
+        font-weight: 400 !important;
+        font-style: italic;
+        color: var(--sage) !important;
+        letter-spacing: 0.04em;
+      }
+
+      .pub-authors {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.68em !important;
+        font-weight: 300 !important;
+        color: var(--text-muted) !important;
+        letter-spacing: 0.03em;
+      }
+
+      .pub-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4em;
+        margin-top: 0.5em;
+        align-items: center;
+      }
+
+      .pub-tag {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.58em !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.2em 0.7em;
+        border-radius: 2em;
+      }
+
+      .tag-genomics    { background: rgba(122,172,110,0.12); color: var(--sage) !important;  border: 1px solid rgba(122,172,110,0.25); }
+      .tag-evolution   { background: rgba(201,160,85,0.12);  color: var(--amber) !important; border: 1px solid rgba(201,160,85,0.25); }
+      .tag-ecology     { background: rgba(74,154,138,0.12);  color: #4a9a8a !important;      border: 1px solid rgba(74,154,138,0.25); }
+      .tag-metabolism  { background: rgba(168,78,42,0.12);   color: #c07050 !important;      border: 1px solid rgba(168,78,42,0.22); }
+      .tag-bioinformatics { background: rgba(106,143,175,0.12); color: #8aaecc !important;   border: 1px solid rgba(106,143,175,0.22); }
+
+      .pub-doi {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.6em !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.10em;
+        color: rgba(138,141,130,0.5) !important;
+        text-decoration: none;
+        margin-left: auto;
+        flex-shrink: 0;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+        align-self: flex-end;
+      }
+
+      .pub-doi:hover { color: var(--sage) !important; }
+
+      /* Row combining tags + doi */
+      .pub-footer-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5em;
+      }
+
+      /* ── Filter tabs ── */
+      .pub-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        margin-bottom: 2.8em;
+        align-items: center;
+      }
+
+      .pub-filter-label {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.58em !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--text-muted) !important;
+        opacity: 0.6;
+        margin-right: 0.6em;
+      }
+
+      .filter-btn {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.6em !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.3em 1em;
+        border: 1px solid rgba(122,172,110,0.18);
+        background: transparent;
+        color: var(--text-muted) !important;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-radius: 2em;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        border-color: var(--sage);
+        color: var(--sage) !important;
+        background: rgba(122,172,110,0.08);
+      }
+
+      /* ── View all CTA ── */
+      .pub-cta {
+        text-align: center;
+        margin-top: 3.5em;
+        padding-top: 2.5em;
+        border-top: 1px solid rgba(122,172,110,0.10);
+      }
+
+      .pub-cta-note {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.72em !important;
+        font-weight: 300 !important;
+        color: var(--text-muted) !important;
+        margin-bottom: 1.2em;
+        letter-spacing: 0.06em;
+        opacity: 0.7;
+      }
+
+      /* Hidden entries for filter */
+      .pub-entry.hidden {
+        display: none;
+      }
+
+      /* ═══════════════════════════════════════════
+         SITE FOOTER
+      ═══════════════════════════════════════════ */
+      #site-footer {
+        background: #060906;
+        border-top: 1px solid var(--box-border);
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-cta {
+        background: rgba(8, 12, 8, 0.95);
+        border-bottom: 1px solid var(--box-border);
+        padding: 3.2em 4em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2em;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .footer-cta-text { flex: 1 1 340px; }
+
+      .footer-cta-text .cta-label {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.58em;
+        font-weight: 400 !important;
+        letter-spacing: 0.32em;
+        color: var(--sage);
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 0.7em;
+        opacity: 0.85;
+      }
+
+      .footer-cta-text h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem) !important;
+        font-weight: 300 !important;
+        color: var(--text-main) !important;
+        letter-spacing: 0.05em;
+        margin: 0 0 0.25em 0;
+        line-height: 1.1;
+      }
+
+      .footer-cta-text p {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 0.88em !important;
+        color: var(--text-muted) !important;
+        line-height: 1.75 !important;
+        margin: 0;
+      }
+
+      .footer-cta-action {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.9em;
+      }
+
+      .footer-cta-btn {
+        display: inline-block;
+        padding: 0.75em 2.4em;
+        border: 1px solid var(--box-border-hover);
+        color: var(--sage) !important;
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 500 !important;
+        font-size: 0.66em !important;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        background: transparent;
+        white-space: nowrap;
+      }
+
+      .footer-cta-btn:hover {
+        background: rgba(122, 172, 110, 0.10);
+        border-color: var(--sage);
+        color: #fff !important;
+      }
+
+      .footer-contact-detail {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 0.72em !important;
+        color: var(--text-muted) !important;
+        letter-spacing: 0.06em;
+        text-align: right;
+        line-height: 1.85;
+      }
+
+      .footer-contact-detail a {
+        color: var(--text-muted) !important;
+        text-decoration: none;
+        transition: color 0.25s ease;
+      }
+
+      .footer-contact-detail a:hover { color: var(--sage) !important; }
+
+      .footer-main {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2em 4em;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3em;
+        border-bottom: 1px solid var(--box-border);
+      }
+
+      .footer-logos {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.6em;
+        flex: 0 0 auto;
+      }
+
+      .footer-logo-slot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 56px;
+        min-width: 90px;
+        max-width: 140px;
+        padding: 0.4em 0.6em;
+        border: 1px dashed rgba(122, 172, 110, 0.20);
+        transition: border-color 0.3s ease;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .footer-logo-slot:hover { border-color: rgba(122, 172, 110, 0.45); }
+
+      .footer-logo-slot img {
+        max-width: 100%;
+        max-height: 300px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        filter: brightness(0.65) grayscale(0.25);
+        transition: filter 0.3s ease;
+        display: block;
+      }
+
+      .footer-logo-slot:hover img { filter: brightness(1.0) grayscale(0); }
+
+      .footer-logo-slot .logo-placeholder {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.48em !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.16em;
+        color: rgba(122, 172, 110, 0.30) !important;
+        text-transform: uppercase;
+        text-align: center;
+        user-select: none;
+        white-space: nowrap;
+      }
+
+      .footer-divider {
+        width: 1px;
+        height: 48px;
+        background: var(--box-border);
+        flex-shrink: 0;
+      }
+
+      .footer-nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3em;
+        flex: 1 1 auto;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .footer-nav-label {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.5em !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.28em;
+        color: var(--sage) !important;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-right: 0.8em;
+        white-space: nowrap;
+      }
+
+      .footer-nav a {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 0.65em !important;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-muted) !important;
+        text-decoration: none;
+        transition: color 0.25s ease;
+        white-space: nowrap;
+        padding: 0 0.5em;
+      }
+
+      .footer-nav a + a::before {
+        content: '\00B7';
+        margin-right: 0.5em;
+        color: var(--box-border);
+        font-size: 1.2em;
+        vertical-align: middle;
+      }
+
+      .footer-nav a:hover { color: var(--sage) !important; }
+
+      .footer-social {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.1em;
+        flex: 0 0 auto;
+      }
+
+      .footer-social-label {
+        font-family: 'Jost', sans-serif !important;
+        font-size: 0.5em !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.28em;
+        color: var(--sage) !important;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-right: 0.4em;
+        white-space: nowrap;
+      }
+
+      .footer-social a {
+        color: var(--text-muted) !important;
+        font-size: 1em;
+        transition: color 0.25s ease, transform 0.2s ease;
+        text-decoration: none;
+      }
+
+      .footer-social a:hover {
+        color: var(--sage) !important;
+        transform: translateY(-2px);
+      }
+
+      .footer-bottom {
+        padding: 1.2em 4em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 0.8em;
+      }
+
+      .footer-bottom span,
+      .footer-bottom a {
+        font-family: 'Jost', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 0.64em !important;
+        letter-spacing: 0.1em;
+        color: rgba(138, 141, 130, 0.45) !important;
+        text-decoration: none;
+        transition: color 0.25s ease;
+      }
+
+      .footer-bottom a:hover { color: var(--sage) !important; }
+
+      @media (max-width: 900px) {
+        .footer-cta { flex-direction: column; align-items: flex-start; padding: 2.5em 2em; }
+        .footer-cta-action { align-items: flex-start; }
+        .footer-contact-detail { text-align: left; }
+        .footer-main { flex-direction: column; align-items: flex-start; padding: 2em 2em; gap: 1.6em; }
+        .footer-divider { display: none; }
+        .footer-nav { justify-content: flex-start; }
+        .footer-nav a + a::before { display: none; }
+        .footer-nav a { padding: 0.2em 0; }
+        .footer-bottom { flex-direction: column; align-items: flex-start; padding: 1.2em 2em; }
+        .core-column { padding-left: 60px; }
+        .year-node { left: -60px; }
+        .year-dot { margin-left: 20px; }
+        .year-label { margin-left: 20px; }
+        .core-column::before { left: 24px; }
+        .pub-entry::before { left: -12px; }
+      }
+
+      @media (max-width: 560px) {
+        .pub-wrap { padding: 0 1.2em; }
+        .core-column { padding-left: 48px; }
+        .year-node { left: -48px; width: 44px; }
+        .year-dot { margin-left: 14px; }
+        .year-label { margin-left: 14px; font-size: 0.55em !important; }
+        .core-column::before { left: 18px; }
+        .pub-doi { display: none; }
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+
+    <!-- Header -->
+    <header id="header">
+      <h1>Quatrini Lab</h1>
+      <nav>
+        <ul>
+          <li><a href="#intro">Home</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#outreach">Outreach</a></li>
+          <li><a href="#work">Publications</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Intro -->
+    <section id="intro" class="main style1 dark fullscreen">
+      <div class="content">
+        <header>
+          <h2>Quatrini Lab</h2>
+        </header>
+        <p>Welcome to the <strong>Laboratory of Microbial Ecophysiology</strong>.<br />
+        We study the evolution and adaptation of acidophilic microorganisms<br />
+        across extreme environmental gradients.</p>
+        <footer>
+          <a href="#research" class="button style2 down">Discover</a>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research" class="main style2 left dark fullscreen">
+      <div class="content box style2">
+        <header data-tag="// research program">
+          <h2>Our Research</h2>
+        </header>
+        <p>We investigate microbial ecophysiology and evolution in extreme environments,
+        focusing on acidophilic communities, metabolic adaptation, and the
+        molecular mechanisms that allow life to thrive where few organisms can survive.</p>
+        <a href="research.html" class="section-btn">Explore Research</a>
+      </div>
+      <a href="#team" class="button style2 down anchored">Next</a>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="main style2 right dark fullscreen">
+      <div class="content box style2">
+        <header data-tag="// people">
+          <h2>Our Team</h2>
+        </header>
+        <p>We are a multidisciplinary group of scientists passionate about
+        microbiology, evolution, and extreme environments. Our team combines
+        molecular biology, bioinformatics, and field ecology to understand
+        the limits of life.</p>
+        <a href="team.html" class="section-btn">Meet the Team</a>
+      </div>
+      <a href="#outreach" class="button style2 down anchored">Next</a>
+    </section>
+
+    <!-- Outreach -->
+    <section id="outreach" class="main style2 left dark fullscreen">
+      <div class="content box style2">
+        <header data-tag="// science communication">
+          <h2>Outreach</h2>
+        </header>
+        <p>Science belongs to everyone. We are committed to communicating our research
+        beyond the laboratory — through public talks, science writing, educational
+        workshops, and community engagement. Bridging the gap between cutting-edge
+        microbial science and society.</p>
+        <a href="outreach.html" class="section-btn">See Our Outreach</a>
+      </div>
+      <a href="#work" class="button style2 down anchored">Next</a>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PUBLICATIONS — SEDIMENT CORE
+    ═══════════════════════════════════════════ -->
+    <section id="work">
+      <div class="pub-wrap">
+
+        <div class="pub-header">
+          <span class="section-micro">// selected publications</span>
+          <h2>Publications</h2>
+          <p>Recent contributions from the lab — filtered by research theme or explored as a stratigraphic record of scientific output.</p>
+        </div>
+
+        <!-- Topic filters -->
+        <div class="pub-filters">
+          <span class="pub-filter-label">Filter by</span>
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="genomics">Genomics</button>
+          <button class="filter-btn" data-filter="evolution">Evolution</button>
+          <button class="filter-btn" data-filter="ecology">Ecology</button>
+          <button class="filter-btn" data-filter="metabolism">Metabolism</button>
+          <button class="filter-btn" data-filter="bioinformatics">Bioinformatics</button>
+        </div>
+
+        <!-- Core column -->
+        <div class="core-column">
+
+          <!-- ── 2024 ── -->
+          <div class="core-year">
+            <div class="year-node">
+              <div class="year-dot"></div>
+              <div class="year-label">2026</div>
+            </div>
+            <div class="pub-entries">
+
+              <div class="pub-entry" data-topic="genomics" data-tags="genomics evolution">
+                <div class="pub-title">Microbial succession and assembly shaped by sulfur, spatial partitioning, and water flow in a volcanic acidic river of northern Patagonia </div>
+                <div class="pub-meta">
+                  <span class="pub-journal">The ISME Journal</span>
+                  <span class="pub-authors">Duarte-Ramírez Juan , Arisan Dilanaz , Rojas-Villalobos Camila , Díaz-González Fernando , Sepúlveda-Rebolledo Pedro , Moya-Beltrán Ana , Ulloa Ricardo , Johnson D Barrie , Vera Mario , Beatriz Díez , Castro Matías , Temporetti Pedro , Giaveno Alejandra , Issotta Francisco , Quatrini Raquel</span>
+                </div>
+                <div class="pub-footer-row">
+                  <div class="pub-tags">
+                    <span class="pub-tag tag-genomics">Microbial succession</span>
+                    <span class="pub-tag tag-evolution">Evolution</span>
+                  </div>
+                  <a href="#" class="pub-doi" target="_blank" rel="noopener">DOI &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 2025 ── -->
+          <div class="core-year">
+            <div class="year-node">
+              <div class="year-dot"></div>
+              <div class="year-label">2025</div>
+            </div>
+            <div class="pub-entries">
+
+              <div class="pub-entry" data-topic="evolution" data-tags="evolution genomics">
+                <div class="pub-title">MOBHunter: a data integration platform for identification and classification of mobile genetic elements in microbial genomes </div>
+                <div class="pub-meta">
+                  <span class="pub-journal">Nucleic Acids Research</span>
+                  <span class="pub-authors">Camila Rojas-Villalobos , Francisco J Ossandon , Camila Castillo-Vilcahuaman , Pedro Sepúlveda-Rebolledo , David Castro-Salinas , Abraham Zapata-Araya , Dilanaz Arisan , Tomás Perez-Acle , Francisco Issotta , Raquel Quatrini , Ana Moya-Beltrán</span>
+                </div>
+                <div class="pub-footer-row">
+                  <div class="pub-tags">
+                    <span class="pub-tag tag-evolution">Evolution</span>
+                    <span class="pub-tag tag-genomics">Mobile genetic elements</span>
+                    <span class="pub-tag tag-genomics">Genomics</span>
+                  </div>
+                  <a href="#" class="pub-doi" target="_blank" rel="noopener">DOI &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 2024 ── -->
+          <div class="core-year">
+            <div class="year-node">
+              <div class="year-dot"></div>
+              <div class="year-label">2024</div>
+            </div>
+            <div class="pub-entries">
+
+              <div class="pub-entry" data-topic="genomics" data-tags="genomics bioinformatics">
+                <div class="pub-title"><em>Acidithiobacillia</em> class members originating at sites within the Pacific Ring of Fire and other tectonically active locations and description of the novel genus <em>‘Igneacidithiobacillus’</em></div>
+                <div class="pub-meta">
+                  <span class="pub-journal">Frontiers in Microbiology</span>
+                  <span class="pub-authors">Arisan D, Moya-Beltrán A, Rojas-Villalobos C, Issotta F, Castro M, Ulloa R, Chiacchiarini PA, Díez B, Martín AJM, Ñancucheo I, Giaveno A, Johnson DB and Quatrini R.</span>
+                </div>
+                <div class="pub-footer-row">
+                  <div class="pub-tags">
+                    <span class="pub-tag tag-genomics">Genomics</span>
+                    <span class="pub-tag tag-bioinformatics">Phylogenomics</span>
+                  </div>
+                  <a href="#" class="pub-doi" target="_blank" rel="noopener">DOI &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end core-column -->
+<!-- ── 2024 ── -->
+          <div class="core-year">
+            <div class="year-node">
+              <div class="year-dot"></div>
+              <div class="year-label">2021</div>
+            </div>
+            <div class="pub-entries">
+
+              <div class="pub-entry" data-topic="genomics" data-tags="genomics bioinformatics">
+                <div class="pub-title">Genomic evolution of the class <em>Acidithiobacillia</em>: deep-branching Proteobacteria living in extreme acidic conditions</div>
+                <div class="pub-meta">
+                  <span class="pub-journal">The ISME Journal</span>
+                  <span class="pub-authors">Ana Moya-Beltrán , Simón Beard , Camila Rojas-Villalobos , Francisco Issotta , Yasna Gallardo , Ricardo Ulloa , Alejandra Giaveno , Mauro Degli Esposti , D Barrie Johnson , Raquel Quatrini.</span>
+                </div>
+                <div class="pub-footer-row">
+                  <div class="pub-tags">
+                    <span class="pub-tag tag-genomics">Genomics</span>
+                    <span class="pub-tag tag-bioinformatics">Phylogenomics</span>
+                  </div>
+                  <a href="#" class="pub-doi" target="_blank" rel="noopener">DOI &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end core-column -->
+        <!-- CTA -->
+        <div class="pub-cta">
+          <p class="pub-cta-note">Showing selected publications &mdash; full record available on the publications page</p>
+          <a href="publications.html" class="section-btn" style="margin-top:0;">View All Publications</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SITE FOOTER -->
+    <footer id="site-footer">
+
+      <div class="footer-cta">
+        <div class="footer-cta-text">
+          <span class="cta-label">// get in touch</span>
+          <h2>Let's Connect</h2>
+          <p>Collaboration inquiries, student opportunities, or questions about our research — we would love to hear from you.</p>
+        </div>
+        <div class="footer-cta-action">
+          <a href="contact.html" class="footer-cta-btn">Contact Us</a>
+          <div class="footer-contact-detail">
+            <a href="mailto:rquatrini@cienciavida.org">rquatrini@cienciavida.org</a><br />
+            +56 2 2480 3690<br />
+            Avenida del Valle 725, Huechuraba
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-main">
+        <div class="footer-logos">
+          <a href="#" class="footer-logo-slot" title="Institution 1">
+            <img src="images/logos/CCV.png" alt="Institution 1"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <span class="logo-placeholder" style="display:none;">Logo 01</span>
+          </a>
+          <a href="#" class="footer-logo-slot" title="Institution 2">
+            <img src="images/logos/logo-02.png" alt="Institution 2"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <span class="logo-placeholder" style="display:none;">Logo 02</span>
+          </a>
+          <a href="#" class="footer-logo-slot" title="Institution 3">
+            <img src="images/logos/logo-03.png" alt="Institution 3"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <span class="logo-placeholder" style="display:none;">Logo 03</span>
+          </a>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <nav class="footer-nav">
+          <span class="footer-nav-label">Pages</span>
+          <a href="#intro">Home</a>
+          <a href="research.html">Research</a>
+          <a href="team.html">Team</a>
+          <a href="outreach.html">Outreach</a>
+          <a href="publications.html">Publications</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-social">
+          <span class="footer-social-label">Follow</span>
+          <a href="#" class="icon brands fa-twitter" title="Twitter"><span class="label">Twitter</span></a>
+          <a href="#" class="icon brands fa-instagram" title="Instagram"><span class="label">Instagram</span></a>
+          <a href="#" class="icon brands fa-linkedin-in" title="LinkedIn"><span class="label">LinkedIn</span></a>
+          <a href="#" class="icon brands fa-researchgate" title="ResearchGate"><span class="label">ResearchGate</span></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2025 Quatrini Lab &mdash; Laboratory of Microbial Ecophysiology</span>
+        <span>Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></span>
+      </div>
+
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.poptrox.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+      /* ── Topic filter ── */
+      var filterBtns = document.querySelectorAll('.filter-btn');
+      var pubEntries = document.querySelectorAll('.pub-entry');
+
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          var filter = btn.getAttribute('data-filter');
+
+          pubEntries.forEach(function(entry) {
+            if (filter === 'all') {
+              entry.classList.remove('hidden');
+            } else {
+              var tags = entry.getAttribute('data-tags') || '';
+              if (tags.indexOf(filter) !== -1) {
+                entry.classList.remove('hidden');
+              } else {
+                entry.classList.add('hidden');
+              }
+            }
+          });
+
+          /* Hide year groups with no visible entries */
+          document.querySelectorAll('.core-year').forEach(function(yearGroup) {
+            var visibleEntries = yearGroup.querySelectorAll('.pub-entry:not(.hidden)');
+            yearGroup.style.display = visibleEntries.length === 0 ? 'none' : '';
+          });
+        });
+      });
+    </script>
+
+  </body>
+</html>
